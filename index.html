@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pranav Gunreddy | Human-Machine Interface</title>
+    <meta name="description" content="Portfolio of Pranav Gunreddy - Mechatronics & Robotics Engineer.">
+    
+    <!-- Tailwind CSS (via CDN for immediate deployment) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Config for Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', "Liberation Mono", "Courier New", 'monospace'],
+                        sans: ['ui-sans-serif', 'system-ui', '-apple-system', "Segoe UI", 'Roboto', "Helvetica Neue", 'Arial', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            850: '#151e2e',
+                            950: '#020617',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar for that IDE feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-300 selection:bg-emerald-500/30 font-sans antialiased overflow-x-hidden">
+
+    <!-- Navbar / System Status -->
+    <nav class="fixed top-0 w-full bg-slate-950/90 backdrop-blur-md border-b border-slate-800 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Mac-style Window Controls -->
+                <div class="flex items-center space-x-2">
+                    <div class="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50"></div>
+                    <div class="w-3 h-3 rounded-full bg-emerald-500/20 border border-emerald-500/50"></div>
+                    <span class="ml-4 font-mono text-sm text-slate-500 hidden sm:block">pranav@localhost:~</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-2">
+                    <a href="#home" class="nav-link flex items-center space-x-2 px-4 py-2 rounded-md transition-all duration-300 font-mono text-sm text-slate-400 hover:text-slate-100 hover:bg-slate-800" data-target="home">
+                        <i data-lucide="terminal" class="w-4 h-4"></i>
+                        <span>root</span>
+                    </a>
+                    <a href="#experience" class="nav-link flex items-center space-x-2 px-4 py-2 rounded-md transition-all duration-300 font-mono text-sm text-slate-400 hover:text-slate-100 hover:bg-slate-800" data-target="experience">
+                        <i data-lucide="activity" class="w-4 h-4"></i>
+                        <span>runtime_logs</span>
+                    </a>
+                    <a href="#projects" class="nav-link flex items-center space-x-2 px-4 py-2 rounded-md transition-all duration-300 font-mono text-sm text-slate-400 hover:text-slate-100 hover:bg-slate-800" data-target="projects">
+                        <i data-lucide="cpu" class="w-4 h-4"></i>
+                        <span>binaries</span>
+                    </a>
+                    <a href="#skills" class="nav-link flex items-center space-x-2 px-4 py-2 rounded-md transition-all duration-300 font-mono text-sm text-slate-400 hover:text-slate-100 hover:bg-slate-800" data-target="skills">
+                        <i data-lucide="zap" class="w-4 h-4"></i>
+                        <span>config</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Status -->
+                <div class="md:hidden">
+                    <span class="font-mono text-emerald-500 text-xs">SYS_ONLINE</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
+        
+        <!-- HERO SECTION -->
+        <!-- Fixed: Removed duplicate id="hero-content" -->
+        <section id="home" class="min-h-[85vh] flex flex-col justify-center py-20 opacity-0 transition-opacity duration-1000 ease-out">
+            <div>
+                <!-- Badge -->
+                <div class="inline-flex items-center px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 text-emerald-400 text-xs font-mono mb-6">
+                    <span class="relative flex h-2 w-2 mr-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    System Architecture & Robotics
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-bold text-slate-100 mb-6 tracking-tight">
+                    Pranav Gunreddy
+                </h1>
+                
+                <!-- Typing Effect Container -->
+                <div class="font-mono text-lg md:text-xl text-slate-400 mb-8 h-8 flex items-center">
+                    <span id="typewriter"></span><span class="cursor-blink bg-emerald-500 w-2.5 h-5 ml-1"></span>
+                </div>
+
+                <p class="text-xl text-slate-400 max-w-2xl leading-relaxed mb-10">
+                    A Human-Machine Interface built to execute complex control loops. 
+                    Currently optimizing thermal dynamics at <span class="text-emerald-400 font-medium">SharkNinja</span>. 
+                    Previously taught robots to play golf better than you at <span class="text-emerald-400 font-medium">Verdant</span>.
+                </p>
+
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://github.com/PranavG200" target="_blank" rel="noreferrer" class="group flex items-center px-6 py-3 bg-slate-100 text-slate-900 rounded-lg hover:bg-emerald-400 transition-colors font-medium">
+                        <i data-lucide="github" class="w-5 h-5 mr-2"></i>
+                        <span>GitHub</span>
+                        <i data-lucide="chevron-right" class="w-4 h-4 ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all"></i>
+                    </a>
+                    <a href="mailto:grpranav@seas.upenn.edu" class="group flex items-center px-6 py-3 border border-slate-700 text-slate-300 rounded-lg hover:border-emerald-500/50 hover:text-emerald-400 transition-all bg-slate-900/50">
+                        <i data-lucide="mail" class="w-5 h-5 mr-2"></i>
+                        <span>Contact Protocol</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE SECTION -->
+        <section id="experience" class="py-20">
+            <div class="mb-12 border-b border-slate-800 pb-4">
+                <h2 class="text-2xl md:text-3xl font-mono text-slate-100 flex items-center">
+                    <span class="text-emerald-500 mr-2">./</span>
+                    runtime_logs
+                </h2>
+                <p class="text-slate-500 font-mono text-sm mt-2 flex items-center">
+                    <span class="w-2 h-2 bg-emerald-500/50 rounded-full mr-2 animate-pulse"></span>
+                    Monitoring system performance and career uptime.
+                </p>
+            </div>
+            
+            <div class="relative border-l border-slate-800 ml-3 md:ml-6 space-y-12">
+                
+                <!-- Job 1 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-emerald-500 ring-4 ring-slate-950 group-hover:ring-emerald-500/20 transition-all"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                        <h3 class="text-xl font-bold text-slate-100 group-hover:text-emerald-400 transition-colors">
+                            R&D Control Systems Engineer
+                        </h3>
+                        <span class="text-sm font-mono text-slate-500 bg-slate-900 px-2 py-1 rounded border border-slate-800">
+                            2024 - Present @ SharkNinja
+                        </span>
+                    </div>
+                    <p class="text-slate-400 italic mb-4">"Mastering the thermal dynamics of a perfect brew."</p>
+                    <ul class="space-y-2 text-slate-400 text-sm list-disc list-inside marker:text-emerald-500/50">
+                        <li>Architected embedded firmware (RTOS) for high-volume smart home appliances.</li>
+                        <li>Deployed non-convex optimization solvers and TinyML on Cortex-M MCUs. (Yes, on a toaster).</li>
+                        <li>Debugging electro-mechanical failures using logic analyzers to ensure your morning coffee is deterministic.</li>
+                    </ul>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-slate-600 ring-4 ring-slate-950 group-hover:bg-emerald-500 group-hover:ring-emerald-500/20 transition-all"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                        <h3 class="text-xl font-bold text-slate-100 group-hover:text-emerald-400 transition-colors">
+                            R&D Control Software Intern
+                        </h3>
+                        <span class="text-sm font-mono text-slate-500 bg-slate-900 px-2 py-1 rounded border border-slate-800">
+                            2023 @ Verdant Robotics
+                        </span>
+                    </div>
+                    <p class="text-slate-400 italic mb-4">"Minimizing uncertainty to maximize agricultural yield."</p>
+                    <ul class="space-y-2 text-slate-400 text-sm list-disc list-inside marker:text-emerald-500/50">
+                        <li>Developed FOC-based control algorithms for high-speed BLDC motors.</li>
+                        <li>Improved weed hit rate via adaptive, learning-based control.</li>
+                        <li>Solved CAN protocol latency issues (because plants don't wait for lagging packets).</li>
+                    </ul>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-slate-600 ring-4 ring-slate-950 group-hover:bg-emerald-500 group-hover:ring-emerald-500/20 transition-all"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                        <h3 class="text-xl font-bold text-slate-100 group-hover:text-emerald-400 transition-colors">
+                            Research Assistant
+                        </h3>
+                        <span class="text-sm font-mono text-slate-500 bg-slate-900 px-2 py-1 rounded border border-slate-800">
+                            2022 - 2023 @ GRASP Lab (UPenn)
+                        </span>
+                    </div>
+                    <p class="text-slate-400 italic mb-4">"Teaching robots to safely predict human inefficiency."</p>
+                    <ul class="space-y-2 text-slate-400 text-sm list-disc list-inside marker:text-emerald-500/50">
+                        <li>Integrated Physics-Informed Deep Learning into Robust & Explicit MPC frameworks.</li>
+                        <li>Created novel MPC solutions with safety guarantees for dynamic pedestrian trajectory predictions.</li>
+                    </ul>
+                </div>
+
+                 <!-- Job 4 -->
+                 <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-slate-600 ring-4 ring-slate-950 group-hover:bg-emerald-500 group-hover:ring-emerald-500/20 transition-all"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                        <h3 class="text-xl font-bold text-slate-100 group-hover:text-emerald-400 transition-colors">
+                            R&D Software Engineer
+                        </h3>
+                        <span class="text-sm font-mono text-slate-500 bg-slate-900 px-2 py-1 rounded border border-slate-800">
+                            2021 - 2022 @ Dassault Systemes
+                        </span>
+                    </div>
+                    <p class="text-slate-400 italic mb-4">"Computational Geometry and C++ Object Oriented Design."</p>
+                    <ul class="space-y-2 text-slate-400 text-sm list-disc list-inside marker:text-emerald-500/50">
+                        <li>Implemented new CAD features using computational geometry algorithms.</li>
+                        <li>Optimized cloud-based platform integration.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects" class="py-20">
+            <div class="mb-12 border-b border-slate-800 pb-4">
+                <h2 class="text-2xl md:text-3xl font-mono text-slate-100 flex items-center">
+                    <span class="text-emerald-500 mr-2">./</span>
+                    compiled_binaries
+                </h2>
+                <p class="text-slate-500 font-mono text-sm mt-2 flex items-center">
+                    <span class="w-2 h-2 bg-emerald-500/50 rounded-full mr-2 animate-pulse"></span>
+                    sudo make install projects --force
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Project Card Template -->
+                <div class="group bg-slate-900 border border-slate-800 rounded-lg p-6 hover:border-emerald-500/30 transition-all hover:shadow-lg hover:shadow-emerald-500/5 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i data-lucide="code" class="text-slate-700 w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-100 mb-2 font-mono group-hover:text-emerald-400 transition-colors">
+                        Grand Theft Autonomous
+                    </h3>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">ESP32</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Bare-metal</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Wireless</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Designed a battle bot capable of auto maneuvering. Built filtering circuits and localization modules. The only theft here was the spotlight.
+                    </p>
+                </div>
+
+                <div class="group bg-slate-900 border border-slate-800 rounded-lg p-6 hover:border-emerald-500/30 transition-all hover:shadow-lg hover:shadow-emerald-500/5 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i data-lucide="code" class="text-slate-700 w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-100 mb-2 font-mono group-hover:text-emerald-400 transition-colors">
+                        Autonomous Quadrotor
+                    </h3>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Drake</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">MPC</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Fusion</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Navigated a CrazyFlie 2.0 using geometric non-linear control and 3D graph search. Because flying manually is for birds.
+                    </p>
+                </div>
+
+                <div class="group bg-slate-900 border border-slate-800 rounded-lg p-6 hover:border-emerald-500/30 transition-all hover:shadow-lg hover:shadow-emerald-500/5 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i data-lucide="code" class="text-slate-700 w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-100 mb-2 font-mono group-hover:text-emerald-400 transition-colors">
+                        Efficient Transformers
+                    </h3>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">BERT</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">CUDA</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Quantization</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Optimized post-training inference. Maintained competitive accuracy while reducing GPU memory footprint. Doing more with less.
+                    </p>
+                </div>
+
+                <div class="group bg-slate-900 border border-slate-800 rounded-lg p-6 hover:border-emerald-500/30 transition-all hover:shadow-lg hover:shadow-emerald-500/5 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i data-lucide="code" class="text-slate-700 w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-100 mb-2 font-mono group-hover:text-emerald-400 transition-colors">
+                        AI Driven Biometric Privacy
+                    </h3>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">GANs</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Python</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Security</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Used CycleGANs to create personalized fake fingerprints. Making the pipeline uninvertible and hack-proof.
+                    </p>
+                </div>
+
+                <div class="group bg-slate-900 border border-slate-800 rounded-lg p-6 hover:border-emerald-500/30 transition-all hover:shadow-lg hover:shadow-emerald-500/5 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i data-lucide="code" class="text-slate-700 w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-100 mb-2 font-mono group-hover:text-emerald-400 transition-colors">
+                        Underactuated Robotics
+                    </h3>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">RL</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">iLQR</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Flatness</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Reinforcement learning solutions for cartpole and damped pendulum. Controlled a high DOF biped robot.
+                    </p>
+                </div>
+
+                 <div class="group bg-slate-900 border border-slate-800 rounded-lg p-6 hover:border-emerald-500/30 transition-all hover:shadow-lg hover:shadow-emerald-500/5 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i data-lucide="code" class="text-slate-700 w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-100 mb-2 font-mono group-hover:text-emerald-400 transition-colors">
+                        Mobile Battlebot
+                    </h3>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Hardware</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">PID</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Safety</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Used low cost motor drivers & sensors for a cheap yet robust design. Violence, but engineered.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SKILLS / CONFIG SECTION -->
+        <section id="skills" class="py-20">
+            <div class="mb-12 border-b border-slate-800 pb-4">
+                <h2 class="text-2xl md:text-3xl font-mono text-slate-100 flex items-center">
+                    <span class="text-emerald-500 mr-2">./</span>
+                    system_config
+                </h2>
+                <p class="text-slate-500 font-mono text-sm mt-2 flex items-center">
+                    <span class="w-2 h-2 bg-emerald-500/50 rounded-full mr-2 animate-pulse"></span>
+                    pranav.config.json
+                </p>
+            </div>
+            
+            <div class="bg-slate-900 rounded-lg p-6 border border-slate-800 font-mono text-sm overflow-x-auto shadow-2xl">
+                <div class="flex space-x-2 mb-4">
+                    <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                    <div class="w-3 h-3 rounded-full bg-emerald-500/50"></div>
+                </div>
+<pre class="text-slate-300"><code>{
+  "user": "Pranav Gunreddy",
+  "role": "Mechatronics Engineer",
+  "core_languages": [
+    "Embedded C", 
+    "C++", 
+    "Python", 
+    "MATLAB/Simulink"
+  ],
+  "hardware_protocols": {
+    "mcus": ["ARM Cortex-M", "ESP32", "Teensy"],
+    "comms": ["SPI", "I2C", "UART", "CAN"]
+  },
+  "concepts": [
+    "FOC & DTC",
+    "System Identification",
+    "Sensor Fusion (EKF/UKF)",
+    "TinyML",
+    "Real-Time OS"
+  ],
+  "current_status": "Optimizing control loops...",
+  "coffee_intake": "High"
+}</code></pre>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="py-12 border-t border-slate-800 text-center text-slate-600 font-mono text-sm">
+            <p>Process finished with exit code 0.</p>
+            <p class="mt-2">© 2025 Pranav Gunreddy. Built with Tailwind CSS.</p>
+        </footer>
+
+    </main>
+
+    <!-- SCRIPTS FOR INTERACTIVITY -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Boot Sequence Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            // Fixed: Use 'home' instead of 'hero-content'
+            const heroContent = document.getElementById('home');
+            if (heroContent) {
+                setTimeout(() => {
+                    heroContent.classList.remove('opacity-0');
+                }, 100);
+            }
+
+            // Typing Effect
+            const textToType = "> init_human_machine_interface.sh --verbose";
+            const typeWriterElement = document.getElementById('typewriter');
+            let i = 0;
+
+            function typeWriter() {
+                if (typeWriterElement && i < textToType.length) {
+                    typeWriterElement.innerHTML += textToType.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                }
+            }
+            // Start typing after fade in
+            setTimeout(typeWriter, 800);
+        });
+
+        // Scroll Spy & Active Nav Link Logic
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                // Offset of 300px triggers the active state a bit earlier
+                if (pageYOffset >= (sectionTop - 300)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('bg-emerald-500/10', 'text-emerald-400', 'border', 'border-emerald-500/20');
+                link.classList.add('text-slate-400');
+                // Ensure current is not empty before checking
+                if (current && link.dataset.target === current) {
+                    link.classList.add('bg-emerald-500/10', 'text-emerald-400', 'border', 'border-emerald-500/20');
+                    link.classList.remove('text-slate-400');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
