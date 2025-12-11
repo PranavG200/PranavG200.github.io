@@ -4,7 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pranav Gunreddy | Human-Machine Interface</title>
-    <meta name="description" content="Portfolio of Pranav Gunreddy - Mechatronics & Robotics Engineer.">
+    <meta name="description" content="Portfolio of Pranav Gunreddy - Mechatronics & Robotics Engineer specializing in embedded systems, control algorithms, and robotics.">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pranavg200.github.io/">
+    <meta property="og:title" content="Pranav Gunreddy | Mechatronics & Robotics Engineer">
+    <meta property="og:description" content="R&D Control Systems Engineer at SharkNinja. Specializing in embedded firmware, RTOS, and control algorithms.">
+    <meta property="og:image" content="https://pranavg200.github.io/og-image.png">
+    
+    <!-- Twitter Meta Tags -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://pranavg200.github.io/">
+    <meta property="twitter:title" content="Pranav Gunreddy | Mechatronics & Robotics Engineer">
+    <meta property="twitter:description" content="R&D Control Systems Engineer at SharkNinja. Specializing in embedded firmware, RTOS, and control algorithms.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
     
     <!-- Tailwind CSS (via CDN for immediate deployment) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -54,6 +70,15 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
         }
+        /* Mobile menu animation */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .mobile-menu.active {
+            max-height: 500px;
+        }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-300 selection:bg-emerald-500/30 font-sans antialiased overflow-x-hidden">
@@ -90,9 +115,31 @@
                     </a>
                 </div>
 
-                <!-- Mobile Status -->
-                <div class="md:hidden">
-                    <span class="font-mono text-emerald-500 text-xs">SYS_ONLINE</span>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-400 hover:text-slate-100 transition-colors">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Navigation Menu -->
+            <div id="mobile-menu" class="mobile-menu md:hidden border-t border-slate-800">
+                <div class="py-4 space-y-2">
+                    <a href="#home" class="mobile-nav-link flex items-center space-x-2 px-4 py-2 rounded-md transition-all duration-300 font-mono text-sm text-slate-400 hover:text-slate-100 hover:bg-slate-800">
+                        <i data-lucide="terminal" class="w-4 h-4"></i>
+                        <span>root</span>
+                    </a>
+                    <a href="#experience" class="mobile-nav-link flex items-center space-x-2 px-4 py-2 rounded-md transition-all duration-300 font-mono text-sm text-slate-400 hover:text-slate-100 hover:bg-slate-800">
+                        <i data-lucide="activity" class="w-4 h-4"></i>
+                        <span>runtime_logs</span>
+                    </a>
+                    <a href="#projects" class="mobile-nav-link flex items-center space-x-2 px-4 py-2 rounded-md transition-all duration-300 font-mono text-sm text-slate-400 hover:text-slate-100 hover:bg-slate-800">
+                        <i data-lucide="cpu" class="w-4 h-4"></i>
+                        <span>binaries</span>
+                    </a>
+                    <a href="#skills" class="mobile-nav-link flex items-center space-x-2 px-4 py-2 rounded-md transition-all duration-300 font-mono text-sm text-slate-400 hover:text-slate-100 hover:bg-slate-800">
+                        <i data-lucide="zap" class="w-4 h-4"></i>
+                        <span>config</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -102,7 +149,6 @@
     <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
         
         <!-- HERO SECTION -->
-        <!-- Fixed: Removed duplicate id="hero-content" -->
         <section id="home" class="min-h-[85vh] flex flex-col justify-center py-20 opacity-0 transition-opacity duration-1000 ease-out">
             <div>
                 <!-- Badge -->
@@ -126,7 +172,7 @@
                 <p class="text-xl text-slate-400 max-w-2xl leading-relaxed mb-10">
                     A Human-Machine Interface built to execute complex control loops. 
                     Currently optimizing thermal dynamics at <span class="text-emerald-400 font-medium">SharkNinja</span>. 
-                    Previously taught robots to play golf better than you at <span class="text-emerald-400 font-medium">Verdant</span>.
+                    Previously engineered precision agriculture systems at <span class="text-emerald-400 font-medium">Verdant Robotics</span>.
                 </p>
 
                 <div class="flex flex-wrap gap-4">
@@ -135,10 +181,66 @@
                         <span>GitHub</span>
                         <i data-lucide="chevron-right" class="w-4 h-4 ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all"></i>
                     </a>
+                    <a href="https://www.linkedin.com/in/pranavg200" target="_blank" rel="noreferrer" class="group flex items-center px-6 py-3 border border-slate-700 text-slate-300 rounded-lg hover:border-blue-500/50 hover:text-blue-400 transition-all bg-slate-900/50">
+                        <i data-lucide="linkedin" class="w-5 h-5 mr-2"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/748df679-15a7-4002-a26e-ebfc5ea56eca/2025-12-11T12-23-19-477Z-82e841bd-PRG_CV__1_.pdf" target="_blank" rel="noreferrer" class="group flex items-center px-6 py-3 border border-slate-700 text-slate-300 rounded-lg hover:border-emerald-500/50 hover:text-emerald-400 transition-all bg-slate-900/50">
+                        <i data-lucide="file-text" class="w-5 h-5 mr-2"></i>
+                        <span>Resume</span>
+                    </a>
                     <a href="mailto:grpranav@seas.upenn.edu" class="group flex items-center px-6 py-3 border border-slate-700 text-slate-300 rounded-lg hover:border-emerald-500/50 hover:text-emerald-400 transition-all bg-slate-900/50">
                         <i data-lucide="mail" class="w-5 h-5 mr-2"></i>
-                        <span>Contact Protocol</span>
+                        <span>Contact</span>
                     </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATION SECTION -->
+        <section id="education" class="py-20">
+            <div class="mb-12 border-b border-slate-800 pb-4">
+                <h2 class="text-2xl md:text-3xl font-mono text-slate-100 flex items-center">
+                    <span class="text-emerald-500 mr-2">./</span>
+                    system_boot
+                </h2>
+                <p class="text-slate-500 font-mono text-sm mt-2 flex items-center">
+                    <span class="w-2 h-2 bg-emerald-500/50 rounded-full mr-2 animate-pulse"></span>
+                    Loading educational firmware...
+                </p>
+            </div>
+            
+            <div class="space-y-8">
+                <!-- Education 1 -->
+                <div class="group bg-slate-900 border border-slate-800 rounded-lg p-6 hover:border-emerald-500/30 transition-all">
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-100 group-hover:text-emerald-400 transition-colors">
+                                University of Pennsylvania
+                            </h3>
+                            <p class="text-emerald-400 font-medium mt-1">Master of Science and Engineering</p>
+                            <p class="text-slate-400 text-sm">Mechatronics & Robotics</p>
+                        </div>
+                        <span class="text-sm font-mono text-slate-500 bg-slate-950 px-3 py-1 rounded border border-slate-800 mt-2 sm:mt-0">
+                            Aug 2022 - May 2024
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Education 2 -->
+                <div class="group bg-slate-900 border border-slate-800 rounded-lg p-6 hover:border-emerald-500/30 transition-all">
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-100 group-hover:text-emerald-400 transition-colors">
+                                Indian Institute of Technology Jammu
+                            </h3>
+                            <p class="text-emerald-400 font-medium mt-1">Bachelor of Technology</p>
+                            <p class="text-slate-400 text-sm">Mechanical Engineering</p>
+                        </div>
+                        <span class="text-sm font-mono text-slate-500 bg-slate-950 px-3 py-1 rounded border border-slate-800 mt-2 sm:mt-0">
+                            Aug 2017 - Jun 2021
+                        </span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -166,14 +268,15 @@
                             R&D Control Systems Engineer
                         </h3>
                         <span class="text-sm font-mono text-slate-500 bg-slate-900 px-2 py-1 rounded border border-slate-800">
-                            2024 - Present @ SharkNinja
+                            Jun 2024 - Present @ SharkNinja
                         </span>
                     </div>
                     <p class="text-slate-400 italic mb-4">"Mastering the thermal dynamics of a perfect brew."</p>
                     <ul class="space-y-2 text-slate-400 text-sm list-disc list-inside marker:text-emerald-500/50">
                         <li>Architected embedded firmware (RTOS) for high-volume smart home appliances.</li>
-                        <li>Deployed non-convex optimization solvers and TinyML on Cortex-M MCUs. (Yes, on a toaster).</li>
+                        <li>Deployed non-convex optimization solvers and TinyML on Cortex-M MCUs.</li>
                         <li>Debugging electro-mechanical failures using logic analyzers to ensure your morning coffee is deterministic.</li>
+                        <li>Multiple patent families for best-selling smart coffee, slush drink, and cooking machines.</li>
                     </ul>
                 </div>
 
@@ -185,14 +288,14 @@
                             R&D Control Software Intern
                         </h3>
                         <span class="text-sm font-mono text-slate-500 bg-slate-900 px-2 py-1 rounded border border-slate-800">
-                            2023 @ Verdant Robotics
+                            May 2023 - Aug 2023 @ Verdant Robotics
                         </span>
                     </div>
                     <p class="text-slate-400 italic mb-4">"Minimizing uncertainty to maximize agricultural yield."</p>
                     <ul class="space-y-2 text-slate-400 text-sm list-disc list-inside marker:text-emerald-500/50">
-                        <li>Developed FOC-based control algorithms for high-speed BLDC motors.</li>
-                        <li>Improved weed hit rate via adaptive, learning-based control.</li>
-                        <li>Solved CAN protocol latency issues (because plants don't wait for lagging packets).</li>
+                        <li>Developed FOC-based control algorithms for high-speed BLDC motors using Simulink Coder.</li>
+                        <li>Improved weed hit rate at high vehicle speeds via adaptive, learning-based control.</li>
+                        <li>Solved CAN protocol latency issues and built HIL testbed for real-time robot health monitoring.</li>
                     </ul>
                 </div>
 
@@ -204,7 +307,7 @@
                             Research Assistant
                         </h3>
                         <span class="text-sm font-mono text-slate-500 bg-slate-900 px-2 py-1 rounded border border-slate-800">
-                            2022 - 2023 @ GRASP Lab (UPenn)
+                            Sep 2022 - Apr 2023 @ GRASP Lab (UPenn)
                         </span>
                     </div>
                     <p class="text-slate-400 italic mb-4">"Teaching robots to safely predict human inefficiency."</p>
@@ -222,13 +325,13 @@
                             R&D Software Engineer
                         </h3>
                         <span class="text-sm font-mono text-slate-500 bg-slate-900 px-2 py-1 rounded border border-slate-800">
-                            2021 - 2022 @ Dassault Systemes
+                            Jun 2021 - Jul 2022 @ Dassault Systemes
                         </span>
                     </div>
                     <p class="text-slate-400 italic mb-4">"Computational Geometry and C++ Object Oriented Design."</p>
                     <ul class="space-y-2 text-slate-400 text-sm list-disc list-inside marker:text-emerald-500/50">
                         <li>Implemented new CAD features using computational geometry algorithms.</li>
-                        <li>Optimized cloud-based platform integration.</li>
+                        <li>Optimized cloud-based platform integration for SolidWorks Assemblies.</li>
                     </ul>
                 </div>
 
@@ -250,10 +353,12 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
-                <!-- Project Card Template -->
+                <!-- Project 1 -->
                 <div class="group bg-slate-900 border border-slate-800 rounded-lg p-6 hover:border-emerald-500/30 transition-all hover:shadow-lg hover:shadow-emerald-500/5 relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <i data-lucide="code" class="text-slate-700 w-6 h-6"></i>
+                        <a href="https://github.com/PranavG200" target="_blank" rel="noreferrer" class="text-slate-700 hover:text-emerald-500 transition-colors">
+                            <i data-lucide="external-link" class="w-5 h-5"></i>
+                        </a>
                     </div>
                     <h3 class="text-lg font-bold text-slate-100 mb-2 font-mono group-hover:text-emerald-400 transition-colors">
                         Grand Theft Autonomous
@@ -262,15 +367,19 @@
                         <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">ESP32</span>
                         <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Bare-metal</span>
                         <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Wireless</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">PID</span>
                     </div>
                     <p class="text-slate-400 text-sm leading-relaxed">
-                        Designed a battle bot capable of auto maneuvering. Built filtering circuits and localization modules. The only theft here was the spotlight.
+                        Designed a battle bot capable of auto maneuvering. Built filtering circuits, localization, and wireless comm modules. The only theft here was the spotlight.
                     </p>
                 </div>
 
+                <!-- Project 2 -->
                 <div class="group bg-slate-900 border border-slate-800 rounded-lg p-6 hover:border-emerald-500/30 transition-all hover:shadow-lg hover:shadow-emerald-500/5 relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <i data-lucide="code" class="text-slate-700 w-6 h-6"></i>
+                        <a href="https://github.com/PranavG200" target="_blank" rel="noreferrer" class="text-slate-700 hover:text-emerald-500 transition-colors">
+                            <i data-lucide="external-link" class="w-5 h-5"></i>
+                        </a>
                     </div>
                     <h3 class="text-lg font-bold text-slate-100 mb-2 font-mono group-hover:text-emerald-400 transition-colors">
                         Autonomous Quadrotor
@@ -278,16 +387,20 @@
                     <div class="flex flex-wrap gap-2 mb-4">
                         <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Drake</span>
                         <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">MPC</span>
-                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Fusion</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">ESKF</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">VIO</span>
                     </div>
                     <p class="text-slate-400 text-sm leading-relaxed">
-                        Navigated a CrazyFlie 2.0 using geometric non-linear control and 3D graph search. Because flying manually is for birds.
+                        Navigated CrazyFlie 2.0 using geometric non-linear control and 3D graph search. Performed IMU-camera sensor fusion with ESKF. Because flying manually is for birds.
                     </p>
                 </div>
 
+                <!-- Project 3 -->
                 <div class="group bg-slate-900 border border-slate-800 rounded-lg p-6 hover:border-emerald-500/30 transition-all hover:shadow-lg hover:shadow-emerald-500/5 relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <i data-lucide="code" class="text-slate-700 w-6 h-6"></i>
+                        <a href="https://github.com/PranavG200" target="_blank" rel="noreferrer" class="text-slate-700 hover:text-emerald-500 transition-colors">
+                            <i data-lucide="external-link" class="w-5 h-5"></i>
+                        </a>
                     </div>
                     <h3 class="text-lg font-bold text-slate-100 mb-2 font-mono group-hover:text-emerald-400 transition-colors">
                         Efficient Transformers
@@ -296,32 +409,40 @@
                         <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">BERT</span>
                         <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">CUDA</span>
                         <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Quantization</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Pruning</span>
                     </div>
                     <p class="text-slate-400 text-sm leading-relaxed">
-                        Optimized post-training inference. Maintained competitive accuracy while reducing GPU memory footprint. Doing more with less.
+                        Optimized post-training inference for large models. Maintained competitive accuracy while reducing GPU memory footprint and latency. Doing more with less.
                     </p>
                 </div>
 
+                <!-- Project 4 -->
                 <div class="group bg-slate-900 border border-slate-800 rounded-lg p-6 hover:border-emerald-500/30 transition-all hover:shadow-lg hover:shadow-emerald-500/5 relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <i data-lucide="code" class="text-slate-700 w-6 h-6"></i>
+                        <a href="https://github.com/PranavG200" target="_blank" rel="noreferrer" class="text-slate-700 hover:text-emerald-500 transition-colors">
+                            <i data-lucide="external-link" class="w-5 h-5"></i>
+                        </a>
                     </div>
                     <h3 class="text-lg font-bold text-slate-100 mb-2 font-mono group-hover:text-emerald-400 transition-colors">
                         AI Driven Biometric Privacy
                     </h3>
                     <div class="flex flex-wrap gap-2 mb-4">
                         <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">GANs</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">CycleGAN</span>
                         <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Python</span>
                         <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Security</span>
                     </div>
                     <p class="text-slate-400 text-sm leading-relaxed">
-                        Used CycleGANs to create personalized fake fingerprints. Making the pipeline uninvertible and hack-proof.
+                        Collaborated with National Institute of Informatics, Japan. Used CycleGANs for latent space manipulation to create personalized fake fingerprints with uninvertible pipeline.
                     </p>
                 </div>
 
+                <!-- Project 5 -->
                 <div class="group bg-slate-900 border border-slate-800 rounded-lg p-6 hover:border-emerald-500/30 transition-all hover:shadow-lg hover:shadow-emerald-500/5 relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <i data-lucide="code" class="text-slate-700 w-6 h-6"></i>
+                        <a href="https://github.com/PranavG200" target="_blank" rel="noreferrer" class="text-slate-700 hover:text-emerald-500 transition-colors">
+                            <i data-lucide="external-link" class="w-5 h-5"></i>
+                        </a>
                     </div>
                     <h3 class="text-lg font-bold text-slate-100 mb-2 font-mono group-hover:text-emerald-400 transition-colors">
                         Underactuated Robotics
@@ -329,27 +450,32 @@
                     <div class="flex flex-wrap gap-2 mb-4">
                         <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">RL</span>
                         <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">iLQR</span>
-                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Flatness</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">MPC</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Drake</span>
                     </div>
                     <p class="text-slate-400 text-sm leading-relaxed">
-                        Reinforcement learning solutions for cartpole and damped pendulum. Controlled a high DOF biped robot.
+                        Explored RL-based control for cartpole and damped pendulum. Controlled underactuated arm using differential flatness. Implemented operational space controller for high DOF biped.
                     </p>
                 </div>
 
+                 <!-- Project 6 -->
                  <div class="group bg-slate-900 border border-slate-800 rounded-lg p-6 hover:border-emerald-500/30 transition-all hover:shadow-lg hover:shadow-emerald-500/5 relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <i data-lucide="code" class="text-slate-700 w-6 h-6"></i>
+                        <a href="https://github.com/PranavG200" target="_blank" rel="noreferrer" class="text-slate-700 hover:text-emerald-500 transition-colors">
+                            <i data-lucide="external-link" class="w-5 h-5"></i>
+                        </a>
                     </div>
                     <h3 class="text-lg font-bold text-slate-100 mb-2 font-mono group-hover:text-emerald-400 transition-colors">
-                        Mobile Battlebot
+                        Adaptive Kalman Filter
                     </h3>
                     <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Hardware</span>
-                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">PID</span>
-                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Safety</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">EKF</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">RNN-GRU</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">IMU</span>
+                        <span class="text-xs font-mono text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">Vicon</span>
                     </div>
                     <p class="text-slate-400 text-sm leading-relaxed">
-                        Used low cost motor drivers & sensors for a cheap yet robust design. Violence, but engineered.
+                        Built adaptive estimation framework with 21D state vector for drone dynamics. RNN-GRU predicted estimates for precise inertial navigation with adaptive noise matrices.
                     </p>
                 </div>
 
@@ -378,11 +504,22 @@
 <pre class="text-slate-300"><code>{
   "user": "Pranav Gunreddy",
   "role": "Mechatronics Engineer",
+  "location": "Boston, MA",
+  "contact": {
+    "email": "grpranav@seas.upenn.edu",
+    "phone": "+1 (215) 397-5734",
+    "github": "PranavG200",
+    "linkedin": "pranavg200"
+  },
   "core_languages": [
     "Embedded C", 
     "C++", 
     "Python", 
     "MATLAB/Simulink"
+  ],
+  "tools_frameworks": [
+    "Git", "CMake", "Docker", "CMSIS",
+    "pyTorch", "TinyML", "GTSAM"
   ],
   "hardware_protocols": {
     "mcus": ["ARM Cortex-M", "ESP32", "Teensy"],
@@ -393,7 +530,8 @@
     "System Identification",
     "Sensor Fusion (EKF/UKF)",
     "TinyML",
-    "Real-Time OS"
+    "Real-Time OS",
+    "HIL Testing"
   ],
   "current_status": "Optimizing control loops...",
   "coffee_intake": "High"
@@ -404,7 +542,12 @@
         <!-- FOOTER -->
         <footer class="py-12 border-t border-slate-800 text-center text-slate-600 font-mono text-sm">
             <p>Process finished with exit code 0.</p>
-            <p class="mt-2">© 2025 Pranav Gunreddy. Built with Tailwind CSS.</p>
+            <p class="mt-2">© 2025 Pranav Gunreddy. Built with Tailwind CSS & Lucide Icons.</p>
+            <p class="mt-4 text-xs text-slate-700">
+                <a href="tel:+12153975734" class="hover:text-emerald-500 transition-colors">+1 (215) 397-5734</a>
+                <span class="mx-2">•</span>
+                <a href="mailto:grpranav@seas.upenn.edu" class="hover:text-emerald-500 transition-colors">grpranav@seas.upenn.edu</a>
+            </p>
         </footer>
 
     </main>
@@ -414,9 +557,25 @@
         // Initialize Icons
         lucide.createIcons();
 
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            // Re-initialize icons after DOM change
+            setTimeout(() => lucide.createIcons(), 50);
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
         // Boot Sequence Animation
         document.addEventListener('DOMContentLoaded', () => {
-            // Fixed: Use 'home' instead of 'hero-content'
             const heroContent = document.getElementById('home');
             if (heroContent) {
                 setTimeout(() => {
