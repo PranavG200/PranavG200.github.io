@@ -48,7 +48,7 @@
         }
 
         .product-image:hover {
-            transform: scale(1.05);
+            transform: scale(1.02);
         }
 
         .nav-link {
@@ -68,6 +68,31 @@
 
         .nav-link:hover::after {
             width: 100%;
+        }
+
+        .tech-badge {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: #10b981;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.1);
         }
     </style>
 </head>
@@ -139,55 +164,144 @@
     <!-- Work Section -->
     <section id="work" class="py-32 px-6 bg-gray-50">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold mb-20 text-center fade-in">Work</h2>
+            <h2 class="text-4xl md:text-5xl font-bold mb-20 text-center fade-in">Featured Work</h2>
 
             <!-- SharkNinja - Ninja Luxe Café -->
             <div class="mb-32 fade-in">
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <div class="mb-6">
-                            <span class="text-emerald-600 font-semibold text-sm uppercase tracking-wider">2024 - Present</span>
-                            <h3 class="text-3xl font-bold mt-2 mb-2">R&D Control Systems Engineer</h3>
-                            <p class="text-xl text-gray-600">SharkNinja</p>
-                        </div>
+                <div class="text-center mb-12">
+                    <span class="tech-badge">
+                        <i data-lucide="briefcase" class="w-4 h-4"></i>
+                        2024 - Present • SharkNinja
+                    </span>
+                    <h3 class="text-4xl md:text-5xl font-bold mt-6 mb-4">Ninja Luxe Café™</h3>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Premier 3-in-1 Espresso, Coffee & Cold Brew System
+                    </p>
+                </div>
 
-                        <div class="mb-8">
-                            <h4 class="text-2xl font-bold mb-4">Ninja Luxe Café™</h4>
-                            <p class="text-gray-600 mb-4 leading-relaxed">
-                                Led control system development for SharkNinja's premium espresso and coffee system. Designed adaptive brewing algorithms, precision motor control, and sensor fusion systems.
-                            </p>
-                            <a href="https://www.sharkninja.com/ninja-luxe-cafe-premier-series-espresso-machine-drip-coffee-maker-cold-brew-machine/ES601.html" target="_blank" class="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-semibold">
-                                View Product
-                                <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
-                            </a>
-                        </div>
+                <!-- Hero Image -->
+                <div class="mb-16">
+                    <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/748df679-15a7-4002-a26e-ebfc5ea56eca/2026-01-26T14-29-02-195Z-da9b5cfa-chat-image-1769437742177-0.jpg" 
+                         alt="Ninja Luxe Café - Premium Espresso System" 
+                         class="rounded-2xl shadow-2xl w-full max-w-5xl mx-auto product-image">
+                </div>
 
-                        <div class="space-y-3 text-gray-700">
-                            <div class="flex items-start">
-                                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-600 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span>Embedded C/C++ firmware for real-time control systems</span>
+                <!-- Technical Features Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                    <div class="feature-card">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mb-4">
+                            <i data-lucide="cpu" class="w-6 h-6 text-emerald-600"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">Barista Assist Technology</h4>
+                        <p class="text-gray-600 text-sm">Real-time temperature and pressure monitoring with automated adjustments for perfect extraction</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mb-4">
+                            <i data-lucide="gauge" class="w-6 h-6 text-emerald-600"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">Precision Motor Control</h4>
+                        <p class="text-gray-600 text-sm">25-setting conical burr grinder with weight-based dosing and integrated scale</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mb-4">
+                            <i data-lucide="thermometer" class="w-6 h-6 text-emerald-600"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">Thermoblock Heating</h4>
+                        <p class="text-gray-600 text-sm">1650W rapid heating system with 3-level temperature control for optimal brewing</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mb-4">
+                            <i data-lucide="layers" class="w-6 h-6 text-emerald-600"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">Dual Froth System</h4>
+                        <p class="text-gray-600 text-sm">Hands-free frothing with 5 presets supporting dairy and plant-based milks</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mb-4">
+                            <i data-lucide="settings" class="w-6 h-6 text-emerald-600"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">FreeRTOS Architecture</h4>
+                        <p class="text-gray-600 text-sm">Real-time multitasking firmware managing grinder, pump, heater, and sensor systems</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mb-4">
+                            <i data-lucide="activity" class="w-6 h-6 text-emerald-600"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">Sensor Fusion</h4>
+                        <p class="text-gray-600 text-sm">Multi-sensor integration for adaptive brewing algorithms and quality control</p>
+                    </div>
+                </div>
+
+                <!-- Product Images Grid -->
+                <div class="grid md:grid-cols-2 gap-6 mb-12">
+                    <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/748df679-15a7-4002-a26e-ebfc5ea56eca/2026-01-26T14-29-02-327Z-57b0c41b-chat-image-1769437742307-1.jpg" 
+                         alt="Ninja Luxe Café Control Interface" 
+                         class="rounded-xl shadow-lg w-full h-full object-cover product-image">
+                    <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/748df679-15a7-4002-a26e-ebfc5ea56eca/2026-01-26T14-29-02-439Z-cbbece27-chat-image-1769437742420-2.jpg" 
+                         alt="Ninja Luxe Café Espresso Extraction" 
+                         class="rounded-xl shadow-lg w-full h-full object-cover product-image">
+                </div>
+
+                <!-- Technical Contributions -->
+                <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 md:p-12 text-white">
+                    <h4 class="text-2xl font-bold mb-6">My Technical Contributions</h4>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="flex items-start space-x-3">
+                            <i data-lucide="check-circle" class="w-6 h-6 text-emerald-400 flex-shrink-0 mt-1"></i>
+                            <div>
+                                <p class="font-semibold mb-1">Embedded C/C++ Firmware Development</p>
+                                <p class="text-gray-300 text-sm">Real-time control systems for precision brewing and grinding operations</p>
                             </div>
-                            <div class="flex items-start">
-                                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-600 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span>Adaptive brewing algorithms with sensor fusion</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i data-lucide="check-circle" class="w-6 h-6 text-emerald-400 flex-shrink-0 mt-1"></i>
+                            <div>
+                                <p class="font-semibold mb-1">Adaptive Brewing Algorithms</p>
+                                <p class="text-gray-300 text-sm">Sensor fusion and machine learning for consistent extraction quality</p>
                             </div>
-                            <div class="flex items-start">
-                                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-600 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span>Precision motor control for grinder and pump systems</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i data-lucide="check-circle" class="w-6 h-6 text-emerald-400 flex-shrink-0 mt-1"></i>
+                            <div>
+                                <p class="font-semibold mb-1">Motor Control Systems</p>
+                                <p class="text-gray-300 text-sm">PID-based control for grinder and pump with torque optimization</p>
                             </div>
-                            <div class="flex items-start">
-                                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-600 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span>FreeRTOS-based multitasking architecture</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i data-lucide="check-circle" class="w-6 h-6 text-emerald-400 flex-shrink-0 mt-1"></i>
+                            <div>
+                                <p class="font-semibold mb-1">Temperature & Pressure Management</p>
+                                <p class="text-gray-300 text-sm">Closed-loop control for thermoblock heater and espresso pump systems</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i data-lucide="check-circle" class="w-6 h-6 text-emerald-400 flex-shrink-0 mt-1"></i>
+                            <div>
+                                <p class="font-semibold mb-1">FreeRTOS Task Architecture</p>
+                                <p class="text-gray-300 text-sm">Multitasking design for concurrent operation of all subsystems</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i data-lucide="check-circle" class="w-6 h-6 text-emerald-400 flex-shrink-0 mt-1"></i>
+                            <div>
+                                <p class="font-semibold mb-1">User Interface Integration</p>
+                                <p class="text-gray-300 text-sm">LCD display control and rotary encoder input processing</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-2 gap-4">
-                        <!-- Replace these placeholder URLs with actual product images -->
-                        <img src="https://via.placeholder.com/400x500/1f2937/10b981?text=Luxe+Cafe+1" alt="Ninja Luxe Café" class="rounded-lg shadow-lg product-image w-full h-full object-cover">
-                        <img src="https://via.placeholder.com/400x500/1f2937/10b981?text=Luxe+Cafe+2" alt="Ninja Luxe Café Detail" class="rounded-lg shadow-lg product-image w-full h-full object-cover mt-8">
-                        <img src="https://via.placeholder.com/400x500/1f2937/10b981?text=Luxe+Cafe+3" alt="Ninja Luxe Café Brewing" class="rounded-lg shadow-lg product-image w-full h-full object-cover">
-                        <img src="https://via.placeholder.com/400x500/1f2937/10b981?text=Luxe+Cafe+4" alt="Ninja Luxe Café Controls" class="rounded-lg shadow-lg product-image w-full h-full object-cover mt-8">
+                    <div class="mt-8 pt-8 border-t border-gray-700">
+                        <a href="https://www.sharkninja.com/ninja-luxe-cafe-premier-series-espresso-machine-drip-coffee-maker-cold-brew-machine/ES601.html" 
+                           target="_blank" 
+                           class="inline-flex items-center px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full transition-colors font-semibold">
+                            View Product Details
+                            <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
+                        </a>
                     </div>
                 </div>
             </div>
