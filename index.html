@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pranav Gunreddy | Robotics Engineer</title>
-    <meta name="description" content="Pranav Gunreddy - Robotics Engineer specializing in control systems and embedded software.">
+    <title>Pranav Gunreddy | Robotics & Control Systems Engineer</title>
+    <meta name="description" content="Pranav Gunreddy - Robotics Engineer specializing in autonomous systems, control algorithms, and embedded software.">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
     
@@ -12,7 +12,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         
         * {
             font-family: 'Inter', sans-serif;
@@ -43,14 +43,6 @@
             transform: translateY(0);
         }
 
-        .product-image {
-            transition: transform 0.3s ease;
-        }
-
-        .product-image:hover {
-            transform: scale(1.02);
-        }
-
         .nav-link {
             position: relative;
         }
@@ -62,7 +54,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: #10b981;
+            background: #3b82f6;
             transition: width 0.3s ease;
         }
 
@@ -70,87 +62,126 @@
             width: 100%;
         }
 
-        .tech-badge {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
-        .feature-card {
+        .expertise-card {
             background: white;
-            border: 1px solid #e5e7eb;
             border-radius: 1rem;
-            padding: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+            border-color: #3b82f6;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
 
-        .feature-card:hover {
-            border-color: #10b981;
-            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.1);
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
         }
 
-        .role-description-box {
-            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-            border: 2px solid #10b981;
-            border-radius: 1.5rem;
-            padding: 2.5rem;
+        .tech-tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .section-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .timeline-item {
             position: relative;
-            overflow: hidden;
+            padding-left: 2rem;
+            border-left: 3px solid #e5e7eb;
         }
 
-        .role-description-box::before {
+        .timeline-item::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
-            animation: pulse 4s ease-in-out infinite;
+            left: -0.6rem;
+            top: 0;
+            width: 1rem;
+            height: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            border: 3px solid white;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.8; }
+        .timeline-item:hover::before {
+            transform: scale(1.3);
+            transition: transform 0.3s ease;
         }
 
-        .impact-stat {
-            background: white;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        .skill-badge {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s ease;
         }
 
-        .impact-stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        .skill-badge:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .impact-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
     </style>
 </head>
-<body class="bg-white text-gray-900">
+<body class="bg-gray-50 text-gray-900">
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                <a href="#home" class="text-2xl font-bold text-gray-900">PG</a>
+                <a href="#home" class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent">PG</a>
 
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#work" class="nav-link text-gray-600 hover:text-emerald-600 transition-colors">Work</a>
-                    <a href="#projects" class="nav-link text-gray-600 hover:text-emerald-600 transition-colors">Projects</a>
-                    <a href="#about" class="nav-link text-gray-600 hover:text-emerald-600 transition-colors">About</a>
-                    <a href="#contact" class="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full transition-colors">Contact</a>
+                    <a href="#expertise" class="nav-link text-gray-600 hover:text-blue-600 transition-colors font-medium">Expertise</a>
+                    <a href="#experience" class="nav-link text-gray-600 hover:text-blue-600 transition-colors font-medium">Experience</a>
+                    <a href="#projects" class="nav-link text-gray-600 hover:text-blue-600 transition-colors font-medium">Projects</a>
+                    <a href="#about" class="nav-link text-gray-600 hover:text-blue-600 transition-colors font-medium">About</a>
+                    <a href="#contact" class="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white rounded-full transition-all shadow-md hover:shadow-lg">Contact</a>
                 </div>
 
                 <button id="mobile-menu-btn" class="md:hidden p-2">
@@ -159,434 +190,463 @@
             </div>
 
             <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
-                <a href="#work" class="block py-2 text-gray-600 hover:text-emerald-600">Work</a>
-                <a href="#projects" class="block py-2 text-gray-600 hover:text-emerald-600">Projects</a>
-                <a href="#about" class="block py-2 text-gray-600 hover:text-emerald-600">About</a>
-                <a href="#contact" class="block py-2 text-gray-600 hover:text-emerald-600">Contact</a>
+                <a href="#expertise" class="block py-2 text-gray-600 hover:text-blue-600">Expertise</a>
+                <a href="#experience" class="block py-2 text-gray-600 hover:text-blue-600">Experience</a>
+                <a href="#projects" class="block py-2 text-gray-600 hover:text-blue-600">Projects</a>
+                <a href="#about" class="block py-2 text-gray-600 hover:text-blue-600">About</a>
+                <a href="#contact" class="block py-2 text-gray-600 hover:text-blue-600">Contact</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center px-6 pt-20">
-        <div class="max-w-5xl w-full text-center">
-            <div class="mb-8">
-                <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/748df679-15a7-4002-a26e-ebfc5ea56eca/2026-01-26T15-36-52-935Z-45cc6f68-chat-image-1769441812916-0.jpg" alt="Pranav Gunreddy" class="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-emerald-100 object-cover shadow-lg">
-            </div>
-            
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 text-gray-900">
-                Pranav Gunreddy
-            </h1>
-            
-            <p class="text-2xl md:text-3xl text-gray-600 mb-4">
-                Robotics Engineer
-            </p>
-            
-            <p class="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto mb-12">
-                Building intelligent control systems at SharkNinja
-            </p>
+    <section id="home" class="min-h-screen flex items-center justify-center px-6 pt-20 hero-gradient">
+        <div class="max-w-6xl w-full">
+            <div class="text-center text-white">
+                <div class="mb-8">
+                    <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/748df679-15a7-4002-a26e-ebfc5ea56eca/2026-01-26T15-36-52-935Z-45cc6f68-chat-image-1769441812916-0.jpg" 
+                         alt="Pranav Gunreddy" 
+                         class="w-48 h-48 rounded-full mx-auto mb-6 border-4 border-white/30 object-cover shadow-2xl">
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-6">
+                    Pranav Gunreddy
+                </h1>
+                
+                <p class="text-2xl md:text-4xl font-bold mb-4 text-white/90">
+                    Robotics & Control Systems Engineer
+                </p>
+                
+                <p class="text-lg md:text-xl text-white/80 max-w-3xl mx-auto mb-8 leading-relaxed">
+                    Designing intelligent autonomous systems, advanced control algorithms, and embedded software for next-generation robotics applications
+                </p>
 
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="https://www.linkedin.com/in/pranav-gunreddy/" target="_blank" class="inline-flex items-center px-6 py-3 bg-gray-900 hover:bg-gray-800 text-white rounded-full transition-colors">
-                    <i data-lucide="linkedin" class="w-5 h-5 mr-2"></i>
-                    LinkedIn
-                </a>
-                <a href="https://github.com/PranavG200" target="_blank" class="inline-flex items-center px-6 py-3 border-2 border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 rounded-full transition-colors">
-                    <i data-lucide="github" class="w-5 h-5 mr-2"></i>
-                    GitHub
-                </a>
-                <a href="mailto:pranavg200@gmail.com" class="inline-flex items-center px-6 py-3 border-2 border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 rounded-full transition-colors">
-                    <i data-lucide="mail" class="w-5 h-5 mr-2"></i>
-                    Email
-                </a>
+                <div class="flex flex-wrap justify-center gap-3 mb-12">
+                    <span class="px-4 py-2 bg-white/20 backdrop-blur-md rounded-full text-sm font-semibold">Autonomous Systems</span>
+                    <span class="px-4 py-2 bg-white/20 backdrop-blur-md rounded-full text-sm font-semibold">Model Predictive Control</span>
+                    <span class="px-4 py-2 bg-white/20 backdrop-blur-md rounded-full text-sm font-semibold">Embedded ML</span>
+                    <span class="px-4 py-2 bg-white/20 backdrop-blur-md rounded-full text-sm font-semibold">Sensor Fusion</span>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://www.linkedin.com/in/pranav-gunreddy/" target="_blank" class="inline-flex items-center px-8 py-4 bg-white hover:bg-gray-100 text-purple-600 rounded-full transition-all font-semibold shadow-lg hover:shadow-xl">
+                        <i data-lucide="linkedin" class="w-5 h-5 mr-2"></i>
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/PranavG200" target="_blank" class="inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white border-2 border-white/30 rounded-full transition-all font-semibold">
+                        <i data-lucide="github" class="w-5 h-5 mr-2"></i>
+                        GitHub
+                    </a>
+                    <a href="mailto:pranavg200@gmail.com" class="inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white border-2 border-white/30 rounded-full transition-all font-semibold">
+                        <i data-lucide="mail" class="w-5 h-5 mr-2"></i>
+                        Email
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Work Section -->
-    <section id="work" class="py-32 px-6 bg-gray-50">
+    <!-- Core Expertise Section -->
+    <section id="expertise" class="py-32 px-6 bg-white">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold mb-20 text-center fade-in">Featured Work</h2>
-
-            <!-- SharkNinja -->
-            <div class="mb-32 fade-in">
-                <div class="text-center mb-16">
-                    <span class="tech-badge">
-                        <i data-lucide="briefcase" class="w-4 h-4"></i>
-                        June 2024 - Present • 1 year 8 months • SharkNinja
-                    </span>
-                    <h3 class="text-4xl md:text-5xl font-bold mt-6 mb-6">Control Software Engineer</h3>
-                    
-                    <!-- Enhanced Role Description -->
-                    <div class="max-w-4xl mx-auto role-description-box mb-16 relative z-10">
-                        <div class="relative z-10">
-                            <div class="flex items-center justify-center mb-4">
-                                <i data-lucide="cpu" class="w-12 h-12 text-emerald-600"></i>
-                            </div>
-                            <h4 class="text-3xl font-bold mb-6 text-gray-900">What I Do</h4>
-                            <p class="text-lg text-gray-800 leading-relaxed mb-4">
-                                I design and develop the <span class="font-bold text-emerald-700">intelligent control systems</span> that power smart kitchen appliances. My work focuses on creating software that makes machines think and adapt in real-time.
-                            </p>
-                            <p class="text-lg text-gray-800 leading-relaxed mb-6">
-                                Think of it like this: I build the software that orchestrates motors, heaters, and sensors to work together perfectly—ensuring your coffee is brewed at exactly the right temperature, or your drink is frozen to the perfect consistency.
-                            </p>
-                            <div class="grid md:grid-cols-3 gap-4 mt-6">
-                                <div class="bg-white/80 backdrop-blur rounded-xl p-4 border border-emerald-200">
-                                    <div class="text-2xl mb-2">🧠</div>
-                                    <div class="font-bold text-emerald-700">Smart</div>
-                                    <div class="text-sm text-gray-700">Learn & adapt</div>
-                                </div>
-                                <div class="bg-white/80 backdrop-blur rounded-xl p-4 border border-emerald-200">
-                                    <div class="text-2xl mb-2">🛡️</div>
-                                    <div class="font-bold text-emerald-700">Safe</div>
-                                    <div class="text-sm text-gray-700">Prevent failures</div>
-                                </div>
-                                <div class="bg-white/80 backdrop-blur rounded-xl p-4 border border-emerald-200">
-                                    <div class="text-2xl mb-2">⚡</div>
-                                    <div class="font-bold text-emerald-700">Robust</div>
-                                    <div class="text-sm text-gray-700">Work reliably</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h4 class="text-3xl font-bold text-gray-900 mb-8">Product Portfolio</h4>
-                </div>
-
-                <!-- Project 1: Ninja Luxe Café -->
-                <div class="mb-24">
-                    <div class="text-center mb-12">
-                        <h5 class="text-3xl font-bold mb-2">Ninja Luxe Café™</h5>
-                        <p class="text-xl text-gray-600 mb-6">Semi-Automatic Espresso & Coffee System</p>
-                        
-                        <!-- Business Impact Stats -->
-                        <div class="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto mb-8">
-                            <div class="impact-stat">
-                                <div class="impact-stat-number">#1</div>
-                                <div class="text-sm text-gray-600 font-semibold">Best-Selling Espresso Machine in US</div>
-                            </div>
-                            <div class="impact-stat">
-                                <div class="impact-stat-number">$400M+</div>
-                                <div class="text-sm text-gray-600 font-semibold">Annual Revenue Generated</div>
-                            </div>
-                            <div class="impact-stat">
-                                <div class="impact-stat-number">4.8★</div>
-                                <div class="text-sm text-gray-600 font-semibold">Customer Rating (10K+ Reviews)</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Symmetrical Image and Technical Points Layout -->
-                    <div class="max-w-6xl mx-auto">
-                        <!-- Row 1: Image Left, Text Right -->
-                        <div class="grid lg:grid-cols-2 gap-8 items-center mb-8">
-                            <div class="flex items-center justify-center">
-                                <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/748df679-15a7-4002-a26e-ebfc5ea56eca/2026-01-26T14-29-02-195Z-da9b5cfa-chat-image-1769437742177-0.jpg" 
-                                     alt="Ninja Luxe Café - Full Machine" 
-                                     class="rounded-xl shadow-lg w-full max-w-md product-image">
-                            </div>
-
-                            <div class="space-y-4">
-                                <h6 class="text-2xl font-bold mb-4 flex items-center">
-                                    <i data-lucide="zap" class="w-6 h-6 mr-2 text-emerald-600"></i>
-                                    Core Technical Innovations
-                                </h6>
-                                
-                                <div class="bg-white rounded-lg p-5 border-l-4 border-emerald-500 shadow-md">
-                                    <h6 class="font-bold text-emerald-700 mb-2 text-lg">Barista Assist Technology</h6>
-                                    <p class="text-gray-700">Real-time temperature and pressure monitoring with automated adjustments for perfect espresso extraction</p>
-                                </div>
-
-                                <div class="bg-white rounded-lg p-5 border-l-4 border-emerald-500 shadow-md">
-                                    <h6 class="font-bold text-emerald-700 mb-2 text-lg">Adaptive Thermal Control</h6>
-                                    <p class="text-gray-700">1650W thermoblock with PID-based temperature regulation and rapid 30-second startup</p>
-                                </div>
-
-                                <div class="bg-white rounded-lg p-5 border-l-4 border-emerald-500 shadow-md">
-                                    <h6 class="font-bold text-emerald-700 mb-2 text-lg">Multi-Sensor Fusion System</h6>
-                                    <p class="text-gray-700">Integrated sensors for temperature, pressure, weight, and flow rate ensuring consistent quality</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Row 2: Text Left, Image Right -->
-                        <div class="grid lg:grid-cols-2 gap-8 items-center">
-                            <div class="space-y-4 order-2 lg:order-1">
-                                <div class="bg-white rounded-lg p-5 border-l-4 border-emerald-500 shadow-md">
-                                    <h6 class="font-bold text-emerald-700 mb-2 text-lg">Precision Grinder Control</h6>
-                                    <p class="text-gray-700">25-setting conical burr grinder with weight-based dosing and motor torque monitoring</p>
-                                </div>
-
-                                <div class="bg-white rounded-lg p-5 border-l-4 border-emerald-500 shadow-md">
-                                    <h6 class="font-bold text-emerald-700 mb-2 text-lg">FreeRTOS Architecture</h6>
-                                    <p class="text-gray-700">Real-time multitasking firmware managing grinding, brewing, heating, and frothing simultaneously</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center justify-center order-1 lg:order-2">
-                                <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/748df679-15a7-4002-a26e-ebfc5ea56eca/2026-01-26T14-29-02-327Z-57b0c41b-chat-image-1769437742307-1.jpg" 
-                                     alt="Ninja Luxe Café Control Interface" 
-                                     class="rounded-xl shadow-lg w-full max-w-md product-image">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product Link -->
-                    <div class="text-center mt-12">
-                        <a href="https://www.sharkninja.com/ninja-luxe-cafe-premier-series-espresso-machine-drip-coffee-maker-cold-brew-machine/ES601.html" 
-                           target="_blank" 
-                           class="inline-flex items-center px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full transition-colors font-semibold text-lg shadow-lg">
-                            View Product Details
-                            <i data-lucide="external-link" class="w-5 h-5 ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 2: Ninja Slushi -->
-                <div class="mb-16">
-                    <div class="text-center mb-12">
-                        <h5 class="text-3xl font-bold mb-2">Ninja Slushi™</h5>
-                        <p class="text-xl text-gray-600 mb-6">Frozen Drink Maker Series</p>
-                        
-                        <!-- Business Impact Stats -->
-                        <div class="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto mb-8">
-                            <div class="impact-stat">
-                                <div class="impact-stat-number">Top 5</div>
-                                <div class="text-sm text-gray-600 font-semibold">Frozen Drink Maker in US Market</div>
-                            </div>
-                            <div class="impact-stat">
-                                <div class="impact-stat-number">$150M+</div>
-                                <div class="text-sm text-gray-600 font-semibold">Annual Revenue Contribution</div>
-                            </div>
-                            <div class="impact-stat">
-                                <div class="impact-stat-number">4.7★</div>
-                                <div class="text-sm text-gray-600 font-semibold">Customer Rating (5K+ Reviews)</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Symmetrical Layout -->
-                    <div class="max-w-6xl mx-auto">
-                        <div class="grid lg:grid-cols-2 gap-8 items-center">
-                            <div class="flex items-center justify-center">
-                                <img src="https://via.placeholder.com/500x500/1f2937/10b981?text=Ninja+Slushi" 
-                                     alt="Ninja Slushi - Frozen Drink Maker" 
-                                     class="rounded-xl shadow-lg w-full max-w-md product-image">
-                            </div>
-
-                            <div class="space-y-4">
-                                <h6 class="text-2xl font-bold mb-4 flex items-center">
-                                    <i data-lucide="zap" class="w-6 h-6 mr-2 text-emerald-600"></i>
-                                    Core Technical Innovations
-                                </h6>
-                                
-                                <div class="bg-white rounded-lg p-5 border-l-4 border-emerald-500 shadow-md">
-                                    <h6 class="font-bold text-emerald-700 mb-2 text-lg">Precision Freeze Control</h6>
-                                    <p class="text-gray-700">Closed-loop temperature control maintaining perfect slush consistency across drink types</p>
-                                </div>
-
-                                <div class="bg-white rounded-lg p-5 border-l-4 border-emerald-500 shadow-md">
-                                    <h6 class="font-bold text-emerald-700 mb-2 text-lg">Adaptive Mixing Algorithm</h6>
-                                    <p class="text-gray-700">Smart motor control adjusting speed and pattern based on viscosity and temperature feedback</p>
-                                </div>
-
-                                <div class="bg-white rounded-lg p-5 border-l-4 border-emerald-500 shadow-md">
-                                    <h6 class="font-bold text-emerald-700 mb-2 text-lg">Safety Interlock System</h6>
-                                    <p class="text-gray-700">Multi-layer protection preventing operation during unsafe conditions with automatic shutdown</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product Link -->
-                    <div class="text-center mt-12">
-                        <a href="https://www.sharkninja.com/ninja-slushi/" 
-                           target="_blank" 
-                           class="inline-flex items-center px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full transition-colors font-semibold text-lg shadow-lg">
-                            View Product Details
-                            <i data-lucide="external-link" class="w-5 h-5 ml-2"></i>
-                        </a>
-                    </div>
-                </div>
+            <div class="text-center mb-20 fade-in">
+                <span class="section-badge mb-6">
+                    <i data-lucide="cpu" class="w-4 h-4"></i>
+                    Core Expertise
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-6 mb-6">What I Do</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    I design and develop intelligent robotic systems that perceive, reason, and act autonomously in complex environments
+                </p>
             </div>
 
-            <!-- WPI Research -->
-            <div class="mb-32 fade-in">
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div class="order-2 lg:order-1">
-                        <img src="https://via.placeholder.com/800x600/1f2937/10b981?text=Robot+Arm+Research" alt="WPI Research" class="rounded-lg shadow-lg product-image w-full">
+            <div class="grid md:grid-cols-3 gap-8 fade-in">
+                <div class="expertise-card">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="brain" class="w-8 h-8 text-white"></i>
                     </div>
-                    
-                    <div class="order-1 lg:order-2">
-                        <div class="mb-6">
-                            <span class="text-emerald-600 font-semibold text-sm uppercase tracking-wider">August 2022 - May 2023 • 10 months</span>
-                            <h3 class="text-3xl font-bold mt-2 mb-2">Graduate Research Assistant</h3>
-                            <p class="text-xl text-gray-600">Worcester Polytechnic Institute</p>
-                        </div>
-
-                        <p class="text-gray-600 mb-6 leading-relaxed">
-                            Advanced robotics research focused on motion planning and control algorithms for robotic manipulators.
-                        </p>
-
-                        <div class="space-y-3 text-gray-700">
-                            <div class="flex items-start">
-                                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-600 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span>Path planning algorithms for obstacle avoidance</span>
-                            </div>
-                            <div class="flex items-start">
-                                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-600 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span>Real-time control implementation on robotic hardware</span>
-                            </div>
-                            <div class="flex items-start">
-                                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-600 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span>MATLAB/Python simulation and analysis</span>
-                            </div>
-                        </div>
+                    <h3 class="text-2xl font-bold mb-4">Autonomous Systems</h3>
+                    <p class="text-gray-600 mb-4">
+                        Developing perception, planning, and control pipelines for autonomous robots including quadrotors, mobile robots, and robotic manipulators
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge">SLAM</span>
+                        <span class="skill-badge">Path Planning</span>
+                        <span class="skill-badge">VIO</span>
+                        <span class="skill-badge">ESKF</span>
                     </div>
                 </div>
-            </div>
 
-            <!-- Tata Elxsi -->
-            <div class="fade-in">
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <div class="mb-6">
-                            <span class="text-emerald-600 font-semibold text-sm uppercase tracking-wider">July 2020 - July 2022 • 2 years</span>
-                            <h3 class="text-3xl font-bold mt-2 mb-2">Embedded Software Engineer</h3>
-                            <p class="text-xl text-gray-600">Tata Elxsi</p>
-                        </div>
-
-                        <p class="text-gray-600 mb-6 leading-relaxed">
-                            Automotive embedded systems development for next-generation vehicle control units.
-                        </p>
-
-                        <div class="space-y-3 text-gray-700">
-                            <div class="flex items-start">
-                                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-600 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span>AUTOSAR-compliant embedded software</span>
-                            </div>
-                            <div class="flex items-start">
-                                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-600 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span>CAN bus communication protocols</span>
-                            </div>
-                            <div class="flex items-start">
-                                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-600 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span>Diagnostic and testing tools development</span>
-                            </div>
-                        </div>
+                <div class="expertise-card">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="activity" class="w-8 h-8 text-white"></i>
                     </div>
+                    <h3 class="text-2xl font-bold mb-4">Advanced Control</h3>
+                    <p class="text-gray-600 mb-4">
+                        Designing model-based and learning-based control algorithms including MPC, iLQR, and physics-informed deep learning for nonlinear systems
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge">MPC</span>
+                        <span class="skill-badge">iLQR</span>
+                        <span class="skill-badge">PID</span>
+                        <span class="skill-badge">FOC</span>
+                    </div>
+                </div>
 
-                    <div>
-                        <img src="https://via.placeholder.com/800x600/1f2937/10b981?text=Automotive+Systems" alt="Automotive Embedded Systems" class="rounded-lg shadow-lg product-image w-full">
+                <div class="expertise-card">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="chip" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Embedded Systems</h3>
+                    <p class="text-gray-600 mb-4">
+                        Building real-time embedded software for resource-constrained systems with RTOS, bare-metal programming, and TinyML deployment
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge">ARM Cortex-M</span>
+                        <span class="skill-badge">RTOS</span>
+                        <span class="skill-badge">TinyML</span>
+                        <span class="skill-badge">SPI/I2C</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-32 px-6">
+    <!-- Experience Section -->
+    <section id="experience" class="py-32 px-6 bg-gray-50">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold mb-20 text-center fade-in">Projects</h2>
+            <div class="text-center mb-20 fade-in">
+                <span class="section-badge mb-6">
+                    <i data-lucide="briefcase" class="w-4 h-4"></i>
+                    Professional Experience
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-6">Career Journey</h2>
+            </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Quadruped Robot -->
-                <div class="fade-in group">
-                    <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
-                        <div class="h-64 bg-gray-200 overflow-hidden">
-                            <img src="https://via.placeholder.com/600x400/1f2937/10b981?text=Quadruped+Robot" alt="Quadruped Robot" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3">Quadruped Robot</h3>
-                            <p class="text-gray-600 mb-4">Four-legged walking robot with inverse kinematics and gait planning.</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm">Python</span>
-                                <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm">ROS</span>
-                            </div>
-                        </div>
+            <div class="space-y-16 fade-in">
+                <!-- SharkNinja -->
+                <div class="timeline-item">
+                    <div class="mb-4">
+                        <span class="text-sm font-bold text-purple-600 uppercase tracking-wider">June 2024 - Present • 1 year 8 months</span>
+                        <h3 class="text-3xl font-bold mt-2 mb-1">R&D Systems Software & Algorithms Engineer</h3>
+                        <p class="text-xl text-gray-600 font-semibold">SharkNinja • Boston, Massachusetts</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 shadow-lg mb-6">
+                        <h4 class="text-xl font-bold mb-4 flex items-center">
+                            <i data-lucide="zap" class="w-5 h-5 mr-2 text-purple-600"></i>
+                            Key Achievements
+                        </h4>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-purple-600 mr-3 mt-0.5 flex-shrink-0"></i>
+                                <span>Led embedded system software architecture design for smart home appliances under strict compute/power/cost constraints</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-purple-600 mr-3 mt-0.5 flex-shrink-0"></i>
+                                <span>Implemented sensor fusion, signal processing & thermal control algorithms (multiple patent families for best-selling products)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-purple-600 mr-3 mt-0.5 flex-shrink-0"></i>
+                                <span>Deployed TinyML and non-convex optimization solvers on Cortex-M microcontrollers</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-purple-600 mr-3 mt-0.5 flex-shrink-0"></i>
+                                <span>Built robust systems through low-level hardware diagnostics using oscilloscopes and logic analyzers</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-tag">Embedded C/C++</span>
+                        <span class="tech-tag">RTOS</span>
+                        <span class="tech-tag">MATLAB/Simulink</span>
+                        <span class="tech-tag">TinyML</span>
+                        <span class="tech-tag">Thermal Control</span>
+                        <span class="tech-tag">Sensor Fusion</span>
                     </div>
                 </div>
 
-                <!-- Autonomous Navigation -->
-                <div class="fade-in group">
-                    <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
-                        <div class="h-64 bg-gray-200 overflow-hidden">
-                            <img src="https://via.placeholder.com/600x400/1f2937/10b981?text=Autonomous+Robot" alt="Autonomous Navigation" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3">Autonomous Navigation</h3>
-                            <p class="text-gray-600 mb-4">Self-driving robot with SLAM, path planning, and obstacle avoidance.</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm">Python</span>
-                                <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm">OpenCV</span>
+                <!-- Verdant Robotics -->
+                <div class="timeline-item">
+                    <div class="mb-4">
+                        <span class="text-sm font-bold text-purple-600 uppercase tracking-wider">May 2023 - August 2023 • 4 months</span>
+                        <h3 class="text-3xl font-bold mt-2 mb-1">R&D Control Software Intern</h3>
+                        <p class="text-xl text-gray-600 font-semibold">Verdant Robotics • Hayward, California</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 shadow-lg mb-6">
+                        <h4 class="text-xl font-bold mb-4 flex items-center">
+                            <i data-lucide="zap" class="w-5 h-5 mr-2 text-purple-600"></i>
+                            Key Achievements
+                        </h4>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-purple-600 mr-3 mt-0.5 flex-shrink-0"></i>
+                                <span>Developed control algorithms on moteus firmware for high-speed BLDC motors using Simulink Coder</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-purple-600 mr-3 mt-0.5 flex-shrink-0"></i>
+                                <span>Implemented real-time robot health monitoring using Autoregressive models, Neural ODEs, and RL</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-purple-600 mr-3 mt-0.5 flex-shrink-0"></i>
+                                <span>Built HIL testbed, modified sensor drivers, resolved CAN protocol and telemetry issues</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-tag">FOC</span>
+                        <span class="tech-tag">BLDC Motors</span>
+                        <span class="tech-tag">HIL</span>
+                        <span class="tech-tag">CAN Protocol</span>
+                        <span class="tech-tag">Simulink Coder</span>
+                        <span class="tech-tag">Neural ODEs</span>
+                    </div>
+                </div>
+
+                <!-- GRASP Lab -->
+                <div class="timeline-item">
+                    <div class="mb-4">
+                        <span class="text-sm font-bold text-purple-600 uppercase tracking-wider">September 2022 - April 2023 • 8 months</span>
+                        <h3 class="text-3xl font-bold mt-2 mb-1">Research Assistant - Learning-based Control & Safe Planning</h3>
+                        <p class="text-xl text-gray-600 font-semibold">GRASP Lab, University of Pennsylvania</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 shadow-lg mb-6">
+                        <h4 class="text-xl font-bold mb-4 flex items-center">
+                            <i data-lucide="zap" class="w-5 h-5 mr-2 text-purple-600"></i>
+                            Research Focus
+                        </h4>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-purple-600 mr-3 mt-0.5 flex-shrink-0"></i>
+                                <span>Explored Physics-Informed Deep Learning to learn nonlinear dynamics for Robust, Hybrid, and Explicit MPC frameworks</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-purple-600 mr-3 mt-0.5 flex-shrink-0"></i>
+                                <span>Incorporated safety guarantees and created novel MPC solutions for dynamic pedestrian trajectory predictions</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-tag">MPC</span>
+                        <span class="tech-tag">PINN</span>
+                        <span class="tech-tag">DeepONet</span>
+                        <span class="tech-tag">Safety Guarantees</span>
+                        <span class="tech-tag">PyTorch</span>
+                    </div>
+                </div>
+
+                <!-- Dassault Systemes -->
+                <div class="timeline-item">
+                    <div class="mb-4">
+                        <span class="text-sm font-bold text-purple-600 uppercase tracking-wider">June 2021 - July 2022 • 1 year 2 months</span>
+                        <h3 class="text-3xl font-bold mt-2 mb-1">R&D Software Engineer</h3>
+                        <p class="text-xl text-gray-600 font-semibold">Solidworks Assemblies, Dassault Systemes</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 shadow-lg mb-6">
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-purple-600 mr-3 mt-0.5 flex-shrink-0"></i>
+                                <span>Implemented new CAD features using Object-Oriented Design and Computational Geometry algorithms</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-purple-600 mr-3 mt-0.5 flex-shrink-0"></i>
+                                <span>Enhanced software modules for cloud-based platform integration and performance optimization</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-tag">C++</span>
+                        <span class="tech-tag">API Design</span>
+                        <span class="tech-tag">Computational Geometry</span>
+                        <span class="tech-tag">OOP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Robotics Projects -->
+    <section id="projects" class="py-32 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 fade-in">
+                <span class="section-badge mb-6">
+                    <i data-lucide="rocket" class="w-4 h-4"></i>
+                    Featured Projects
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-6 mb-6">Robotics Portfolio</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Hands-on projects demonstrating expertise in autonomous systems, control algorithms, and embedded software
+                </p>
+            </div>
+
+            <div class="space-y-24">
+                <!-- Autonomous Quadrotor -->
+                <div class="fade-in">
+                    <div class="project-card">
+                        <div class="grid lg:grid-cols-2 gap-0">
+                            <div class="bg-gradient-to-br from-purple-500 to-blue-500 p-12 flex items-center justify-center">
+                                <div class="text-center text-white">
+                                    <i data-lucide="plane" class="w-32 h-32 mx-auto mb-6 opacity-90"></i>
+                                    <h3 class="text-3xl font-bold">Autonomous Quadrotor</h3>
+                                </div>
+                            </div>
+                            
+                            <div class="p-12">
+                                <h3 class="text-3xl font-bold mb-4">Autonomous Navigation with VIO & Obstacle Avoidance</h3>
+                                <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                                    Developed complete autonomy stack for CrazyFlie 2.0 quadrotor including visual-inertial odometry, 3D path planning, and geometric nonlinear control
+                                </p>
+
+                                <h4 class="font-bold text-lg mb-3 text-purple-600">Technical Highlights:</h4>
+                                <ul class="space-y-2 mb-6 text-gray-700">
+                                    <li class="flex items-start">
+                                        <i data-lucide="check" class="w-5 h-5 text-purple-600 mr-2 mt-0.5 flex-shrink-0"></i>
+                                        <span>Implemented Error State Kalman Filter (ESKF) for IMU-camera sensor fusion</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-lucide="check" class="w-5 h-5 text-purple-600 mr-2 mt-0.5 flex-shrink-0"></i>
+                                        <span>3D graph search algorithms (A*, RRT*, Dijkstra) for obstacle avoidance</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-lucide="check" class="w-5 h-5 text-purple-600 mr-2 mt-0.5 flex-shrink-0"></i>
+                                        <span>Geometric nonlinear control with minimum snap trajectory optimization</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-lucide="check" class="w-5 h-5 text-purple-600 mr-2 mt-0.5 flex-shrink-0"></i>
+                                        <span>Stereo vision for pose estimation and depth perception</span>
+                                    </li>
+                                </ul>
+
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="skill-badge">Drake</span>
+                                    <span class="skill-badge">CaSaDi</span>
+                                    <span class="skill-badge">iLQR</span>
+                                    <span class="skill-badge">MPC</span>
+                                    <span class="skill-badge">ESKF</span>
+                                    <span class="skill-badge">A*</span>
+                                    <span class="skill-badge">RRT*</span>
+                                </div>
+
+                                <a href="https://github.com/PranavG200" target="_blank" class="inline-flex items-center text-purple-600 hover:text-purple-700 font-semibold">
+                                    View on GitHub
+                                    <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Robotic Arm -->
-                <div class="fade-in group">
-                    <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
-                        <div class="h-64 bg-gray-200 overflow-hidden">
-                            <img src="https://via.placeholder.com/600x400/1f2937/10b981?text=Robot+Arm" alt="Robotic Arm" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3">Pick & Place Arm</h3>
-                            <p class="text-gray-600 mb-4">Precision robotic arm with trajectory planning and gripper control.</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm">MATLAB</span>
-                                <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm">Arduino</span>
+                <div class="fade-in">
+                    <div class="project-card">
+                        <div class="grid lg:grid-cols-2 gap-0">
+                            <div class="p-12 order-2 lg:order-1">
+                                <h3 class="text-3xl font-bold mb-4">7-DOF Panda Arm: Dynamic Pick & Place</h3>
+                                <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                                    Complete software stack for robotic manipulation in dynamic environments with real-time obstacle avoidance and closed-loop control
+                                </p>
+
+                                <h4 class="font-bold text-lg mb-3 text-purple-600">Technical Highlights:</h4>
+                                <ul class="space-y-2 mb-6 text-gray-700">
+                                    <li class="flex items-start">
+                                        <i data-lucide="check" class="w-5 h-5 text-purple-600 mr-2 mt-0.5 flex-shrink-0"></i>
+                                        <span>Forward/Inverse Kinematics solvers for 7-DOF redundant manipulator</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-lucide="check" class="w-5 h-5 text-purple-600 mr-2 mt-0.5 flex-shrink-0"></i>
+                                        <span>Optimal trajectory generation with velocity and acceleration constraints</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-lucide="check" class="w-5 h-5 text-purple-600 mr-2 mt-0.5 flex-shrink-0"></i>
+                                        <span>Integrated perception and state estimation for dynamic object tracking</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-lucide="check" class="w-5 h-5 text-purple-600 mr-2 mt-0.5 flex-shrink-0"></i>
+                                        <span>Position and velocity control for closed-loop operation</span>
+                                    </li>
+                                </ul>
+
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="skill-badge">ROS</span>
+                                    <span class="skill-badge">Gazebo</span>
+                                    <span class="skill-badge">FK/IK</span>
+                                    <span class="skill-badge">Trajectory Planning</span>
+                                    <span class="skill-badge">Python</span>
+                                </div>
+
+                                <a href="https://github.com/PranavG200" target="_blank" class="inline-flex items-center text-purple-600 hover:text-purple-700 font-semibold">
+                                    View on GitHub
+                                    <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
+                                </a>
+                            </div>
+
+                            <div class="bg-gradient-to-br from-blue-500 to-purple-500 p-12 flex items-center justify-center order-1 lg:order-2">
+                                <div class="text-center text-white">
+                                    <i data-lucide="move" class="w-32 h-32 mx-auto mb-6 opacity-90"></i>
+                                    <h3 class="text-3xl font-bold">Robotic Manipulator</h3>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Drone -->
-                <div class="fade-in group">
-                    <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
-                        <div class="h-64 bg-gray-200 overflow-hidden">
-                            <img src="https://via.placeholder.com/600x400/1f2937/10b981?text=Custom+Drone" alt="Custom Drone" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3">Custom Drone</h3>
-                            <p class="text-gray-600 mb-4">Built from scratch with custom flight controller and PID tuning.</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm">C++</span>
-                                <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm">PID</span>
+                <!-- Battlebot -->
+                <div class="fade-in">
+                    <div class="project-card">
+                        <div class="grid lg:grid-cols-2 gap-0">
+                            <div class="bg-gradient-to-br from-purple-600 to-pink-500 p-12 flex items-center justify-center">
+                                <div class="text-center text-white">
+                                    <i data-lucide="zap" class="w-32 h-32 mx-auto mb-6 opacity-90"></i>
+                                    <h3 class="text-3xl font-bold">Mobile Battlebot</h3>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
+                            
+                            <div class="p-12">
+                                <h3 class="text-3xl font-bold mb-4">Grand Theft Autonomous - Autonomous Combat Robot</h3>
+                                <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                                    Designed and manufactured autonomous mobile robot with localization, wireless communication, and real-time control
+                                </p>
 
-                <!-- Line Following Robot -->
-                <div class="fade-in group">
-                    <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
-                        <div class="h-64 bg-gray-200 overflow-hidden">
-                            <img src="https://via.placeholder.com/600x400/1f2937/10b981?text=Line+Follower" alt="Line Following Robot" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3">Line Following Robot</h3>
-                            <p class="text-gray-600 mb-4">High-speed line follower with sensor array and PID control.</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm">C</span>
-                                <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm">Embedded</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                <h4 class="font-bold text-lg mb-3 text-purple-600">Technical Highlights:</h4>
+                                <ul class="space-y-2 mb-6 text-gray-700">
+                                    <li class="flex items-start">
+                                        <i data-lucide="check" class="w-5 h-5 text-purple-600 mr-2 mt-0.5 flex-shrink-0"></i>
+                                        <span>Bare-metal programming on ESP32 for real-time control</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-lucide="check" class="w-5 h-5 text-purple-600 mr-2 mt-0.5 flex-shrink-0"></i>
+                                        <span>Custom filtering circuits and localization algorithms</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-lucide="check" class="w-5 h-5 text-purple-600 mr-2 mt-0.5 flex-shrink-0"></i>
+                                        <span>Wireless communication modules for remote operation</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-lucide="check" class="w-5 h-5 text-purple-600 mr-2 mt-0.5 flex-shrink-0"></i>
+                                        <span>PID control for precise motor control and maneuvering</span>
+                                    </li>
+                                </ul>
 
-                <!-- IoT Home Automation -->
-                <div class="fade-in group">
-                    <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
-                        <div class="h-64 bg-gray-200 overflow-hidden">
-                            <img src="https://via.placeholder.com/600x400/1f2937/10b981?text=IoT+System" alt="IoT Home Automation" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3">IoT Home System</h3>
-                            <p class="text-gray-600 mb-4">Smart home automation with wireless sensor network.</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm">ESP32</span>
-                                <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm">IoT</span>
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="skill-badge">ESP32</span>
+                                    <span class="skill-badge">SPI</span>
+                                    <span class="skill-badge">I2C</span>
+                                    <span class="skill-badge">Bare-metal</span>
+                                    <span class="skill-badge">PID</span>
+                                    <span class="skill-badge">Wireless</span>
+                                </div>
+
+                                <a href="https://github.com/PranavG200" target="_blank" class="inline-flex items-center text-purple-600 hover:text-purple-700 font-semibold">
+                                    View on GitHub
+                                    <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -597,58 +657,99 @@
 
     <!-- About Section -->
     <section id="about" class="py-32 px-6 bg-gray-50">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold mb-20 text-center fade-in">About</h2>
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 fade-in">
+                <span class="section-badge mb-6">
+                    <i data-lucide="user" class="w-4 h-4"></i>
+                    About Me
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-6">Background & Skills</h2>
+            </div>
 
-            <div class="grid md:grid-cols-2 gap-16 fade-in">
+            <div class="grid lg:grid-cols-2 gap-16 fade-in">
                 <!-- Education -->
                 <div>
-                    <h3 class="text-2xl font-bold mb-8 flex items-center">
-                        <i data-lucide="graduation-cap" class="w-6 h-6 mr-3 text-emerald-600"></i>
+                    <h3 class="text-3xl font-bold mb-8 flex items-center">
+                        <i data-lucide="graduation-cap" class="w-8 h-8 mr-3 text-purple-600"></i>
                         Education
                     </h3>
                     
                     <div class="space-y-8">
-                        <div>
-                            <h4 class="font-bold text-lg">MS Robotics Engineering</h4>
-                            <p class="text-gray-600">Worcester Polytechnic Institute</p>
-                            <p class="text-sm text-gray-500">2022 - 2023 • GPA: 3.89/4.0</p>
+                        <div class="bg-white rounded-2xl p-8 shadow-lg border-l-4 border-purple-600">
+                            <h4 class="font-bold text-2xl mb-2">Master of Science and Engineering</h4>
+                            <p class="text-xl text-purple-600 font-semibold mb-2">Mechatronics & Robotics</p>
+                            <p class="text-gray-600 font-semibold">University of Pennsylvania</p>
+                            <p class="text-sm text-gray-500 mt-2">August 2022 - May 2024</p>
+                            <p class="text-sm text-gray-700 mt-3">
+                                <strong>Focus:</strong> Autonomous Systems, Advanced Control, Machine Learning, Computer Vision
+                            </p>
                         </div>
                         
-                        <div>
-                            <h4 class="font-bold text-lg">BTech Mechatronics</h4>
-                            <p class="text-gray-600">SRM Institute of Science and Technology</p>
-                            <p class="text-sm text-gray-500">2016 - 2020 • GPA: 9.51/10.0</p>
+                        <div class="bg-white rounded-2xl p-8 shadow-lg border-l-4 border-blue-600">
+                            <h4 class="font-bold text-2xl mb-2">Bachelor of Technology</h4>
+                            <p class="text-xl text-blue-600 font-semibold mb-2">Mechanical Engineering</p>
+                            <p class="text-gray-600 font-semibold">Indian Institute of Technology Jammu</p>
+                            <p class="text-sm text-gray-500 mt-2">August 2017 - June 2021</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Skills -->
+                <!-- Technical Skills -->
                 <div>
-                    <h3 class="text-2xl font-bold mb-8 flex items-center">
-                        <i data-lucide="code-2" class="w-6 h-6 mr-3 text-emerald-600"></i>
-                        Skills
+                    <h3 class="text-3xl font-bold mb-8 flex items-center">
+                        <i data-lucide="code-2" class="w-8 h-8 mr-3 text-purple-600"></i>
+                        Technical Skills
                     </h3>
                     
                     <div class="space-y-6">
-                        <div>
-                            <h4 class="font-semibold mb-2">Programming</h4>
-                            <p class="text-gray-600">C/C++, Python, MATLAB, Embedded C</p>
+                        <div class="bg-white rounded-xl p-6 shadow-md">
+                            <h4 class="font-bold text-lg mb-3 text-purple-600">Programming Languages</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge">Embedded C</span>
+                                <span class="skill-badge">C++</span>
+                                <span class="skill-badge">Python</span>
+                            </div>
                         </div>
                         
-                        <div>
-                            <h4 class="font-semibold mb-2">Embedded Systems</h4>
-                            <p class="text-gray-600">ARM Cortex-M, STM32, FreeRTOS, I2C, SPI, CAN</p>
+                        <div class="bg-white rounded-xl p-6 shadow-md">
+                            <h4 class="font-bold text-lg mb-3 text-purple-600">Tools & Frameworks</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge">MATLAB/Simulink</span>
+                                <span class="skill-badge">ROS</span>
+                                <span class="skill-badge">Git</span>
+                                <span class="skill-badge">Docker</span>
+                                <span class="skill-badge">PyTorch</span>
+                                <span class="skill-badge">Drake</span>
+                                <span class="skill-badge">CaSaDi</span>
+                                <span class="skill-badge">GTSAM</span>
+                            </div>
                         </div>
                         
-                        <div>
-                            <h4 class="font-semibold mb-2">Robotics</h4>
-                            <p class="text-gray-600">ROS, Kinematics, Path Planning, Computer Vision</p>
+                        <div class="bg-white rounded-xl p-6 shadow-md">
+                            <h4 class="font-bold text-lg mb-3 text-purple-600">Hardware & Protocols</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge">ARM Cortex-M</span>
+                                <span class="skill-badge">ESP32</span>
+                                <span class="skill-badge">Teensy</span>
+                                <span class="skill-badge">SPI</span>
+                                <span class="skill-badge">I2C</span>
+                                <span class="skill-badge">UART</span>
+                                <span class="skill-badge">CAN</span>
+                                <span class="skill-badge">RTOS</span>
+                            </div>
                         </div>
                         
-                        <div>
-                            <h4 class="font-semibold mb-2">Control Systems</h4>
-                            <p class="text-gray-600">PID, Motor Control, Sensor Fusion</p>
+                        <div class="bg-white rounded-xl p-6 shadow-md">
+                            <h4 class="font-bold text-lg mb-3 text-purple-600">Core Concepts</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge">MPC</span>
+                                <span class="skill-badge">SLAM</span>
+                                <span class="skill-badge">Sensor Fusion</span>
+                                <span class="skill-badge">TinyML</span>
+                                <span class="skill-badge">System ID</span>
+                                <span class="skill-badge">HIL/SIL</span>
+                                <span class="skill-badge">Path Planning</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -657,30 +758,53 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-32 px-6">
-        <div class="max-w-3xl mx-auto text-center fade-in">
-            <h2 class="text-4xl md:text-5xl font-bold mb-8">Let's Connect</h2>
-            <p class="text-xl text-gray-600 mb-12">
-                Interested in robotics, embedded systems, or collaboration opportunities?
+    <section id="contact" class="py-32 px-6 bg-white">
+        <div class="max-w-4xl mx-auto text-center fade-in">
+            <span class="section-badge mb-6">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+                Get In Touch
+            </span>
+            <h2 class="text-4xl md:text-5xl font-bold mt-6 mb-8">Let's Connect</h2>
+            <p class="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+                Interested in robotics, autonomous systems, or collaboration opportunities? I'd love to hear from you!
             </p>
 
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="mailto:pranavg200@gmail.com" class="inline-flex items-center px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full transition-colors text-lg font-semibold">
-                    <i data-lucide="mail" class="w-5 h-5 mr-2"></i>
+                <a href="mailto:pranavg200@gmail.com" class="inline-flex items-center px-10 py-5 bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white rounded-full transition-all text-lg font-semibold shadow-lg hover:shadow-xl">
+                    <i data-lucide="mail" class="w-6 h-6 mr-3"></i>
                     Email Me
                 </a>
-                <a href="https://www.linkedin.com/in/pranav-gunreddy/" target="_blank" class="inline-flex items-center px-8 py-4 border-2 border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 rounded-full transition-colors text-lg font-semibold">
-                    <i data-lucide="linkedin" class="w-5 h-5 mr-2"></i>
+                <a href="https://www.linkedin.com/in/pranav-gunreddy/" target="_blank" class="inline-flex items-center px-10 py-5 border-2 border-purple-600 hover:bg-purple-600 hover:text-white text-purple-600 rounded-full transition-all text-lg font-semibold">
+                    <i data-lucide="linkedin" class="w-6 h-6 mr-3"></i>
                     LinkedIn
+                </a>
+                <a href="https://github.com/PranavG200" target="_blank" class="inline-flex items-center px-10 py-5 border-2 border-purple-600 hover:bg-purple-600 hover:text-white text-purple-600 rounded-full transition-all text-lg font-semibold">
+                    <i data-lucide="github" class="w-6 h-6 mr-3"></i>
+                    GitHub
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-8 px-6 border-t border-gray-200">
-        <div class="max-w-7xl mx-auto text-center text-gray-500">
-            <p>© 2024 Pranav Gunreddy. All rights reserved.</p>
+    <footer class="py-12 px-6 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-400">© 2024 Pranav Gunreddy. All rights reserved.</p>
+                </div>
+                <div class="flex gap-6">
+                    <a href="https://www.linkedin.com/in/pranav-gunreddy/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i data-lucide="linkedin" class="w-6 h-6"></i>
+                    </a>
+                    <a href="https://github.com/PranavG200" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i data-lucide="github" class="w-6 h-6"></i>
+                    </a>
+                    <a href="mailto:pranavg200@gmail.com" class="text-gray-400 hover:text-white transition-colors">
+                        <i data-lucide="mail" class="w-6 h-6"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
 
