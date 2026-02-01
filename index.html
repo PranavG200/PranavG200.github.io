@@ -185,6 +185,109 @@
             height: 250px;
             object-fit: cover;
         }
+
+        /* Control Loop Styles */
+        .control-loop-container {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-radius: 2rem;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .control-loop-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+
+        .control-block {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .control-block:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(139, 92, 246, 0.6);
+            transform: translateY(-5px);
+        }
+
+        .control-arrow {
+            color: rgba(139, 92, 246, 0.8);
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .feedback-arrow {
+            position: absolute;
+            bottom: -3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(59, 130, 246, 0.6);
+            font-size: 1.5rem;
+        }
+
+        .loop-stage-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border-left: 6px solid;
+            transition: all 0.3s ease;
+        }
+
+        .loop-stage-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .loop-stage-card.plan { border-color: #8b5cf6; }
+        .loop-stage-card.sense { border-color: #3b82f6; }
+        .loop-stage-card.estimate { border-color: #06b6d4; }
+        .loop-stage-card.model { border-color: #10b981; }
+        .loop-stage-card.control { border-color: #f59e0b; }
+
+        .stage-icon {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .stage-icon.plan { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); }
+        .stage-icon.sense { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
+        .stage-icon.estimate { background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); }
+        .stage-icon.model { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+        .stage-icon.control { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+
+        .proof-point {
+            background: #f8fafc;
+            border-left: 3px solid #e2e8f0;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .proof-point:hover {
+            background: #f1f5f9;
+            border-left-color: #8b5cf6;
+            transform: translateX(5px);
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -196,6 +299,7 @@
                 <a href="#home" class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent">PG</a>
 
                 <div class="hidden md:flex items-center space-x-8">
+                    <a href="#control-loop" class="nav-link text-gray-600 hover:text-blue-600 transition-colors font-medium">Control Loop</a>
                     <a href="#expertise" class="nav-link text-gray-600 hover:text-blue-600 transition-colors font-medium">Expertise</a>
                     <a href="#experience" class="nav-link text-gray-600 hover:text-blue-600 transition-colors font-medium">Experience</a>
                     <a href="#projects" class="nav-link text-gray-600 hover:text-blue-600 transition-colors font-medium">Projects</a>
@@ -209,6 +313,7 @@
             </div>
 
             <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
+                <a href="#control-loop" class="block py-2 text-gray-600 hover:text-blue-600">Control Loop</a>
                 <a href="#expertise" class="block py-2 text-gray-600 hover:text-blue-600">Expertise</a>
                 <a href="#experience" class="block py-2 text-gray-600 hover:text-blue-600">Experience</a>
                 <a href="#projects" class="block py-2 text-gray-600 hover:text-blue-600">Projects</a>
@@ -260,6 +365,298 @@
                         <i data-lucide="mail" class="w-5 h-5 mr-2"></i>
                         Email
                     </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Closed-Loop Control Narrative Section -->
+    <section id="control-loop" class="py-32 px-6 bg-gradient-to-b from-gray-50 to-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <span class="section-badge mb-6">
+                    <i data-lucide="repeat" class="w-4 h-4"></i>
+                    Systems Thinking
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-6 mb-6">Closed-Loop Control Architecture</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    My approach to robotics follows a systematic control loop: from planning optimal trajectories to sensing the environment, estimating state, modeling dynamics, and executing precise control
+                </p>
+            </div>
+
+            <!-- Control Loop Diagram -->
+            <div class="control-loop-container mb-20 fade-in relative">
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6 relative z-10">
+                    <div class="control-block">
+                        <div class="text-purple-400 mb-2">
+                            <i data-lucide="route" class="w-10 h-10 mx-auto"></i>
+                        </div>
+                        <h3 class="text-white font-bold text-lg mb-1">PLAN</h3>
+                        <p class="text-gray-300 text-sm">A*, RRT*</p>
+                    </div>
+
+                    <div class="hidden md:flex items-center justify-center">
+                        <span class="control-arrow">→</span>
+                    </div>
+
+                    <div class="control-block">
+                        <div class="text-blue-400 mb-2">
+                            <i data-lucide="radar" class="w-10 h-10 mx-auto"></i>
+                        </div>
+                        <h3 class="text-white font-bold text-lg mb-1">SENSE</h3>
+                        <p class="text-gray-300 text-sm">Sensors</p>
+                    </div>
+
+                    <div class="hidden md:flex items-center justify-center">
+                        <span class="control-arrow">→</span>
+                    </div>
+
+                    <div class="control-block">
+                        <div class="text-cyan-400 mb-2">
+                            <i data-lucide="target" class="w-10 h-10 mx-auto"></i>
+                        </div>
+                        <h3 class="text-white font-bold text-lg mb-1">ESTIMATE</h3>
+                        <p class="text-gray-300 text-sm">ESKF</p>
+                    </div>
+
+                    <div class="hidden md:flex items-center justify-center col-start-2">
+                        <span class="control-arrow">←</span>
+                    </div>
+
+                    <div class="control-block col-start-2 md:col-start-4">
+                        <div class="text-green-400 mb-2">
+                            <i data-lucide="brain" class="w-10 h-10 mx-auto"></i>
+                        </div>
+                        <h3 class="text-white font-bold text-lg mb-1">MODEL</h3>
+                        <p class="text-gray-300 text-sm">PINN</p>
+                    </div>
+
+                    <div class="hidden md:flex items-center justify-center">
+                        <span class="control-arrow">←</span>
+                    </div>
+
+                    <div class="control-block">
+                        <div class="text-amber-400 mb-2">
+                            <i data-lucide="gauge" class="w-10 h-10 mx-auto"></i>
+                        </div>
+                        <h3 class="text-white font-bold text-lg mb-1">CONTROL</h3>
+                        <p class="text-gray-300 text-sm">MPC, iLQR</p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-8 relative z-10">
+                    <p class="text-blue-300 font-semibold text-lg flex items-center justify-center gap-2">
+                        <i data-lucide="repeat" class="w-5 h-5"></i>
+                        Feedback Loop
+                    </p>
+                </div>
+            </div>
+
+            <!-- Loop Stages Detailed -->
+            <div class="space-y-12 fade-in">
+                <!-- 1. PLAN -->
+                <div class="loop-stage-card plan">
+                    <div class="flex items-start gap-6">
+                        <div class="stage-icon plan flex-shrink-0">
+                            <i data-lucide="route" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-3xl font-bold mb-3 text-purple-600">1. PLAN</h3>
+                            <p class="text-xl font-semibold text-gray-800 mb-6">
+                                I architect motion primitives and optimization-based planners that generate collision-free, dynamically feasible trajectories for autonomous systems.
+                            </p>
+                            
+                            <h4 class="font-bold text-lg mb-3 text-gray-700">Proof Points:</h4>
+                            <div class="space-y-3 mb-6">
+                                <div class="proof-point">
+                                    <p class="text-gray-700">
+                                        <strong>3D Graph Search:</strong> Implemented A*, RRT*, Dijkstra algorithms for quadrotor obstacle avoidance in cluttered environments
+                                    </p>
+                                </div>
+                                <div class="proof-point">
+                                    <p class="text-gray-700">
+                                        <strong>Trajectory Optimization:</strong> Designed minimum snap trajectory optimization for smooth, energy-efficient quadrotor flight paths
+                                    </p>
+                                </div>
+                                <div class="proof-point">
+                                    <p class="text-gray-700">
+                                        <strong>Constrained Planning:</strong> Built optimal trajectory generation with velocity/acceleration constraints for 7-DOF Panda manipulator in dynamic pick-and-place tasks
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="bg-purple-50 border-l-4 border-purple-600 p-4 rounded">
+                                <p class="text-sm font-semibold text-purple-900 flex items-center gap-2">
+                                    <i data-lucide="image" class="w-4 h-4"></i>
+                                    Artifact: Animated visualization of A* path planning with quadrotor following minimum-snap trajectory through 3D obstacle field
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. SENSE -->
+                <div class="loop-stage-card sense">
+                    <div class="flex items-start gap-6">
+                        <div class="stage-icon sense flex-shrink-0">
+                            <i data-lucide="radar" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-3xl font-bold mb-3 text-blue-600">2. SENSE</h3>
+                            <p class="text-xl font-semibold text-gray-800 mb-6">
+                                I fuse heterogeneous sensor streams into coherent state representations using hardware-validated signal processing pipelines.
+                            </p>
+                            
+                            <h4 class="font-bold text-lg mb-3 text-gray-700">Proof Points:</h4>
+                            <div class="space-y-3 mb-6">
+                                <div class="proof-point">
+                                    <p class="text-gray-700">
+                                        <strong>Production Deployment:</strong> Deployed sensor fusion algorithms on Cortex-M microcontrollers for SharkNinja products (multiple patent families, $400M+ revenue impact)
+                                    </p>
+                                </div>
+                                <div class="proof-point">
+                                    <p class="text-gray-700">
+                                        <strong>Multi-Modal Fusion:</strong> Integrated stereo vision with IMU for quadrotor pose estimation and depth perception using ESKF framework
+                                    </p>
+                                </div>
+                                <div class="proof-point">
+                                    <p class="text-gray-700">
+                                        <strong>Hardware Validation:</strong> Built low-level hardware diagnostics with oscilloscopes/logic analyzers to validate SPI/I2C/CAN sensor interfaces
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="bg-blue-50 border-l-4 border-blue-600 p-4 rounded">
+                                <p class="text-sm font-semibold text-blue-900 flex items-center gap-2">
+                                    <i data-lucide="image" class="w-4 h-4"></i>
+                                    Artifact: Multi-sensor fusion architecture diagram showing IMU + Camera + Thermal sensors → ESKF → State estimate with hardware photos
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. ESTIMATE -->
+                <div class="loop-stage-card estimate">
+                    <div class="flex items-start gap-6">
+                        <div class="stage-icon estimate flex-shrink-0">
+                            <i data-lucide="target" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-3xl font-bold mb-3 text-cyan-600">3. ESTIMATE</h3>
+                            <p class="text-xl font-semibold text-gray-800 mb-6">
+                                I implement probabilistic filters that maintain real-time belief states under measurement noise and model uncertainty.
+                            </p>
+                            
+                            <h4 class="font-bold text-lg mb-3 text-gray-700">Proof Points:</h4>
+                            <div class="space-y-3 mb-6">
+                                <div class="proof-point">
+                                    <p class="text-gray-700">
+                                        <strong>Visual-Inertial Odometry:</strong> Implemented Error State Kalman Filter (ESKF) for VIO on CrazyFlie 2.0 quadrotor
+                                    </p>
+                                </div>
+                                <div class="proof-point">
+                                    <p class="text-gray-700">
+                                        <strong>Embedded Filtering:</strong> Developed custom filtering circuits and localization algorithms for autonomous battlebot (ESP32 bare-metal)
+                                    </p>
+                                </div>
+                                <div class="proof-point">
+                                    <p class="text-gray-700">
+                                        <strong>Dynamic Tracking:</strong> Integrated perception and state estimation for dynamic object tracking in robotic manipulation tasks
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="bg-cyan-50 border-l-4 border-cyan-600 p-4 rounded">
+                                <p class="text-sm font-semibold text-cyan-900 flex items-center gap-2">
+                                    <i data-lucide="image" class="w-4 h-4"></i>
+                                    Artifact: Side-by-side comparison showing raw noisy sensor data vs. ESKF-filtered smooth state estimate with covariance ellipses
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. MODEL -->
+                <div class="loop-stage-card model">
+                    <div class="flex items-start gap-6">
+                        <div class="stage-icon model flex-shrink-0">
+                            <i data-lucide="brain" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-3xl font-bold mb-3 text-green-600">4. MODEL</h3>
+                            <p class="text-xl font-semibold text-gray-800 mb-6">
+                                I learn data-driven models of nonlinear dynamics that enable predictive control and anomaly detection.
+                            </p>
+                            
+                            <h4 class="font-bold text-lg mb-3 text-gray-700">Proof Points:</h4>
+                            <div class="space-y-3 mb-6">
+                                <div class="proof-point">
+                                    <p class="text-gray-700">
+                                        <strong>Physics-Informed Learning:</strong> Explored PINN and DeepONet to learn nonlinear dynamics for Robust/Hybrid/Explicit MPC at GRASP Lab
+                                    </p>
+                                </div>
+                                <div class="proof-point">
+                                    <p class="text-gray-700">
+                                        <strong>Health Monitoring:</strong> Implemented real-time robot health monitoring using Autoregressive models and Neural ODEs at Verdant Robotics
+                                    </p>
+                                </div>
+                                <div class="proof-point">
+                                    <p class="text-gray-700">
+                                        <strong>Embedded ML:</strong> Deployed TinyML and non-convex optimization solvers on resource-constrained Cortex-M microcontrollers
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="bg-green-50 border-l-4 border-green-600 p-4 rounded">
+                                <p class="text-sm font-semibold text-green-900 flex items-center gap-2">
+                                    <i data-lucide="image" class="w-4 h-4"></i>
+                                    Artifact: Neural ODE learning robot dynamics → Predicted vs. Actual trajectory comparison → Anomaly detection heatmap
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. CONTROL -->
+                <div class="loop-stage-card control">
+                    <div class="flex items-start gap-6">
+                        <div class="stage-icon control flex-shrink-0">
+                            <i data-lucide="gauge" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-3xl font-bold mb-3 text-amber-600">5. CONTROL</h3>
+                            <p class="text-xl font-semibold text-gray-800 mb-6">
+                                I design model-based controllers that stabilize underactuated systems and track aggressive trajectories with provable guarantees.
+                            </p>
+                            
+                            <h4 class="font-bold text-lg mb-3 text-gray-700">Proof Points:</h4>
+                            <div class="space-y-3 mb-6">
+                                <div class="proof-point">
+                                    <p class="text-gray-700">
+                                        <strong>Nonlinear Control:</strong> Designed geometric nonlinear control for quadrotor with iLQR/MPC using Drake and CaSaDi frameworks
+                                    </p>
+                                </div>
+                                <div class="proof-point">
+                                    <p class="text-gray-700">
+                                        <strong>Motor Control:</strong> Developed Field-Oriented Control (FOC) algorithms for high-speed BLDC motors on moteus firmware using Simulink Coder
+                                    </p>
+                                </div>
+                                <div class="proof-point">
+                                    <p class="text-gray-700">
+                                        <strong>Production Systems:</strong> Implemented thermal control algorithms and PID loops for precision temperature regulation in consumer products ($550M+ combined revenue)
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="bg-amber-50 border-l-4 border-amber-600 p-4 rounded">
+                                <p class="text-sm font-semibold text-amber-900 flex items-center gap-2">
+                                    <i data-lucide="image" class="w-4 h-4"></i>
+                                    Artifact: Control performance comparison chart (PID vs. MPC tracking error) with video overlay of quadrotor executing aggressive figure-8 maneuver
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
