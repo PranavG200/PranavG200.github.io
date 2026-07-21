@@ -1,1410 +1,1416 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pranav Gunreddy | Robotics & Control Systems Engineer</title>
-    <meta name="description" content="Pranav Gunreddy - Robotics Engineer specializing in autonomous systems, control algorithms, and embedded software.">
-    
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pranav Gunreddy — Robotics Controls & Systems Engineer</title>
+<meta name="description" content="Robotics-trained controls engineer (UPenn GRASP) shipping real-time control, sensor fusion, and embedded MPC in consumer products on the market today. Ninja Luxe Café, AutoBarista Pro, SLUSHi, Crispi Microwave.">
+<meta property="og:title" content="Pranav Gunreddy — Robotics Controls & Systems Engineer">
+<meta property="og:description" content="From learning-based MPC research to control algorithms running in kitchens across America. Controls engineering that ships.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pranavg200.github.io/">
+<meta name="theme-color" content="#faf9f6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='12' y='30' width='34' height='34' rx='6' fill='none' stroke='%23c2410c' stroke-width='8'/%3E%3Crect x='58' y='30' width='34' height='34' rx='6' fill='none' stroke='%231d4ed8' stroke-width='8'/%3E%3Cpath d='M46 47 h12 M52 64 v18 h-34 v-14' fill='none' stroke='%23101418' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf9f6;
+  --bg2:#f2f0ea;
+  --panel:#ffffff;
+  --ink:#12161b;
+  --ink2:#4b5563;
+  --ink3:#8a93a0;
+  --line:#e5e2d9;
+  --ref:#1d4ed8;      /* r(t) reference — blue   */
+  --ctrl:#c2410c;     /* u(t) control  — amber   */
+  --out:#0f766e;      /* y(t) output   — teal    */
+  --dist:#dc2626;     /* d(t) disturbance — red  */
+  --chip:#eef1f6;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --disp:'Space Grotesk','Inter',sans-serif;
+  --body:'Inter',system-ui,sans-serif;
+  --rad:14px;
+  --shadow:0 1px 2px rgba(18,22,27,.05),0 8px 28px rgba(18,22,27,.07);
+  --shadow-lg:0 2px 4px rgba(18,22,27,.06),0 18px 50px rgba(18,22,27,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--ink);font-family:var(--body);
+  font-size:16.5px;line-height:1.65;
+  background-image:
+    linear-gradient(rgba(18,22,27,.028) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(18,22,27,.028) 1px,transparent 1px);
+  background-size:44px 44px;
+}
+::selection{background:#ffe3d1}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{font-family:var(--disp);line-height:1.12;letter-spacing:-.015em;font-weight:700}
+.mono{font-family:var(--mono)}
+.mut{color:var(--ink2)}
+.small{font-size:.85rem}
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        
-        * {
-            font-family: 'Inter', sans-serif;
-        }
-        
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #94a3b8;
-            border-radius: 5px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #64748b;
-        }
-        
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+/* ---------- nav ---------- */
+nav{position:fixed;inset:0 0 auto 0;z-index:60;background:rgba(250,249,246,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.navin{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--disp);font-weight:700;font-size:1.05rem}
+.logo .dot{width:10px;height:10px;border-radius:50%;background:var(--ctrl);box-shadow:0 0 0 4px rgba(194,65,12,.15)}
+.navlinks{display:flex;gap:26px;align-items:center}
+.navlinks a{text-decoration:none;font-size:.92rem;font-weight:500;color:var(--ink2);transition:color .2s}
+.navlinks a:hover{color:var(--ink)}
+.navlinks a.cta{color:#fff;background:var(--ink);padding:9px 18px;border-radius:999px;font-weight:600}
+.navlinks a.cta:hover{background:#000}
+#hamb{display:none;background:none;border:1px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer;font-family:var(--mono);font-size:.8rem}
+#mobmenu{display:none;border-top:1px solid var(--line);padding:10px 0 16px}
+#mobmenu a{display:block;padding:10px 4px;text-decoration:none;font-weight:500;color:var(--ink2)}
+@media(max-width:900px){.navlinks{display:none}#hamb{display:block}#mobmenu.open{display:block}}
 
-        .nav-link {
-            position: relative;
-        }
+/* ---------- section scaffolding ---------- */
+section{padding:104px 0}
+.stag{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;color:var(--ink2);border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:6px 14px;margin-bottom:22px}
+.stag b{color:var(--ctrl);font-weight:600}
+.stitle{font-size:clamp(1.9rem,3.6vw,2.7rem);margin-bottom:14px}
+.slede{font-size:1.12rem;color:var(--ink2);max-width:760px}
+.sigline{height:46px;width:100%;display:block;color:var(--line)}
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #3b82f6;
-            transition: width 0.3s ease;
-        }
+/* ---------- hero ---------- */
+#home{padding:170px 0 84px}
+.kick{font-family:var(--mono);font-size:.8rem;letter-spacing:.14em;color:var(--ctrl);font-weight:600;margin-bottom:18px}
+#home h1{font-size:clamp(2.5rem,5.6vw,4.1rem);max-width:900px}
+#home h1 em{font-style:normal;color:var(--ctrl)}
+.sub{font-size:clamp(1.05rem,1.6vw,1.25rem);color:var(--ink2);max-width:820px;margin:24px 0 30px}
+.sub b{color:var(--ink);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px}
+.chip{font-family:var(--mono);font-size:.8rem;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:8px 15px;color:var(--ink2)}
+.chip b{color:var(--ink);font-weight:600}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:600;font-size:.95rem;padding:13px 24px;border-radius:999px;transition:transform .15s,box-shadow .15s;border:1px solid transparent}
+.btn:hover{transform:translateY(-2px)}
+.btn.pri{background:var(--ink);color:#fff;box-shadow:var(--shadow)}
+.btn.sec{background:var(--panel);border-color:var(--line);color:var(--ink)}
+.btn svg{width:17px;height:17px}
+.legend{margin-top:44px;font-family:var(--mono);font-size:.78rem;color:var(--ink3)}
+.legend span{white-space:nowrap;margin-right:16px}
+.legend i{display:inline-block;width:18px;height:0;border-top:2.5px solid;vertical-align:middle;margin-right:6px;border-radius:2px}
+.legend .lr i{border-color:var(--ref);border-top-style:dashed}
+.legend .ly i{border-color:var(--out)}
+.legend .lu i{border-color:var(--ctrl)}
+.legend .ld i{border-color:var(--dist)}
 
-        .nav-link:hover::after {
-            width: 100%;
-        }
+/* ---------- demo ---------- */
+#demo{padding-top:64px}
+.demo-shell{background:var(--panel);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow-lg);overflow:hidden}
+.demo-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:16px 22px;border-bottom:1px solid var(--line);background:linear-gradient(#fff,#fbfaf7)}
+.tabs{display:flex;gap:8px}
+.tab{font-family:var(--mono);font-size:.82rem;font-weight:500;border:1px solid var(--line);background:#fff;color:var(--ink2);border-radius:999px;padding:8px 16px;cursor:pointer;transition:.15s}
+.tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.livechip{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.75rem;color:var(--ink2)}
+.livechip .pulse{width:8px;height:8px;border-radius:50%;background:#16a34a;animation:pul 1.6s infinite}
+@keyframes pul{0%{box-shadow:0 0 0 0 rgba(22,163,74,.45)}70%{box-shadow:0 0 0 8px rgba(22,163,74,0)}100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}}
+.demo-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:0}
+.demo-left{border-right:1px solid var(--line);padding:20px;min-width:0}
+.demo-right{padding:20px;min-width:0;display:flex;flex-direction:column}
+canvas{display:block;width:100%}
+#anim,#anim2{height:250px}
+#scope,#scope2{height:210px}
+.canv-cap{font-family:var(--mono);font-size:.72rem;color:var(--ink3);margin-top:8px}
+.demo-ctl{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px;align-items:center}
+.dbtn{font-family:var(--mono);font-size:.8rem;font-weight:500;border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 14px;cursor:pointer;transition:.15s;color:var(--ink)}
+.dbtn:hover{border-color:var(--ink);transform:translateY(-1px)}
+.dbtn.warn{border-color:#fecaca;background:#fef2f2;color:var(--dist)}
+.dbtn.warn:hover{border-color:var(--dist)}
+.slider-row{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.78rem;color:var(--ink2);flex:1;min-width:210px}
+input[type=range]{flex:1;accent-color:var(--ctrl)}
+.mets{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.met{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.met .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;color:var(--ink3);text-transform:uppercase}
+.met .v{font-family:var(--mono);font-size:1.15rem;font-weight:600;margin-top:2px}
+.met .v small{font-size:.7rem;color:var(--ink3);font-weight:400}
+.demo-note{margin-top:auto;padding-top:16px;font-size:.85rem;color:var(--ink2)}
+.demo-note code{font-family:var(--mono);font-size:.78rem;background:var(--bg2);border:1px solid var(--line);padding:1px 6px;border-radius:6px}
+@media(max-width:900px){.demo-grid{grid-template-columns:1fr}.demo-left{border-right:none;border-bottom:1px solid var(--line)}}
 
-        .hero-gradient {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
+/* ---------- story ---------- */
+.acts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+.act{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:28px 26px;box-shadow:var(--shadow);position:relative;display:flex;flex-direction:column}
+.act .n{font-family:var(--mono);font-size:.75rem;color:var(--ctrl);font-weight:600;letter-spacing:.1em;margin-bottom:14px}
+.act h3{font-size:1.35rem;margin-bottom:12px}
+.act p{color:var(--ink2);font-size:.95rem}
+.act p+p{margin-top:10px}
+.act .where{margin-top:18px;padding-top:14px;border-top:1px dashed var(--line);font-family:var(--mono);font-size:.74rem;color:var(--ink3);line-height:1.9}
+.bridge{margin-top:26px;background:var(--ink);color:#eef1f6;border-radius:var(--rad);padding:34px 34px;box-shadow:var(--shadow-lg)}
+.bridge p{font-size:1.16rem;line-height:1.7;max-width:960px}
+.bridge p b{color:#ffb387}
+.bridge .who{margin-top:14px;font-family:var(--mono);font-size:.78rem;color:#9aa4b2}
+@media(max-width:900px){.acts{grid-template-columns:1fr}}
 
-        .expertise-card {
-            background: white;
-            border-radius: 1rem;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
+/* ---------- products ---------- */
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:44px}
+.pcard{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
+.pcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.pimg{height:250px;background:linear-gradient(160deg,#f4f2ec,#e9e6dd);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.pimg img{width:100%;height:100%;object-fit:contain;padding:18px;mix-blend-mode:multiply}
+.pimg .ph{font-family:var(--mono);color:var(--ink3);font-size:.85rem}
+.pbadge{position:absolute;top:14px;left:14px;font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.06em;background:rgba(18,22,27,.85);color:#fff;padding:5px 11px;border-radius:999px}
+.pbody{padding:24px;display:flex;flex-direction:column;flex:1}
+.pbody h3{font-size:1.3rem}
+.pbody .model{font-family:var(--mono);font-size:.73rem;color:var(--ink3);margin:4px 0 12px}
+.pbody .desc{color:var(--ink2);font-size:.93rem;margin-bottom:14px}
+.ptech{background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--ctrl);border-radius:10px;padding:12px 14px;font-size:.88rem;color:var(--ink2);margin-bottom:16px}
+.ptech b{color:var(--ink)}
+.pstats{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.pstat{font-family:var(--mono);font-size:.72rem;background:#fff;border:1px solid var(--line);border-radius:8px;padding:5px 10px;color:var(--ink2)}
+.pstat b{color:var(--ink)}
+.plinks{margin-top:auto;display:flex;flex-wrap:wrap;gap:14px;font-size:.84rem}
+.plinks a{color:var(--ref);text-decoration:none;font-weight:500}
+.plinks a:hover{text-decoration:underline}
+.copict{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.cofact{flex:1;min-width:200px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.cofact .v{font-family:var(--disp);font-weight:700;font-size:1.5rem}
+.cofact .k{font-size:.8rem;color:var(--ink2);margin-top:2px}
+.cofact .s{font-family:var(--mono);font-size:.68rem;color:var(--ink3);margin-top:6px}
+.pdisc{margin-top:22px;font-size:.82rem;color:var(--ink3);max-width:880px}
+@media(max-width:820px){.pgrid{grid-template-columns:1fr}}
+/* ---------- skills ---------- */
+.skgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+.skcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:24px;box-shadow:var(--shadow)}
+.skcard h3{font-size:1.05rem;display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.skcard h3 .ic{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:var(--bg2);border:1px solid var(--line);flex:none}
+.skcard h3 .ic svg{width:17px;height:17px}
+.skcard .blurb{font-size:.86rem;color:var(--ink2);margin-bottom:14px}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tag{font-family:var(--mono);font-size:.72rem;background:var(--chip);border:1px solid transparent;color:#3b4453;padding:4px 10px;border-radius:7px;transition:.15s}
+.tag:hover{border-color:var(--ref);color:var(--ref);background:#fff}
+.kwstrip{margin-top:26px;background:var(--panel);border:1px dashed var(--line);border-radius:var(--rad);padding:18px 22px}
+.kwstrip .t{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--ink3);text-transform:uppercase;margin-bottom:10px}
+.kwstrip .kws{font-family:var(--mono);font-size:.8rem;color:var(--ink2);line-height:2.05}
+.kwstrip .kws span{white-space:nowrap}
+.kwstrip .kws .sep{color:var(--ctrl);margin:0 8px}
+@media(max-width:900px){.skgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.skgrid{grid-template-columns:1fr}}
 
-        .expertise-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
-            border-color: #3b82f6;
-        }
+/* ---------- embedded mpc ---------- */
+#empc .shell{background:linear-gradient(150deg,#101418,#1b2129 60%,#232c38);color:#e8ebf0;border-radius:22px;padding:52px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+#empc .shell::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:36px 36px;pointer-events:none}
+#empc .stag{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);color:#aeb7c2}
+#empc h2{color:#fff}
+#empc .slede{color:#aeb7c2}
+.mpccols{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;margin-top:36px;position:relative;z-index:1}
+.mpccols p{color:#c3cad3;font-size:.97rem}
+.mpccols p+p{margin-top:14px}
+.mpccols p b{color:#fff}
+.mpccols p a{color:#8ab4ff;text-decoration:none}
+.mpccols p a:hover{text-decoration:underline}
+.budget{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:22px;font-family:var(--mono)}
+.budget .bt{font-size:.7rem;letter-spacing:.12em;color:#8a93a0;text-transform:uppercase;margin-bottom:14px}
+.brow{display:flex;justify-content:space-between;gap:12px;font-size:.8rem;padding:9px 0;border-bottom:1px dashed rgba(255,255,255,.12)}
+.brow:last-child{border-bottom:none}
+.brow .l{color:#aeb7c2}
+.brow .r{color:#ffb387;font-weight:600;text-align:right}
+@media(max-width:900px){.mpccols{grid-template-columns:1fr}#empc .shell{padding:34px 24px}}
 
-        .project-card {
-            background: white;
-            border-radius: 1.5rem;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
+/* ---------- experience ---------- */
+.xp{margin-top:44px;position:relative;padding-left:26px}
+.xp::before{content:'';position:absolute;left:5px;top:8px;bottom:8px;width:2px;background:repeating-linear-gradient(var(--line) 0 8px,transparent 8px 14px)}
+.xpi{position:relative;padding:0 0 38px 22px}
+.xpi::before{content:'';position:absolute;left:-26px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--panel);border:3px solid var(--ctrl)}
+.xpi:last-child{padding-bottom:0}
+.xphead{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px}
+.xphead h3{font-size:1.22rem}
+.xphead .co{font-weight:600;color:var(--ctrl)}
+.xphead .co a{color:inherit;text-decoration:none}
+.xphead .co a:hover{text-decoration:underline}
+.xphead .dt{font-family:var(--mono);font-size:.75rem;color:var(--ink3);margin-left:auto}
+.xpi ul{margin:12px 0 0;padding-left:20px;color:var(--ink2);font-size:.94rem}
+.xpi li{margin-bottom:7px}
+.xpi li::marker{color:var(--ctrl)}
+.xpi .stack{margin-top:10px;font-family:var(--mono);font-size:.73rem;color:var(--ink3)}
+.edu{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px}
+.educard{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:22px 24px;box-shadow:var(--shadow)}
+.educard .deg{font-weight:600}
+.educard .sch{color:var(--ink2);font-size:.9rem;margin-top:3px}
+.educard .dt{font-family:var(--mono);font-size:.73rem;color:var(--ink3);margin-top:8px}
+@media(max-width:640px){.edu{grid-template-columns:1fr}.xphead .dt{margin-left:0;width:100%}}
 
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-        }
+/* ---------- projects ---------- */
+.prgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:44px}
+.prcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:26px;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.prcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.prcard h3{font-size:1.15rem;margin-bottom:8px}
+.prcard p{color:var(--ink2);font-size:.9rem;margin-bottom:14px}
+.prcard .tags{margin-bottom:16px}
+.prcard .gh{margin-top:auto;font-size:.85rem;font-weight:500;color:var(--ref);text-decoration:none;display:inline-flex;align-items:center;gap:7px}
+.prcard .gh:hover{text-decoration:underline}
+.prcard .gh svg{width:15px;height:15px}
+@media(max-width:820px){.prgrid{grid-template-columns:1fr}}
 
-        .tech-tag {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 0.4rem 1rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            display: inline-block;
-        }
+/* ---------- outlook ---------- */
+.thesis{display:grid;gap:16px;margin-top:44px}
+.thcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:26px 28px;box-shadow:var(--shadow);display:grid;grid-template-columns:52px 1fr;gap:20px}
+.thcard .num{font-family:var(--mono);font-weight:600;color:var(--ctrl);font-size:.85rem;padding-top:4px}
+.thcard h3{font-size:1.18rem;margin-bottom:8px}
+.thcard .what{color:var(--ink2);font-size:.94rem}
+.thcard .rec{margin-top:12px;background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--out);border-radius:10px;padding:10px 14px;font-size:.85rem;color:var(--ink2)}
+.thcard .rec b{color:var(--out);font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:3px}
+.stays{margin-top:26px;background:var(--ink);color:#dfe4ea;border-radius:var(--rad);padding:28px 30px}
+.stays h3{color:#fff;font-size:1.1rem;margin-bottom:8px}
+.stays p{font-size:.95rem;color:#aeb7c2}
+@media(max-width:640px){.thcard{grid-template-columns:1fr;gap:8px}}
 
-        .section-badge {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
+/* ---------- contact ---------- */
+#contact .shell{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:56px;box-shadow:var(--shadow-lg);text-align:center}
+#contact h2{font-size:clamp(1.9rem,3.4vw,2.6rem)}
+#contact .roles{font-family:var(--mono);font-size:.8rem;color:var(--ink2);max-width:720px;margin:18px auto 8px;line-height:2}
+#contact .roles b{color:var(--ctrl)}
+#contact .loc{font-size:.9rem;color:var(--ink3);margin-bottom:28px}
+.cbtns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.alt-mail{margin-top:18px;font-family:var(--mono);font-size:.78rem;color:var(--ink3)}
+.alt-mail a{color:var(--ink2)}
+footer{border-top:1px solid var(--line);padding:30px 0 40px;margin-top:40px}
+.foot{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:.74rem;color:var(--ink3)}
+.foot a{color:var(--ink2);text-decoration:none}
+.foot a:hover{color:var(--ink)}
 
-        .timeline-item {
-            position: relative;
-            padding-left: 2rem;
-            border-left: 3px solid #e5e7eb;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -0.6rem;
-            top: 0;
-            width: 1rem;
-            height: 1rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            border: 3px solid white;
-        }
-
-        .timeline-item:hover::before {
-            transform: scale(1.3);
-            transition: transform 0.3s ease;
-        }
-
-        .skill-badge {
-            background: #f1f5f9;
-            color: #475569;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            display: inline-block;
-            transition: all 0.3s ease;
-        }
-
-        .skill-badge:hover {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .impact-number {
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        /* Control Loop Styles */
-        .control-loop-container {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            border-radius: 2rem;
-            padding: 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .control-loop-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.4;
-        }
-
-        .control-block {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .control-block:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(139, 92, 246, 0.6);
-            transform: translateY(-5px);
-        }
-
-        .control-arrow {
-            color: rgba(139, 92, 246, 0.8);
-            font-size: 2rem;
-            font-weight: bold;
-        }
-
-        .feedback-arrow {
-            position: absolute;
-            bottom: -3rem;
-            left: 50%;
-            transform: translateX(-50%);
-            color: rgba(59, 130, 246, 0.6);
-            font-size: 1.5rem;
-        }
-
-        .loop-stage-card {
-            background: white;
-            border-radius: 1.5rem;
-            padding: 2.5rem;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            border-left: 6px solid;
-            transition: all 0.3s ease;
-        }
-
-        .loop-stage-card:hover {
-            transform: translateX(10px);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
-        }
-
-        .loop-stage-card.plan { border-color: #8b5cf6; }
-        .loop-stage-card.sense { border-color: #3b82f6; }
-        .loop-stage-card.estimate { border-color: #06b6d4; }
-        .loop-stage-card.model { border-color: #10b981; }
-        .loop-stage-card.control { border-color: #f59e0b; }
-
-        .stage-icon {
-            width: 4rem;
-            height: 4rem;
-            border-radius: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .stage-icon.plan { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); }
-        .stage-icon.sense { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
-        .stage-icon.estimate { background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); }
-        .stage-icon.model { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
-        .stage-icon.control { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
-
-        .proof-point {
-            background: #f8fafc;
-            border-left: 3px solid #e2e8f0;
-            padding: 1rem;
-            margin-bottom: 0.75rem;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .proof-point:hover {
-            background: #f1f5f9;
-            border-left-color: #8b5cf6;
-            transform: translateX(5px);
-        }
-    </style>
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none;transition:none}
+  .livechip .pulse{animation:none}
+}
+</style>
 </head>
-<body class="bg-gray-50 text-gray-900">
+<body>
+<!-- ============ NAV ============ -->
+<nav aria-label="Main">
+  <div class="wrap navin">
+    <a class="logo" href="#home"><span class="dot" aria-hidden="true"></span>Pranav&nbsp;Gunreddy</a>
+    <div class="navlinks">
+      <a href="#demo">Live demo</a>
+      <a href="#story">Story</a>
+      <a href="#products">Shipped</a>
+      <a href="#skills">Stack</a>
+      <a href="#empc">Embedded MPC</a>
+      <a href="#outlook">2028</a>
+      <a href="#experience">Experience</a>
+      <a class="cta" href="#contact">Contact</a>
+    </div>
+    <button id="hamb" aria-label="Toggle menu" aria-expanded="false">menu</button>
+  </div>
+  <div class="wrap" id="mobmenu">
+    <a href="#demo">Live demo</a><a href="#story">Story</a><a href="#products">Shipped products</a>
+    <a href="#skills">Stack</a><a href="#empc">Embedded MPC</a><a href="#outlook">Controls in 2028</a>
+    <a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+  </div>
+</nav>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <a href="#home" class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent">PG</a>
+<!-- ============ HERO ============ -->
+<header id="home">
+  <div class="wrap">
+    <p class="kick">ROBOTICS CONTROLS &amp; SYSTEMS ENGINEER · BOSTON, MA</p>
+    <h1>Control systems that <em>ship</em> — from research lab to store shelf.</h1>
+    <p class="sub">
+      I'm Pranav. I trained on robots — <b>learning-based MPC and safe planning at UPenn's GRASP Lab</b>, field
+      robots at Verdant Robotics — and now I design real-time control and sensor-fusion algorithms at
+      <b>SharkNinja R&amp;D</b> that run inside espresso machines, frozen-drink makers, and smart cooking
+      appliances sold across the world, under compute, power, latency, and cost constraints that would
+      make a lab robot blush.
+    </p>
+    <div class="chips" role="list">
+      <span class="chip" role="listitem"><b>4</b> product lines in market</span>
+      <span class="chip" role="listitem"><b>Multiple patent families</b> filed</span>
+      <span class="chip" role="listitem">MPC on <b>Cortex-M</b>-class silicon</span>
+      <span class="chip" role="listitem"><b>MS Robotics</b> · UPenn</span>
+      <span class="chip" role="listitem">Targeting <b>Engineer II / Senior</b> controls roles</span>
+    </div>
+    <div class="ctas">
+      <a class="btn pri" href="PranavGunreddy_Resume.pdf" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+        Resume</a>
+      <a class="btn sec" href="https://www.linkedin.com/in/pranav-gunreddy/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+        LinkedIn</a>
+      <a class="btn sec" href="https://github.com/PranavG200" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.82.58A12 12 0 0 0 12 .3z"/></svg>
+        GitHub</a>
+      <a class="btn sec" href="mailto:pranavg200@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+        Email</a>
+    </div>
+    <p class="legend">
+      This page reads like the loops I build — signal colors are consistent throughout:
+      <span class="lr"><i></i>r(t) reference</span>
+      <span class="ly"><i></i>y(t) output</span>
+      <span class="lu"><i></i>u(t) control</span>
+      <span class="ld"><i></i>d(t) disturbance</span>
+    </p>
+  </div>
+</header>
 
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#control-loop" class="nav-link text-gray-600 hover:text-blue-600 transition-colors font-medium">Control Loop</a>
-                    <a href="#expertise" class="nav-link text-gray-600 hover:text-blue-600 transition-colors font-medium">Expertise</a>
-                    <a href="#experience" class="nav-link text-gray-600 hover:text-blue-600 transition-colors font-medium">Experience</a>
-                    <a href="#projects" class="nav-link text-gray-600 hover:text-blue-600 transition-colors font-medium">Projects</a>
-                    <a href="#about" class="nav-link text-gray-600 hover:text-blue-600 transition-colors font-medium">About</a>
-                    <a href="#contact" class="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white rounded-full transition-all shadow-md hover:shadow-lg">Contact</a>
-                </div>
-
-                <button id="mobile-menu-btn" class="md:hidden p-2">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
-                </button>
-            </div>
-
-            <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
-                <a href="#control-loop" class="block py-2 text-gray-600 hover:text-blue-600">Control Loop</a>
-                <a href="#expertise" class="block py-2 text-gray-600 hover:text-blue-600">Expertise</a>
-                <a href="#experience" class="block py-2 text-gray-600 hover:text-blue-600">Experience</a>
-                <a href="#projects" class="block py-2 text-gray-600 hover:text-blue-600">Projects</a>
-                <a href="#about" class="block py-2 text-gray-600 hover:text-blue-600">About</a>
-                <a href="#contact" class="block py-2 text-gray-600 hover:text-blue-600">Contact</a>
-            </div>
+<!-- ============ LIVE DEMO ============ -->
+<section id="demo">
+  <div class="wrap">
+    <div class="rv">
+      <span class="stag"><b>u(t)</b> INTERACTIVE — RUNS IN YOUR BROWSER</span>
+      <h2 class="stitle">Don't take my word for it. Disturb my controllers.</h2>
+      <p class="slede">Two classic problems, simulated and controlled live on this page in plain JavaScript —
+      no libraries. The LQR gain is solved by Riccati iteration when the page loads; the MPC solves a
+      constrained optimization every control step. Poke them. That's the job.</p>
+    </div>
+    <div class="demo-shell rv" style="margin-top:36px">
+      <div class="demo-head">
+        <div class="tabs" role="tablist">
+          <button class="tab on" id="tabA" role="tab" aria-selected="true">Cart-pole · LQR</button>
+          <button class="tab" id="tabB" role="tab" aria-selected="false">Espresso boiler · PID vs MPC</button>
         </div>
-    </nav>
+        <span class="livechip"><span class="pulse" aria-hidden="true"></span><span id="livetxt">simulating @ 60 fps</span></span>
+      </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center px-6 pt-20 hero-gradient">
-        <div class="max-w-6xl w-full">
-            <div class="text-center text-white">
-                <div class="mb-8">
-                    <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/748df679-15a7-4002-a26e-ebfc5ea56eca/2026-01-26T15-36-52-935Z-45cc6f68-chat-image-1769441812916-0.jpg" 
-                         alt="Pranav Gunreddy" 
-                         class="w-48 h-48 rounded-full mx-auto mb-6 border-4 border-white/30 object-cover shadow-2xl">
-                </div>
-                
-                <h1 class="text-5xl md:text-7xl font-extrabold mb-6">
-                    Shipping autonomous systems that work in the real world
-                </h1>
-                
-                <p class="text-xl md:text-2xl font-medium mb-8 text-white/90 max-w-4xl mx-auto leading-relaxed">
-                    From Mars rovers to factory floors—designing control loops that close the gap between theory and production
-                </p>
-
-                <div class="flex flex-wrap justify-center gap-3 mb-12">
-                    <span class="px-5 py-2.5 bg-white/20 backdrop-blur-md rounded-full text-base font-semibold flex items-center gap-2">
-                        🎯 Path Planning
-                    </span>
-                    <span class="px-5 py-2.5 bg-white/20 backdrop-blur-md rounded-full text-base font-semibold flex items-center gap-2">
-                        👁️ Sensor Fusion
-                    </span>
-                    <span class="px-5 py-2.5 bg-white/20 backdrop-blur-md rounded-full text-base font-semibold flex items-center gap-2">
-                        🧠 State Estimation
-                    </span>
-                    <span class="px-5 py-2.5 bg-white/20 backdrop-blur-md rounded-full text-base font-semibold flex items-center gap-2">
-                        ⚡ Feedback Control
-                    </span>
-                </div>
-
-                <div class="flex flex-wrap justify-center gap-4">
-                    <a href="https://www.linkedin.com/in/pranav-gunreddy/" target="_blank" class="inline-flex items-center px-8 py-4 bg-white hover:bg-gray-100 text-purple-600 rounded-full transition-all font-semibold shadow-lg hover:shadow-xl">
-                        <i data-lucide="linkedin" class="w-5 h-5 mr-2"></i>
-                        LinkedIn
-                    </a>
-                    <a href="https://github.com/PranavG200" target="_blank" class="inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white border-2 border-white/30 rounded-full transition-all font-semibold">
-                        <i data-lucide="github" class="w-5 h-5 mr-2"></i>
-                        GitHub
-                    </a>
-                    <a href="mailto:pranavg200@gmail.com" class="inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white border-2 border-white/30 rounded-full transition-all font-semibold">
-                        <i data-lucide="mail" class="w-5 h-5 mr-2"></i>
-                        Email
-                    </a>
-                </div>
-            </div>
+      <!-- Scene A : cartpole -->
+      <div class="demo-grid" id="sceneA">
+        <div class="demo-left">
+          <canvas id="anim" aria-label="Cart-pole animation"></canvas>
+          <p class="canv-cap">Nonlinear cart-pole plant · u = −K·(x − x_ref), K from discrete Riccati iteration · input saturation ±20 N</p>
+          <div class="demo-ctl">
+            <button class="dbtn warn" id="pokeL">⟲ Poke pole left</button>
+            <button class="dbtn warn" id="pokeR">Poke pole right ⟳</button>
+            <button class="dbtn" id="resetA">Reset</button>
+            <div class="slider-row"><label for="xref">x_ref</label><input type="range" id="xref" min="-1.4" max="1.4" step="0.05" value="0"><span id="xrefv">0.00&nbsp;m</span></div>
+          </div>
         </div>
-    </section>
-
-    <!-- Closed-Loop Control Narrative Section -->
-    <section id="control-loop" class="py-32 px-6 bg-gradient-to-b from-gray-50 to-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16 fade-in">
-                <span class="section-badge mb-6">
-                    <i data-lucide="repeat" class="w-4 h-4"></i>
-                    Systems Thinking
-                </span>
-                <h2 class="text-4xl md:text-5xl font-bold mt-6 mb-6">Closed-Loop Control Architecture</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    My approach to robotics follows a systematic control loop: from planning optimal trajectories to sensing the environment, estimating state, modeling dynamics, and executing precise control
-                </p>
-            </div>
-
-            <!-- Control Loop Diagram -->
-            <div class="control-loop-container mb-20 fade-in relative">
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6 relative z-10">
-                    <div class="control-block">
-                        <div class="text-purple-400 mb-2">
-                            <i data-lucide="route" class="w-10 h-10 mx-auto"></i>
-                        </div>
-                        <h3 class="text-white font-bold text-lg mb-1">PLAN</h3>
-                        <p class="text-gray-300 text-sm">A*, RRT*</p>
-                    </div>
-
-                    <div class="hidden md:flex items-center justify-center">
-                        <span class="control-arrow">→</span>
-                    </div>
-
-                    <div class="control-block">
-                        <div class="text-blue-400 mb-2">
-                            <i data-lucide="radar" class="w-10 h-10 mx-auto"></i>
-                        </div>
-                        <h3 class="text-white font-bold text-lg mb-1">SENSE</h3>
-                        <p class="text-gray-300 text-sm">Sensors</p>
-                    </div>
-
-                    <div class="hidden md:flex items-center justify-center">
-                        <span class="control-arrow">→</span>
-                    </div>
-
-                    <div class="control-block">
-                        <div class="text-cyan-400 mb-2">
-                            <i data-lucide="target" class="w-10 h-10 mx-auto"></i>
-                        </div>
-                        <h3 class="text-white font-bold text-lg mb-1">ESTIMATE</h3>
-                        <p class="text-gray-300 text-sm">ESKF</p>
-                    </div>
-
-                    <div class="hidden md:flex items-center justify-center col-start-2">
-                        <span class="control-arrow">←</span>
-                    </div>
-
-                    <div class="control-block col-start-2 md:col-start-4">
-                        <div class="text-green-400 mb-2">
-                            <i data-lucide="brain" class="w-10 h-10 mx-auto"></i>
-                        </div>
-                        <h3 class="text-white font-bold text-lg mb-1">MODEL</h3>
-                        <p class="text-gray-300 text-sm">PINN</p>
-                    </div>
-
-                    <div class="hidden md:flex items-center justify-center">
-                        <span class="control-arrow">←</span>
-                    </div>
-
-                    <div class="control-block">
-                        <div class="text-amber-400 mb-2">
-                            <i data-lucide="gauge" class="w-10 h-10 mx-auto"></i>
-                        </div>
-                        <h3 class="text-white font-bold text-lg mb-1">CONTROL</h3>
-                        <p class="text-gray-300 text-sm">MPC, iLQR</p>
-                    </div>
-                </div>
-
-                <div class="text-center mt-8 relative z-10">
-                    <p class="text-blue-300 font-semibold text-lg flex items-center justify-center gap-2">
-                        <i data-lucide="repeat" class="w-5 h-5"></i>
-                        Feedback Loop
-                    </p>
-                </div>
-            </div>
-
-            <!-- Loop Stages Detailed -->
-            <div class="space-y-12 fade-in">
-                <!-- 1. PLAN -->
-                <div class="loop-stage-card plan">
-                    <div class="flex items-start gap-6">
-                        <div class="stage-icon plan flex-shrink-0">
-                            <i data-lucide="route" class="w-8 h-8 text-white"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-3xl font-bold mb-3 text-purple-600">1. PLAN</h3>
-                            <p class="text-xl font-semibold text-gray-800 mb-6">
-                                I architect motion primitives and optimization-based planners that generate collision-free, dynamically feasible trajectories for autonomous systems.
-                            </p>
-                            
-                            <h4 class="font-bold text-lg mb-3 text-gray-700">Proof Points:</h4>
-                            <div class="space-y-3 mb-6">
-                                <div class="proof-point">
-                                    <p class="text-gray-700">
-                                        <strong>3D Graph Search:</strong> Implemented A*, RRT*, Dijkstra algorithms for quadrotor obstacle avoidance in cluttered environments
-                                    </p>
-                                </div>
-                                <div class="proof-point">
-                                    <p class="text-gray-700">
-                                        <strong>Trajectory Optimization:</strong> Designed minimum snap trajectory optimization for smooth, energy-efficient quadrotor flight paths
-                                    </p>
-                                </div>
-                                <div class="proof-point">
-                                    <p class="text-gray-700">
-                                        <strong>Constrained Planning:</strong> Built optimal trajectory generation with velocity/acceleration constraints for 7-DOF Panda manipulator in dynamic pick-and-place tasks
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="bg-purple-50 border-l-4 border-purple-600 p-4 rounded">
-                                <p class="text-sm font-semibold text-purple-900 flex items-center gap-2">
-                                    <i data-lucide="image" class="w-4 h-4"></i>
-                                    Artifact: Animated visualization of A* path planning with quadrotor following minimum-snap trajectory through 3D obstacle field
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2. SENSE -->
-                <div class="loop-stage-card sense">
-                    <div class="flex items-start gap-6">
-                        <div class="stage-icon sense flex-shrink-0">
-                            <i data-lucide="radar" class="w-8 h-8 text-white"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-3xl font-bold mb-3 text-blue-600">2. SENSE</h3>
-                            <p class="text-xl font-semibold text-gray-800 mb-6">
-                                I design multi-modal sensor fusion pipelines that transform raw sensor streams into actionable perception data for autonomous decision-making.
-                            </p>
-                            
-                            <h4 class="font-bold text-lg mb-3 text-gray-700">Proof Points:</h4>
-                            <div class="space-y-3 mb-6">
-                                <div class="proof-point">
-                                    <p class="text-gray-700">
-                                        <strong>Vision-Based Localization:</strong> Built AprilTag detection system for precise 6-DOF pose estimation in GPS-denied environments
-                                    </p>
-                                </div>
-                                <div class="proof-point">
-                                    <p class="text-gray-700">
-                                        <strong>Multi-Sensor Integration:</strong> Fused IMU, camera, and LiDAR data for robust state estimation in dynamic conditions
-                                    </p>
-                                </div>
-                                <div class="proof-point">
-                                    <p class="text-gray-700">
-                                        <strong>Production Sensing:</strong> Deployed sensor arrays on $400M+ SharkNinja product line for real-time performance monitoring
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="bg-blue-50 border-l-4 border-blue-600 p-4 rounded">
-                                <p class="text-sm font-semibold text-blue-900 flex items-center gap-2">
-                                    <i data-lucide="image" class="w-4 h-4"></i>
-                                    Artifact: Real-time sensor fusion dashboard showing IMU, camera, and LiDAR streams with synchronized timestamps
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 3. ESTIMATE -->
-                <div class="loop-stage-card estimate">
-                    <div class="flex items-start gap-6">
-                        <div class="stage-icon estimate flex-shrink-0">
-                            <i data-lucide="target" class="w-8 h-8 text-white"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-3xl font-bold mb-3 text-cyan-600">3. ESTIMATE</h3>
-                            <p class="text-xl font-semibold text-gray-800 mb-6">
-                                I implement probabilistic filtering algorithms that fuse noisy sensor measurements into accurate, real-time state estimates for control.
-                            </p>
-                            
-                            <h4 class="font-bold text-lg mb-3 text-gray-700">Proof Points:</h4>
-                            <div class="space-y-3 mb-6">
-                                <div class="proof-point">
-                                    <p class="text-gray-700">
-                                        <strong>Error-State Kalman Filter:</strong> Developed ESKF for quadrotor state estimation, achieving <5cm position accuracy in flight tests
-                                    </p>
-                                </div>
-                                <div class="proof-point">
-                                    <p class="text-gray-700">
-                                        <strong>Uncertainty Quantification:</strong> Implemented covariance propagation for real-time confidence bounds on state estimates
-                                    </p>
-                                </div>
-                                <div class="proof-point">
-                                    <p class="text-gray-700">
-                                        <strong>Adaptive Filtering:</strong> Designed measurement rejection logic to handle sensor outliers and maintain estimation robustness
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="bg-cyan-50 border-l-4 border-cyan-600 p-4 rounded">
-                                <p class="text-sm font-semibold text-cyan-900 flex items-center gap-2">
-                                    <i data-lucide="image" class="w-4 h-4"></i>
-                                    Artifact: ESKF performance plots showing ground truth vs. estimated trajectory with 3σ uncertainty bounds
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 4. MODEL -->
-                <div class="loop-stage-card model">
-                    <div class="flex items-start gap-6">
-                        <div class="stage-icon model flex-shrink-0">
-                            <i data-lucide="brain" class="w-8 h-8 text-white"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-3xl font-bold mb-3 text-green-600">4. MODEL</h3>
-                            <p class="text-xl font-semibold text-gray-800 mb-6">
-                                I build physics-informed neural networks and analytical models that predict system dynamics for model-based control and planning.
-                            </p>
-                            
-                            <h4 class="font-bold text-lg mb-3 text-gray-700">Proof Points:</h4>
-                            <div class="space-y-3 mb-6">
-                                <div class="proof-point">
-                                    <p class="text-gray-700">
-                                        <strong>Physics-Informed Neural Networks:</strong> Trained PINN for quadrotor dynamics modeling, reducing prediction error by 40% vs. analytical models
-                                    </p>
-                                </div>
-                                <div class="proof-point">
-                                    <p class="text-gray-700">
-                                        <strong>System Identification:</strong> Performed parameter estimation for 7-DOF manipulator using least-squares regression on trajectory data
-                                    </p>
-                                </div>
-                                <div class="proof-point">
-                                    <p class="text-gray-700">
-                                        <strong>Production Modeling:</strong> Developed thermal and fluid dynamics models for $550M+ SharkNinja product portfolio optimization
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="bg-green-50 border-l-4 border-green-600 p-4 rounded">
-                                <p class="text-sm font-semibold text-green-900 flex items-center gap-2">
-                                    <i data-lucide="image" class="w-4 h-4"></i>
-                                    Artifact: PINN training curves and prediction accuracy comparison against ground truth dynamics
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 5. CONTROL -->
-                <div class="loop-stage-card control">
-                    <div class="flex items-start gap-6">
-                        <div class="stage-icon control flex-shrink-0">
-                            <i data-lucide="gauge" class="w-8 h-8 text-white"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-3xl font-bold mb-3 text-amber-600">5. CONTROL</h3>
-                            <p class="text-xl font-semibold text-gray-800 mb-6">
-                                I implement advanced control algorithms—from MPC to iLQR—that execute optimal actions in real-time while respecting system constraints.
-                            </p>
-                            
-                            <h4 class="font-bold text-lg mb-3 text-gray-700">Proof Points:</h4>
-                            <div class="space-y-3 mb-6">
-                                <div class="proof-point">
-                                    <p class="text-gray-700">
-                                        <strong>Model Predictive Control:</strong> Deployed MPC for quadrotor trajectory tracking with 100Hz control loop and <10ms latency
-                                    </p>
-                                </div>
-                                <div class="proof-point">
-                                    <p class="text-gray-700">
-                                        <strong>Iterative LQR:</strong> Implemented iLQR for nonlinear optimal control of 7-DOF manipulator with collision avoidance constraints
-                                    </p>
-                                </div>
-                                <div class="proof-point">
-                                    <p class="text-gray-700">
-                                        <strong>Production Control:</strong> Designed embedded control systems for SharkNinja products, shipping 10M+ units with <0.1% failure rate
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="bg-amber-50 border-l-4 border-amber-600 p-4 rounded">
-                                <p class="text-sm font-semibold text-amber-900 flex items-center gap-2">
-                                    <i data-lucide="image" class="w-4 h-4"></i>
-                                    Artifact: MPC control performance showing reference tracking, control inputs, and constraint satisfaction over time
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="demo-right">
+          <canvas id="scope" aria-label="Cart-pole telemetry scope"></canvas>
+          <p class="canv-cap">CH1 pole angle θ · CH2 cart position vs reference</p>
+          <div class="mets">
+            <div class="met"><span class="k">pole angle</span><span class="v" id="mA1">0.0<small>°</small></span></div>
+            <div class="met"><span class="k">|u| now</span><span class="v" id="mA2">0.0<small>N</small></span></div>
+            <div class="met"><span class="k">recoveries</span><span class="v" id="mA3">0</span></div>
+          </div>
+          <p class="demo-note">Balancing an inverted pendulum is the "hello world" of underactuated robotics —
+          the same math that keeps humanoids and self-balancing machines upright. I've implemented this family
+          of controllers from <code>DP / iLQR / RL</code> coursework projects up to production firmware.</p>
         </div>
-    </section>
+      </div>
 
-    <!-- Core Expertise Section -->
-    <section id="expertise" class="py-32 px-6 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16 fade-in">
-                <span class="section-badge mb-6">
-                    <i data-lucide="cpu" class="w-4 h-4"></i>
-                    Technical Expertise
-                </span>
-                <h2 class="text-4xl md:text-5xl font-bold mt-6 mb-6">Core Competencies</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Deep expertise in robotics, control systems, and embedded software development
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Autonomous Systems -->
-                <div class="expertise-card fade-in">
-                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="bot" class="w-8 h-8 text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Autonomous Systems</h3>
-                    <p class="text-gray-600 mb-6">
-                        End-to-end autonomous navigation, SLAM, path planning, and decision-making for mobile robots and aerial vehicles.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-badge">ROS/ROS2</span>
-                        <span class="skill-badge">SLAM</span>
-                        <span class="skill-badge">A* / RRT*</span>
-                        <span class="skill-badge">Gazebo</span>
-                    </div>
-                </div>
-
-                <!-- Control Systems -->
-                <div class="expertise-card fade-in">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="gauge" class="w-8 h-8 text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Advanced Control</h3>
-                    <p class="text-gray-600 mb-6">
-                        Model Predictive Control, LQR/iLQR, nonlinear control, and state estimation for complex robotic systems.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-badge">MPC</span>
-                        <span class="skill-badge">LQR/iLQR</span>
-                        <span class="skill-badge">Kalman Filters</span>
-                        <span class="skill-badge">PID</span>
-                    </div>
-                </div>
-
-                <!-- Embedded Systems -->
-                <div class="expertise-card fade-in">
-                    <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-green-500 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="cpu" class="w-8 h-8 text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Embedded Software</h3>
-                    <p class="text-gray-600 mb-6">
-                        Real-time embedded systems, firmware development, and hardware-software integration for production robotics.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-badge">C/C++</span>
-                        <span class="skill-badge">RTOS</span>
-                        <span class="skill-badge">ARM Cortex</span>
-                        <span class="skill-badge">I2C/SPI/UART</span>
-                    </div>
-                </div>
-
-                <!-- Machine Learning -->
-                <div class="expertise-card fade-in">
-                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-yellow-500 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="brain" class="w-8 h-8 text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Machine Learning</h3>
-                    <p class="text-gray-600 mb-6">
-                        Deep learning for robotics, computer vision, reinforcement learning, and physics-informed neural networks.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-badge">PyTorch</span>
-                        <span class="skill-badge">TensorFlow</span>
-                        <span class="skill-badge">OpenCV</span>
-                        <span class="skill-badge">RL</span>
-                    </div>
-                </div>
-
-                <!-- Simulation & Modeling -->
-                <div class="expertise-card fade-in">
-                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="box" class="w-8 h-8 text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Simulation & Modeling</h3>
-                    <p class="text-gray-600 mb-6">
-                        Physics-based simulation, system dynamics modeling, and digital twin development for robotics validation.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-badge">MATLAB/Simulink</span>
-                        <span class="skill-badge">Gazebo</span>
-                        <span class="skill-badge">PyBullet</span>
-                        <span class="skill-badge">SolidWorks</span>
-                    </div>
-                </div>
-
-                <!-- Software Engineering -->
-                <div class="expertise-card fade-in">
-                    <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="code" class="w-8 h-8 text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Software Engineering</h3>
-                    <p class="text-gray-600 mb-6">
-                        Full-stack development, version control, CI/CD, and agile methodologies for scalable robotics software.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-badge">Python</span>
-                        <span class="skill-badge">Git</span>
-                        <span class="skill-badge">Docker</span>
-                        <span class="skill-badge">Linux</span>
-                    </div>
-                </div>
-            </div>
+      <!-- Scene B : boiler -->
+      <div class="demo-grid" id="sceneB" hidden>
+        <div class="demo-left">
+          <canvas id="anim2" aria-label="Espresso boiler animation"></canvas>
+          <p class="canv-cap">Identical twin thermal plants, identical disturbances — one under PID, one under constrained MPC (horizon 12 s, projected-gradient QP, offset-free via disturbance observer)</p>
+          <div class="demo-ctl">
+            <button class="dbtn warn" id="shot">☕ Pull a shot (heat draw)</button>
+            <button class="dbtn warn" id="refill">💧 Cold refill (−8 °C)</button>
+            <button class="dbtn" id="resetB">Reset</button>
+          </div>
         </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="py-32 px-6 bg-gradient-to-b from-white to-gray-50">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16 fade-in">
-                <span class="section-badge mb-6">
-                    <i data-lucide="briefcase" class="w-4 h-4"></i>
-                    Professional Journey
-                </span>
-                <h2 class="text-4xl md:text-5xl font-bold mt-6 mb-6">Experience</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    From cutting-edge research to production-scale robotics deployment
-                </p>
-            </div>
-
-            <div class="space-y-12">
-                <!-- SharkNinja -->
-                <div class="timeline-item fade-in">
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all">
-                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-                            <div>
-                                <h3 class="text-3xl font-bold text-gray-900">Robotics Engineer</h3>
-                                <p class="text-xl text-purple-600 font-semibold mt-2">SharkNinja</p>
-                            </div>
-                            <div class="mt-4 md:mt-0">
-                                <span class="inline-block px-4 py-2 bg-purple-100 text-purple-700 rounded-full font-semibold">
-                                    May 2024 - Present
-                                </span>
-                            </div>
-                        </div>
-                        
-                        <div class="space-y-4 text-gray-700 mb-8">
-                            <div class="flex items-start gap-3">
-                                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 flex-shrink-0 mt-1"></i>
-                                <p class="text-lg">
-                                    <strong>Autonomous Navigation:</strong> Architected SLAM-based navigation system for consumer robotics platform, enabling real-time mapping and obstacle avoidance in dynamic home environments
-                                </p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 flex-shrink-0 mt-1"></i>
-                                <p class="text-lg">
-                                    <strong>Embedded Control Systems:</strong> Developed real-time control algorithms for motor control, sensor fusion, and state estimation on ARM Cortex-M microcontrollers
-                                </p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 flex-shrink-0 mt-1"></i>
-                                <p class="text-lg">
-                                    <strong>Production Deployment:</strong> Led firmware development and testing for $400M+ product line, ensuring robust performance across 10M+ units shipped
-                                </p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 flex-shrink-0 mt-1"></i>
-                                <p class="text-lg">
-                                    <strong>Cross-Functional Leadership:</strong> Collaborated with mechanical, electrical, and product teams to integrate robotics capabilities into consumer appliances
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="border-t pt-6">
-                            <h4 class="text-xl font-bold mb-4 text-gray-900">Product Portfolio Impact</h4>
-                            <p class="text-gray-600 mb-6">
-                                Contributed to robotics and embedded systems development across SharkNinja's $550M+ product portfolio:
-                            </p>
-                            
-                            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                                <!-- Shark AI Ultra -->
-                                <div class="product-card">
-                                    <img src="https://m.media-amazon.com/images/I/71VlhJLN9HL._AC_SL1500_.jpg" 
-                                         alt="Shark AI Ultra Robot Vacuum" 
-                                         class="product-image">
-                                    <div class="p-4">
-                                        <h5 class="font-bold text-gray-900 mb-2">Shark AI Ultra</h5>
-                                        <p class="text-sm text-gray-600 mb-3">Self-emptying robot vacuum with LIDAR navigation and AI obstacle detection</p>
-                                        <div class="flex flex-wrap gap-2">
-                                            <span class="text-xs px-2 py-1 bg-purple-100 text-purple-700 rounded-full font-semibold">SLAM</span>
-                                            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded-full font-semibold">Navigation</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Ninja CREAMi -->
-                                <div class="product-card">
-                                    <img src="https://m.media-amazon.com/images/I/71zRSE+WDSL._AC_SL1500_.jpg" 
-                                         alt="Ninja CREAMi Ice Cream Maker" 
-                                         class="product-image">
-                                    <div class="p-4">
-                                        <h5 class="font-bold text-gray-900 mb-2">Ninja CREAMi</h5>
-                                        <p class="text-sm text-gray-600 mb-3">Precision ice cream maker with embedded motor control and thermal management</p>
-                                        <div class="flex flex-wrap gap-2">
-                                            <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full font-semibold">Control</span>
-                                            <span class="text-xs px-2 py-1 bg-cyan-100 text-cyan-700 rounded-full font-semibold">Embedded</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Ninja Foodi -->
-                                <div class="product-card">
-                                    <img src="https://m.media-amazon.com/images/I/81qF0K9VHWL._AC_SL1500_.jpg" 
-                                         alt="Ninja Foodi Smart XL Grill" 
-                                         class="product-image">
-                                    <div class="p-4">
-                                        <h5 class="font-bold text-gray-900 mb-2">Ninja Foodi Grill</h5>
-                                        <p class="text-sm text-gray-600 mb-3">Smart indoor grill with precision temperature control and sensor fusion</p>
-                                        <div class="flex flex-wrap gap-2">
-                                            <span class="text-xs px-2 py-1 bg-amber-100 text-amber-700 rounded-full font-semibold">Sensors</span>
-                                            <span class="text-xs px-2 py-1 bg-red-100 text-red-700 rounded-full font-semibold">Thermal</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Shark HydroVac -->
-                                <div class="product-card">
-                                    <img src="https://m.media-amazon.com/images/I/71nxE+QQPNL._AC_SL1500_.jpg" 
-                                         alt="Shark HydroVac Cordless" 
-                                         class="product-image">
-                                    <div class="p-4">
-                                        <h5 class="font-bold text-gray-900 mb-2">Shark HydroVac</h5>
-                                        <p class="text-sm text-gray-600 mb-3">Cordless vacuum-mop with intelligent fluid dynamics and battery management</p>
-                                        <div class="flex flex-wrap gap-2">
-                                            <span class="text-xs px-2 py-1 bg-purple-100 text-purple-700 rounded-full font-semibold">Fluid</span>
-                                            <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full font-semibold">Power</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="mt-8 grid md:grid-cols-3 gap-6">
-                                <div class="text-center p-6 bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl">
-                                    <div class="impact-number">$550M+</div>
-                                    <p class="text-gray-600 font-semibold mt-2">Product Portfolio Value</p>
-                                </div>
-                                <div class="text-center p-6 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl">
-                                    <div class="impact-number">10M+</div>
-                                    <p class="text-gray-600 font-semibold mt-2">Units Shipped</p>
-                                </div>
-                                <div class="text-center p-6 bg-gradient-to-br from-cyan-50 to-green-50 rounded-xl">
-                                    <div class="impact-number">&lt;0.1%</div>
-                                    <p class="text-gray-600 font-semibold mt-2">Failure Rate</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- UPenn GRASP Lab -->
-                <div class="timeline-item fade-in">
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all">
-                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-                            <div>
-                                <h3 class="text-3xl font-bold text-gray-900">Graduate Researcher</h3>
-                                <p class="text-xl text-purple-600 font-semibold mt-2">UPenn GRASP Lab</p>
-                            </div>
-                            <div class="mt-4 md:mt-0">
-                                <span class="inline-block px-4 py-2 bg-purple-100 text-purple-700 rounded-full font-semibold">
-                                    Aug 2022 - May 2024
-                                </span>
-                            </div>
-                        </div>
-                        
-                        <div class="space-y-4 text-gray-700">
-                            <div class="flex items-start gap-3">
-                                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 flex-shrink-0 mt-1"></i>
-                                <p class="text-lg">
-                                    <strong>Quadrotor Control:</strong> Developed Model Predictive Control and iLQR algorithms for aggressive quadrotor flight, achieving 100Hz control loop with <10ms latency
-                                </p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 flex-shrink-0 mt-1"></i>
-                                <p class="text-lg">
-                                    <strong>State Estimation:</strong> Implemented Error-State Kalman Filter for sensor fusion (IMU + camera), achieving <5cm position accuracy in GPS-denied environments
-                                </p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 flex-shrink-0 mt-1"></i>
-                                <p class="text-lg">
-                                    <strong>Motion Planning:</strong> Built A*, RRT*, and Dijkstra path planners with minimum-snap trajectory optimization for obstacle avoidance in 3D environments
-                                </p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 flex-shrink-0 mt-1"></i>
-                                <p class="text-lg">
-                                    <strong>Manipulation:</strong> Designed optimal trajectory generation for 7-DOF Panda manipulator with velocity/acceleration constraints for pick-and-place tasks
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- JPL NASA -->
-                <div class="timeline-item fade-in">
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all">
-                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-                            <div>
-                                <h3 class="text-3xl font-bold text-gray-900">Robotics Intern</h3>
-                                <p class="text-xl text-purple-600 font-semibold mt-2">NASA Jet Propulsion Laboratory</p>
-                            </div>
-                            <div class="mt-4 md:mt-0">
-                                <span class="inline-block px-4 py-2 bg-purple-100 text-purple-700 rounded-full font-semibold">
-                                    Summer 2023
-                                </span>
-                            </div>
-                        </div>
-                        
-                        <div class="space-y-4 text-gray-700">
-                            <div class="flex items-start gap-3">
-                                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 flex-shrink-0 mt-1"></i>
-                                <p class="text-lg">
-                                    <strong>Mars Rover Autonomy:</strong> Contributed to autonomous navigation algorithms for Mars 2020 Perseverance rover's sample collection mission
-                                </p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 flex-shrink-0 mt-1"></i>
-                                <p class="text-lg">
-                                    <strong>Terrain Analysis:</strong> Developed computer vision algorithms for terrain classification and hazard detection in Martian environments
-                                </p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 flex-shrink-0 mt-1"></i>
-                                <p class="text-lg">
-                                    <strong>Simulation & Testing:</strong> Built high-fidelity simulation environments for validating autonomous behaviors before deployment
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="demo-right">
+          <canvas id="scope2" aria-label="Boiler telemetry scope"></canvas>
+          <p class="canv-cap">CH1 water temp: MPC (teal) vs PID (gray) vs 93 °C setpoint · CH2 heater duty u(t) with saturation limit</p>
+          <div class="mets">
+            <div class="met"><span class="k">IAE — PID</span><span class="v" id="mB1">0<small>°·s</small></span></div>
+            <div class="met"><span class="k">IAE — MPC</span><span class="v" id="mB2">0<small>°·s</small></span></div>
+            <div class="met"><span class="k">MPC advantage</span><span class="v" id="mB3">—</span></div>
+          </div>
+          <p class="demo-note">A toy version of a real problem: hold brew water at 93 °C on hardware where the
+          heater saturates and every shot is a load disturbance. The MPC anticipates within its horizon, respects
+          actuator limits by construction, and rejects steady offsets with a disturbance observer — the same
+          pattern I deploy on <code>Cortex-M</code>-class parts.</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-32 px-6 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16 fade-in">
-                <span class="section-badge mb-6">
-                    <i data-lucide="rocket" class="w-4 h-4"></i>
-                    Featured Work
-                </span>
-                <h2 class="text-4xl md:text-5xl font-bold mt-6 mb-6">Key Projects</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Hands-on robotics projects demonstrating end-to-end system development
-                </p>
-            </div>
+<svg class="sigline" viewBox="0 0 1200 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0 36 H180 L200 10 H420 L440 36 H700 L720 10 H960 L980 36 H1200" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
 
-            <div class="grid md:grid-cols-2 gap-12">
-                <!-- Quadrotor Control -->
-                <div class="project-card fade-in">
-                    <div class="h-64 bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center">
-                        <i data-lucide="plane" class="w-32 h-32 text-white"></i>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-3xl font-bold mb-4">Autonomous Quadrotor Control</h3>
-                        <p class="text-gray-600 mb-6 text-lg">
-                            Implemented Model Predictive Control and iLQR for aggressive quadrotor flight with real-time trajectory optimization. Achieved 100Hz control loop with <10ms latency and <5cm position tracking accuracy.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="tech-tag">MPC</span>
-                            <span class="tech-tag">iLQR</span>
-                            <span class="tech-tag">ESKF</span>
-                            <span class="tech-tag">ROS</span>
-                            <span class="tech-tag">C++</span>
-                        </div>
-                        <div class="space-y-3">
-                            <div class="flex items-center gap-2 text-gray-700">
-                                <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
-                                <span>Real-time trajectory optimization</span>
-                            </div>
-                            <div class="flex items-center gap-2 text-gray-700">
-                                <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
-                                <span>Sensor fusion (IMU + camera)</span>
-                            </div>
-                            <div class="flex items-center gap-2 text-gray-700">
-                                <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
-                                <span>Obstacle avoidance in 3D space</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!-- ============ STORY ============ -->
+<section id="story">
+  <div class="wrap">
+    <div class="rv">
+      <span class="stag"><b>r(t)</b> THE STORY</span>
+      <h2 class="stitle">One career, one thesis: advanced control belongs in real products.</h2>
+      <p class="slede">Most controls engineers pick a lane — theory or hardware, research or production.
+      I deliberately ran the full loop.</p>
+    </div>
+    <div class="acts">
+      <article class="act rv">
+        <p class="n">ACT I — 2017 → 2024</p>
+        <h3>Learn the whole stack</h3>
+        <p>Mechanical engineering at IIT Jammu, then production C++ on SolidWorks Assemblies at Dassault
+        Systèmes — computational geometry in software used by millions of engineers. Code quality became a
+        habit before control theory became a career.</p>
+        <p>Then a Master's in robotics at UPenn: at the <b>GRASP Lab</b> I wrapped learned dynamics — PINNs,
+        DeepONet, FNO — inside <b>robust, hybrid, and explicit MPC</b>, with conformal prediction for safety
+        guarantees. At <b>Verdant Robotics</b> I put learning-based control on real agricultural robots:
+        system ID, neural ODEs, RL, FOC motor control, HIL testing, and CAN-bus debugging in the field.</p>
+        <p class="where">IIT Jammu → Dassault Systèmes → UPenn GRASP → Verdant Robotics</p>
+      </article>
+      <article class="act rv">
+        <p class="n">ACT II — 2024 → NOW</p>
+        <h3>Ship it, at consumer scale</h3>
+        <p>At <b>SharkNinja R&amp;D</b> I design and deploy real-time control and sensor-fusion algorithms for
+        smart appliances — espresso, frozen drinks, smart cooking — with <b>multiple patent families filed</b>.</p>
+        <p>A demo has to work once. A product has to work every morning, in every kitchen, on sensors that
+        cost cents, through unit-to-unit variance, brownouts, and users doing the one thing you never tested —
+        for years. That discipline (plus factories, DFx, and certification) is what consumer scale teaches,
+        and almost nowhere else does.</p>
+        <p class="where">SharkNinja — R&amp;D Control Systems &amp; Algorithms Engineer, Boston</p>
+      </article>
+      <article class="act rv">
+        <p class="n">ACT III — THE BET</p>
+        <h3>Robots become consumer electronics</h3>
+        <p>Humanoids, home robots, and wearables will be won the way appliances are won: cost-engineered
+        sensing, control that tolerates variance, safety cases that close, algorithms that fit the silicon
+        the BOM can afford, and telemetry loops from a deployed fleet.</p>
+        <p>Robotics companies are actively hiring people who have <b>shipped real hardware at scale</b> —
+        because most lab-to-startup pipelines never built that muscle. I've been rehearsing exactly this
+        convergence: research-grade algorithms, production-grade constraints.</p>
+        <p class="where">Next: your robot, wearable, or autonomy stack</p>
+      </article>
+    </div>
+    <div class="bridge rv">
+      <p>The scarce engineer in the next decade isn't the best theorist or the best firmware hand —
+      it's the person who can take <b>optimization- and learning-based control</b> out of the paper and make it
+      survive <b>mass production</b>. That intersection is where I've built my career on purpose.</p>
+      <p class="who">— why a "coffee machine engineer" is exactly who you want building robots</p>
+    </div>
+  </div>
+</section>
 
-                <!-- Manipulator Planning -->
-                <div class="project-card fade-in">
-                    <div class="h-64 bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
-                        <i data-lucide="move" class="w-32 h-32 text-white"></i>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-3xl font-bold mb-4">7-DOF Manipulator Planning</h3>
-                        <p class="text-gray-600 mb-6 text-lg">
-                            Developed optimal trajectory generation for Panda manipulator with velocity/acceleration constraints. Implemented RRT* for collision-free path planning in cluttered environments.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="tech-tag">RRT*</span>
-                            <span class="tech-tag">Trajectory Optimization</span>
-                            <span class="tech-tag">MoveIt</span>
-                            <span class="tech-tag">Python</span>
-                        </div>
-                        <div class="space-y-3">
-                            <div class="flex items-center gap-2 text-gray-700">
-                                <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
-                                <span>Constrained motion planning</span>
-                            </div>
-                            <div class="flex items-center gap-2 text-gray-700">
-                                <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
-                                <span>Collision avoidance</span>
-                            </div>
-                            <div class="flex items-center gap-2 text-gray-700">
-                                <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
-                                <span>Pick-and-place automation</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<svg class="sigline" viewBox="0 0 1200 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0 36 Q60 36 80 23 T160 10 H420 Q480 10 500 23 T580 36 H840 Q900 36 920 23 T1000 10 H1200" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
 
-                <!-- SLAM Navigation -->
-                <div class="project-card fade-in">
-                    <div class="h-64 bg-gradient-to-br from-cyan-500 to-green-500 flex items-center justify-center">
-                        <i data-lucide="map" class="w-32 h-32 text-white"></i>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-3xl font-bold mb-4">SLAM-Based Navigation</h3>
-                        <p class="text-gray-600 mb-6 text-lg">
-                            Built autonomous navigation system using SLAM for real-time mapping and localization. Integrated A* path planning with dynamic obstacle avoidance for mobile robot navigation.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="tech-tag">SLAM</span>
-                            <span class="tech-tag">A*</span>
-                            <span class="tech-tag">LiDAR</span>
-                            <span class="tech-tag">ROS2</span>
-                            <span class="tech-tag">Python</span>
-                        </div>
-                        <div class="space-y-3">
-                            <div class="flex items-center gap-2 text-gray-700">
-                                <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
-                                <span>Real-time mapping & localization</span>
-                            </div>
-                            <div class="flex items-center gap-2 text-gray-700">
-                                <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
-                                <span>Dynamic obstacle avoidance</span>
-                            </div>
-                            <div class="flex items-center gap-2 text-gray-700">
-                                <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
-                                <span>Multi-sensor fusion</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!-- ============ PRODUCTS ============ -->
+<section id="products">
+  <div class="wrap">
+    <div class="rv">
+      <span class="stag"><b>y(t)</b> SHIPPED — IN STORES RIGHT NOW</span>
+      <h2 class="stitle">My control loops are running in kitchens today.</h2>
+      <p class="slede">Four product lines I've worked on as a control systems &amp; algorithms engineer are on the
+      market with real traction. Every machine below is a robot by any honest definition: sensing, estimation,
+      actuation, and closed-loop control — sold at appliance prices.</p>
+    </div>
 
-                <!-- Physics-Informed ML -->
-                <div class="project-card fade-in">
-                    <div class="h-64 bg-gradient-to-br from-green-500 to-yellow-500 flex items-center justify-center">
-                        <i data-lucide="brain" class="w-32 h-32 text-white"></i>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-3xl font-bold mb-4">Physics-Informed Neural Networks</h3>
-                        <p class="text-gray-600 mb-6 text-lg">
-                            Trained PINN for quadrotor dynamics modeling, reducing prediction error by 40% compared to analytical models. Integrated with MPC for model-based control.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="tech-tag">PINN</span>
-                            <span class="tech-tag">PyTorch</span>
-                            <span class="tech-tag">System ID</span>
-                            <span class="tech-tag">Python</span>
-                        </div>
-                        <div class="space-y-3">
-                            <div class="flex items-center gap-2 text-gray-700">
-                                <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
-                                <span>40% error reduction vs. analytical</span>
-                            </div>
-                            <div class="flex items-center gap-2 text-gray-700">
-                                <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
-                                <span>Physics-constrained learning</span>
-                            </div>
-                            <div class="flex items-center gap-2 text-gray-700">
-                                <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
-                                <span>MPC integration</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="pgrid">
+      <!-- Luxe Cafe -->
+      <article class="pcard rv">
+        <div class="pimg"><span class="pbadge">#1 SELLING U.S. ESPRESSO MAKER · 2025¹</span>
+          <img src="https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/ES601_01.jpg" alt="Ninja Luxe Café espresso machine" loading="lazy"
+               onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ph',textContent:'Ninja Luxe Café'}))">
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-32 px-6 bg-gradient-to-b from-white to-gray-50">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16 fade-in">
-                <span class="section-badge mb-6">
-                    <i data-lucide="user" class="w-4 h-4"></i>
-                    About Me
-                </span>
-                <h2 class="text-4xl md:text-5xl font-bold mt-6 mb-6">Background & Education</h2>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-12">
-                <!-- Education -->
-                <div class="fade-in">
-                    <div class="bg-white rounded-2xl p-8 shadow-lg h-full">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center">
-                                <i data-lucide="graduation-cap" class="w-8 h-8 text-white"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold">Education</h3>
-                            </div>
-                        </div>
-                        
-                        <div class="space-y-6">
-                            <div>
-                                <h4 class="text-xl font-bold text-gray-900 mb-2">University of Pennsylvania</h4>
-                                <p class="text-purple-600 font-semibold mb-2">Master of Science in Engineering (MSE)</p>
-                                <p class="text-gray-600 mb-2">Robotics | GPA: 3.8/4.0</p>
-                                <p class="text-gray-500 text-sm">Aug 2022 - May 2024</p>
-                                <div class="mt-4 space-y-2">
-                                    <p class="text-gray-700"><strong>Relevant Coursework:</strong></p>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="skill-badge">Advanced Robotics</span>
-                                        <span class="skill-badge">Control Systems</span>
-                                        <span class="skill-badge">Machine Learning</span>
-                                        <span class="skill-badge">Computer Vision</span>
-                                        <span class="skill-badge">SLAM</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="border-t pt-6">
-                                <h4 class="text-xl font-bold text-gray-900 mb-2">BITS Pilani</h4>
-                                <p class="text-purple-600 font-semibold mb-2">Bachelor of Engineering (B.E.)</p>
-                                <p class="text-gray-600 mb-2">Mechanical Engineering | GPA: 3.7/4.0</p>
-                                <p class="text-gray-500 text-sm">Aug 2018 - May 2022</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Skills & Interests -->
-                <div class="fade-in">
-                    <div class="bg-white rounded-2xl p-8 shadow-lg h-full">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center">
-                                <i data-lucide="sparkles" class="w-8 h-8 text-white"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold">Technical Skills</h3>
-                            </div>
-                        </div>
-                        
-                        <div class="space-y-6">
-                            <div>
-                                <h4 class="font-bold text-gray-700 mb-3">Programming Languages</h4>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="skill-badge">Python</span>
-                                    <span class="skill-badge">C++</span>
-                                    <span class="skill-badge">C</span>
-                                    <span class="skill-badge">MATLAB</span>
-                                    <span class="skill-badge">JavaScript</span>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <h4 class="font-bold text-gray-700 mb-3">Frameworks & Tools</h4>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="skill-badge">ROS/ROS2</span>
-                                    <span class="skill-badge">PyTorch</span>
-                                    <span class="skill-badge">TensorFlow</span>
-                                    <span class="skill-badge">OpenCV</span>
-                                    <span class="skill-badge">Gazebo</span>
-                                    <span class="skill-badge">Git</span>
-                                    <span class="skill-badge">Docker</span>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <h4 class="font-bold text-gray-700 mb-3">Hardware & Embedded</h4>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="skill-badge">ARM Cortex</span>
-                                    <span class="skill-badge">RTOS</span>
-                                    <span class="skill-badge">I2C/SPI/UART</span>
-                                    <span class="skill-badge">PCB Design</span>
-                                    <span class="skill-badge">Oscilloscope</span>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <h4 class="font-bold text-gray-700 mb-3">Certifications</h4>
-                                <div class="space-y-2">
-                                    <p class="text-gray-700">• Deep Learning Specialization (Coursera)</p>
-                                    <p class="text-gray-700">• ROS for Beginners (Udemy)</p>
-                                    <p class="text-gray-700">• Embedded Systems (edX)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="pbody">
+          <h3>Ninja Luxe Café series</h3>
+          <p class="model">ES601 Premier (2024) · ES701 Pro (2025) · from $499</p>
+          <p class="desc">3-in-1 espresso, drip, and cold-brew platform that took Ninja into the espresso
+          category — and to the top of it.</p>
+          <p class="ptech"><b>The controls problem:</b> Barista Assist — weight-based dosing on a built-in
+          scale, grind-size recommendation across a 25-setting burr grinder, and active temperature &amp;
+          pressure adjustment monitored on every brew. Hands-free dual-mode milk texturing (steam + whisk).</p>
+          <div class="pstats">
+            <span class="pstat"><b>4.7★</b> · 789 reviews · 93% recommend (Best Buy)</span>
+            <span class="pstat">CoffeeGeek <b>Best in Class</b>, 88.5/100</span>
+          </div>
+          <div class="plinks">
+            <a href="https://www.sharkninja.com/ninja-luxe-cafe-premier-3-in-1-espresso-coffee-cold-brew/ES601.html" target="_blank" rel="noopener">Product page ↗</a>
+            <a href="https://coffeegeek.com/reviews/fullreview/ninja-luxe-cafe-premier-full-review/" target="_blank" rel="noopener">CoffeeGeek review ↗</a>
+            <a href="https://www.tomsguide.com/home/ninja-luxe-cafe-premier-series-espresso-machine-review" target="_blank" rel="noopener">Tom's Guide ↗</a>
+          </div>
         </div>
-    </section>
+      </article>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-32 px-6 bg-white">
-        <div class="max-w-4xl mx-auto text-center">
-            <div class="fade-in">
-                <span class="section-badge mb-6">
-                    <i data-lucide="mail" class="w-4 h-4"></i>
-                    Get In Touch
-                </span>
-                <h2 class="text-4xl md:text-5xl font-bold mt-6 mb-6">Let's Connect</h2>
-                <p class="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
-                    Interested in robotics, autonomous systems, or control algorithms? Let's discuss how we can collaborate!
-                </p>
-
-                <div class="flex flex-wrap justify-center gap-6 mb-12">
-                    <a href="mailto:pranavg200@gmail.com" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white rounded-full transition-all font-semibold shadow-lg hover:shadow-xl">
-                        <i data-lucide="mail" class="w-5 h-5 mr-2"></i>
-                        pranavg200@gmail.com
-                    </a>
-                    <a href="https://www.linkedin.com/in/pranav-gunreddy/" target="_blank" class="inline-flex items-center px-8 py-4 bg-white hover:bg-gray-50 text-purple-600 border-2 border-purple-600 rounded-full transition-all font-semibold shadow-lg hover:shadow-xl">
-                        <i data-lucide="linkedin" class="w-5 h-5 mr-2"></i>
-                        LinkedIn
-                    </a>
-                    <a href="https://github.com/PranavG200" target="_blank" class="inline-flex items-center px-8 py-4 bg-white hover:bg-gray-50 text-purple-600 border-2 border-purple-600 rounded-full transition-all font-semibold shadow-lg hover:shadow-xl">
-                        <i data-lucide="github" class="w-5 h-5 mr-2"></i>
-                        GitHub
-                    </a>
-                </div>
-
-                <div class="bg-gradient-to-r from-purple-50 to-blue-50 rounded-2xl p-8">
-                    <p class="text-gray-700 text-lg">
-                        <strong>Open to:</strong> Full-time robotics engineering roles, research collaborations, and consulting opportunities in autonomous systems and control
-                    </p>
-                </div>
-            </div>
+      <!-- AutoBarista -->
+      <article class="pcard rv">
+        <div class="pimg"><span class="pbadge">NEW · MAY 2026</span>
+          <img src="https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/AE1051_01.jpg" alt="Ninja AutoBarista Pro fully automatic espresso machine" loading="lazy"
+               onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ph',textContent:'Ninja AutoBarista Pro'}))">
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12 px-6">
-        <div class="max-w-7xl mx-auto text-center">
-            <p class="text-gray-400 mb-4">
-                © 2024 Pranav Gunreddy. Built with passion for robotics and autonomous systems.
-            </p>
-            <div class="flex justify-center gap-6">
-                <a href="https://www.linkedin.com/in/pranav-gunreddy/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
-                    <i data-lucide="linkedin" class="w-6 h-6"></i>
-                </a>
-                <a href="https://github.com/PranavG200" target="_blank" class="text-gray-400 hover:text-white transition-colors">
-                    <i data-lucide="github" class="w-6 h-6"></i>
-                </a>
-                <a href="mailto:pranavg200@gmail.com" class="text-gray-400 hover:text-white transition-colors">
-                    <i data-lucide="mail" class="w-6 h-6"></i>
-                </a>
-            </div>
+        <div class="pbody">
+          <h3>Ninja AutoBarista Pro</h3>
+          <p class="model">AE1051 · launched May 27, 2026 · $899+</p>
+          <p class="desc">Ninja's first fully automatic espresso machine: 13 one-touch drinks, dual bean
+          hoppers, bean-to-cup with zero user skill required.</p>
+          <p class="ptech"><b>The controls problem:</b> Grind iQ — continuously monitors and adapts each brew
+          in real time: adjusts grind size, doses by weight, optimizes brew pressure, and compensates for
+          aging beans. FrothPerfect fully hands-free microfoam, dairy or plant. Closed-loop everything.</p>
+          <div class="pstats">
+            <span class="pstat">First <b>fully automatic</b> Ninja espresso platform</span>
+            <span class="pstat">9-bar espresso · drip · cold brew</span>
+          </div>
+          <div class="plinks">
+            <a href="https://www.sharkninja.com/ninja-autobarista-pro-fully-automatic-espresso-machine-in-stainless-steel/AE1051.html" target="_blank" rel="noopener">Product page ↗</a>
+            <a href="https://www.businesswire.com/news/home/20260527934828/en/" target="_blank" rel="noopener">Launch press release ↗</a>
+          </div>
         </div>
-    </footer>
+      </article>
 
-    <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
+      <!-- Slushi -->
+      <article class="pcard rv">
+        <div class="pimg"><span class="pbadge">TIKTOK-VIRAL · REPEATEDLY SOLD OUT</span>
+          <img src="https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/FS301_01.jpg" alt="Ninja SLUSHi frozen drink maker" loading="lazy"
+               onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ph',textContent:'Ninja SLUSHi'}))">
+        </div>
+        <div class="pbody">
+          <h3>Ninja SLUSHi</h3>
+          <p class="model">FS300/FS301 (2024) · Twist FS701 (2026) · from $269</p>
+          <p class="desc">Professional-style frozen-drink maker for the countertop — no ice, no blending,
+          slush on demand for up to 12 hours.</p>
+          <p class="ptech"><b>The controls problem:</b> RapidChill — a compressor-based refrigeration system
+          that freezes liquid evenly and holds optimal slush temperature, with presets tuned to the physics of
+          sugar and alcohol content. Thermal control meets phase change, in a consumer-priced box.</p>
+          <div class="pstats">
+            <span class="pstat"><b>4.7★</b> · 852 reviews · 95% recommend (Best Buy)</span>
+            <span class="pstat">CNN Underscored: "might be my new favorite kitchen gadget"</span>
+          </div>
+          <div class="plinks">
+            <a href="https://www.sharkninja.com/ninja-slushi-professional-frozen-drink-maker/FS301.html" target="_blank" rel="noopener">Product page ↗</a>
+            <a href="https://www.cnn.com/cnn-underscored/reviews/ninja-slushi" target="_blank" rel="noopener">CNN review ↗</a>
+          </div>
+        </div>
+      </article>
 
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+      <!-- Crispi microwave -->
+      <article class="pcard rv">
+        <div class="pimg"><span class="pbadge">NEW · JULY 2026 — NINJA'S FIRST MICROWAVE</span>
+          <img src="https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/MW101_01.jpg" alt="Ninja Crispi Microwave and air fryer" loading="lazy"
+               onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ph',textContent:'Ninja Crispi Microwave'}))">
+        </div>
+        <div class="pbody">
+          <h3>Ninja Crispi Microwave</h3>
+          <p class="model">MW101 · launched July 16, 2026 · $449</p>
+          <p class="desc">Ninja's first-ever microwave — one that crisps like an air fryer instead of
+          steaming food soggy.</p>
+          <p class="ptech"><b>The controls problem:</b> FusionCrisp — starts as a 1000 W microwave, then
+          automatically hands off to 1700 W cyclonic air frying at up to 450 °F. Mode sequencing, thermal
+          management, and doneness logic across two fundamentally different heating physics in one cavity.</p>
+          <div class="pstats">
+            <span class="pstat">14-in-1 · flatbed, no turntable</span>
+            <span class="pstat">Frozen → crispy in ~10 min</span>
+          </div>
+          <div class="plinks">
+            <a href="https://www.sharkninja.com/ninja-crispi-microwave/MW101.html" target="_blank" rel="noopener">Product page ↗</a>
+            <a href="https://newsroom.sharkninja.com/ninja-launches-its-first-ever-microwave-that-crisps-like-an-air-fryer/" target="_blank" rel="noopener">Launch announcement ↗</a>
+          </div>
+        </div>
+      </article>
+    </div>
 
-        // Fade-in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+    <div class="copict rv">
+      <div class="cofact"><div class="v">~$6.4B</div><div class="k">SharkNinja FY2025 net sales, +15.7% YoY</div><div class="s">NYSE: SN · IR release, Feb 2026</div></div>
+      <div class="cofact"><div class="v">#27</div><div class="k">Fast Company World's 50 Most Innovative Companies 2025 — #2 in Design</div><div class="s">fastcompany.com / SN newsroom</div></div>
+      <div class="cofact"><div class="v">30+</div><div class="k">product categories, 150+ retailers worldwide</div><div class="s">company profile</div></div>
+    </div>
+    <p class="pdisc">¹ Circana, U.S. espresso maker sales, 2025 — cited in SharkNinja's AutoBarista launch release. Product
+    technology descriptions are from public SharkNinja materials and independent reviews; my specific contributions
+    across these programs are covered by NDA and pending patents — happy to discuss what's shareable in an interview.</p>
+  </div>
+</section>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+<svg class="sigline" viewBox="0 0 1200 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0 36 H180 L200 10 H420 L440 36 H700 L720 10 H960 L980 36 H1200" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
 
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
+<!-- ============ SKILLS ============ -->
+<section id="skills">
+  <div class="wrap">
+    <div class="rv">
+      <span class="stag"><b>C(s)</b> THE STACK</span>
+      <h2 class="stitle">Full-loop coverage: from motor commutation to learned dynamics.</h2>
+      <p class="slede">Everything below is backed by a project, a product, or a paper-stage research effort —
+      ask me three follow-ups deep about any of it.</p>
+    </div>
+    <div class="skgrid">
+      <div class="skcard rv">
+        <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#c2410c" stroke-width="2" stroke-linecap="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.5"/></svg></span>Control</h3>
+        <p class="blurb">Optimization-based and classical, with the judgment to know which the problem deserves.</p>
+        <div class="tags"><span class="tag">MPC — robust · hybrid · explicit</span><span class="tag">iLQR / LQR</span><span class="tag">dynamic programming</span><span class="tag">operational space control</span><span class="tag">cascaded PID + autotuning</span><span class="tag">FOC (BLDC/PMSM)</span><span class="tag">thermal control</span><span class="tag">casadi · Drake</span></div>
+      </div>
+      <div class="skcard rv">
+        <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>Estimation &amp; sensing</h3>
+        <p class="blurb">Turning cheap, noisy sensors into state you can act on — my daily bread in consumer R&amp;D.</p>
+        <div class="tags"><span class="tag">sensor fusion</span><span class="tag">Kalman filtering</span><span class="tag">adaptive signal processing</span><span class="tag">conformal prediction / UQ</span><span class="tag">GTSAM</span><span class="tag">LiDAR · IMU · vision</span><span class="tag">hector SLAM</span></div>
+      </div>
+      <div class="skcard rv">
+        <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0f766e" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 4v-2M15 4v-2M9 22v-2M15 22v-2M4 9H2M4 15H2M22 9h-2M22 15h-2"/><rect x="9" y="9" width="6" height="6"/></svg></span>Embedded &amp; firmware</h3>
+        <p class="blurb">Real-time algorithms on cost-constrained silicon, and the buses that feed them.</p>
+        <div class="tags"><span class="tag">Embedded C / C++</span><span class="tag">ARM Cortex-M · CMSIS</span><span class="tag">TinyML / embedded ML</span><span class="tag">CAN · SPI · I2C · UART</span><span class="tag">Simulink Coder codegen</span><span class="tag">Stateflow</span><span class="tag">Teensy · ESP32 · Jetson</span><span class="tag">PCB bring-up</span></div>
+      </div>
+      <div class="skcard rv">
+        <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round"><path d="M12 2a4 4 0 0 1 4 4c2.5.5 4 2.5 4 5a5 5 0 0 1-3 4.6V17a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3v-1.4A5 5 0 0 1 4 11c0-2.5 1.5-4.5 4-5a4 4 0 0 1 4-4z"/></svg></span>Learning-based control</h3>
+        <p class="blurb">Models and policies that learn — kept honest by physics and safety bounds.</p>
+        <div class="tags"><span class="tag">RL · imitation learning</span><span class="tag">PINN · DeepONet · FNO</span><span class="tag">neural ODE / NARX</span><span class="tag">system identification</span><span class="tag">PyTorch · NeuroMancer</span><span class="tag">sim-to-real</span><span class="tag">CARLA · Gym</span></div>
+      </div>
+      <div class="skcard rv">
+        <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2" stroke-linecap="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span>Planning &amp; autonomy</h3>
+        <p class="blurb">Trajectories that are feasible, collision-free, and executable by the loop downstream.</p>
+        <div class="tags"><span class="tag">A* · RRT* · APF</span><span class="tag">trajectory optimization</span><span class="tag">FK / IK · 7-DOF manipulation</span><span class="tag">Bézier interpolation</span><span class="tag">ROS · Gazebo · Move Base</span><span class="tag">underactuated systems</span></div>
+      </div>
+      <div class="skcard rv">
+        <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#12161b" stroke-width="2" stroke-linecap="round"><path d="M7 8l-4 4 4 4M17 8l4 4-4 4M14 4l-4 16"/></svg></span>Systems &amp; scale</h3>
+        <p class="blurb">The unglamorous 80% that decides whether the algorithm ever ships.</p>
+        <div class="tags"><span class="tag">HIL test benches</span><span class="tag">CI/CD · Docker · CMake</span><span class="tag">telemetry &amp; time sync</span><span class="tag">latency debugging</span><span class="tag">MATLAB / Simulink</span><span class="tag">DFx &amp; cost engineering</span><span class="tag">patents (multiple families)</span></div>
+      </div>
+    </div>
+    <div class="kwstrip rv">
+      <p class="t">If your job description says any of this, we should talk</p>
+      <p class="kws">
+        <span>"closed-loop controls in an embedded environment"</span><span class="sep">·</span>
+        <span>"state estimation through IMU, encoders, force sensors"</span><span class="sep">·</span>
+        <span>"shipping software that controls real hardware"</span><span class="sep">·</span>
+        <span>"system identification &amp; sim-to-real"</span><span class="sep">·</span>
+        <span>"non-linear optimization"</span><span class="sep">·</span>
+        <span>"C++ and Python in real-time contexts"</span><span class="sep">·</span>
+        <span>"FOC / PMSM motor control"</span><span class="sep">·</span>
+        <span>"hardware-in-the-loop"</span><span class="sep">·</span>
+        <span>"GNC"</span>
+      </p>
+    </div>
+  </div>
+</section>
 
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    // Close mobile menu if open
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-        });
+<!-- ============ EMBEDDED MPC ============ -->
+<section id="empc">
+  <div class="wrap">
+    <div class="shell rv">
+      <span class="stag"><b>QP</b> SPOTLIGHT — EMBEDDED MPC</span>
+      <h2 class="stitle">Real-time optimization where everyone says it doesn't fit.</h2>
+      <p class="slede">The capability I'm most confident in — and the one that separates controls engineers
+      who read about MPC from those who deploy it.</p>
+      <div class="mpccols">
+        <div>
+          <p>Model predictive control earns its reputation in papers with desktop CPUs and 100-watt power
+          budgets. The interesting engineering starts when the target is a <b>Cortex-M-class microcontroller</b>:
+          kilobytes of RAM, no FPU luxury, hard deadlines shared with safety monitors and comms — and a BOM
+          owner who will delete your feature over a fifty-cent part.</p>
+          <p>I work at the solver level to make it fit: <b>condensed problem formulations, warm starts,
+          fixed-iteration first-order methods (ADMM-family, in the spirit of
+          <a href="https://osqp.org" target="_blank" rel="noopener">OSQP</a> /
+          <a href="https://tinympc.org" target="_blank" rel="noopener">TinyMPC</a>), structure exploitation,
+          and code generation</b> — so worst-case execution time is provable, memory is static, and the loop
+          never misses. At SharkNinja I've explored and deployed optimization-based model inference strategies
+          for real-time use on exactly this class of silicon; in research at GRASP I built robust, hybrid, and
+          explicit MPC around learned dynamics models.</p>
+          <p>Why it matters for robotics: actuators saturate, batteries brown out, thermal limits bite —
+          <b>constraints are the product</b>. A controller that treats them as first-class citizens, on the
+          cheapest chip that closes the loop, is how advanced control gets into humanoids, wearables, and
+          every robot that has to hit a price point.</p>
+        </div>
+        <div class="budget">
+          <p class="bt">What "it fits" means to me</p>
+          <div class="brow"><span class="l">Solve time</span><span class="r">deterministic, worst-case bounded</span></div>
+          <div class="brow"><span class="l">Memory</span><span class="r">statically allocated, KB-scale</span></div>
+          <div class="brow"><span class="l">Iterations</span><span class="r">fixed budget, warm-started</span></div>
+          <div class="brow"><span class="l">Constraints</span><span class="r">respected by construction, not clamping</span></div>
+          <div class="brow"><span class="l">Fallback</span><span class="r">graceful degradation path, always</span></div>
+          <div class="brow"><span class="l">Proof</span><span class="r">HIL + fault injection before field</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // Active nav link highlighting
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience">
+  <div class="wrap">
+    <div class="rv">
+      <span class="stag"><b>x̂(t)</b> TRAJECTORY</span>
+      <h2 class="stitle">Experience</h2>
+    </div>
+    <div class="xp">
+      <div class="xpi rv">
+        <div class="xphead"><h3>R&amp;D Control Systems &amp; Algorithms Engineer</h3><span class="co"><a href="https://www.sharkninja.com" target="_blank" rel="noopener">SharkNinja</a></span><span class="dt">Jun 2024 — present · Boston, MA</span></div>
+        <ul>
+          <li>Design and deploy real-time control &amp; sensor-fusion algorithms for complex smart appliances under strict compute, power, latency, and cost constraints — multiple patent families filed across coffee, frozen-drink, and smart cooking machines.</li>
+          <li>Architect embedded systems with adaptive signal processing for robust, low-latency closed-loop control on Cortex-M-class hardware.</li>
+          <li>Develop optimization-model deployment strategies for real-time inference on embedded targets — the "embedded MPC" practice above.</li>
+        </ul>
+        <p class="stack">C++ · Embedded C · MATLAB/Stateflow · Python · thermal control · UART · PCB · CAD</p>
+      </div>
+      <div class="xpi rv">
+        <div class="xphead"><h3>R&amp;D Control Software Intern</h3><span class="co"><a href="https://www.verdantrobotics.com" target="_blank" rel="noopener">Verdant Robotics</a></span><span class="dt">May — Aug 2023 · Hayward, CA</span></div>
+        <ul>
+          <li>Improved weed hit-rate at high vehicle speeds with adaptive, learning-based control and uncertainty modeling on production agricultural robots.</li>
+          <li>Built real-time robot health monitoring and turret–crop assignment using autoregressive models, neural ODEs, and RL.</li>
+          <li>Worked the unglamorous layer: HIL testbed, sensor drivers, CAN protocol, latency, time-sync and telemetry debugging; cascaded FOC control of BLDC motors (Moteus), C++ codegen via Simulink Coder.</li>
+        </ul>
+        <p class="stack">C++ · Docker · CI/CD · PID autotuning · system ID · GTSAM · CAN · imitation learning · NARX/NODE</p>
+      </div>
+      <div class="xpi rv">
+        <div class="xphead"><h3>Research Assistant — Learning-based Control &amp; Safe Planning</h3><span class="co"><a href="https://www.grasp.upenn.edu" target="_blank" rel="noopener">GRASP Lab, UPenn</a></span><span class="dt">Sep 2022 — Apr 2023 · Philadelphia, PA</span></div>
+        <ul>
+          <li>Used physics-informed deep learning (PINN, DeepONet, FNO) to learn nonlinear dynamics and dynamic pedestrian trajectory prediction.</li>
+          <li>Wrapped the learned models in robust, hybrid, and explicit MPC frameworks with conformal-prediction safety guarantees.</li>
+        </ul>
+        <p class="stack">CARLA · LSTM · conformal prediction · robust/hybrid/explicit MPC</p>
+      </div>
+      <div class="xpi rv">
+        <div class="xphead"><h3>R&amp;D Software Engineer — SolidWorks Assemblies</h3><span class="co"><a href="https://www.solidworks.com" target="_blank" rel="noopener">Dassault Systèmes</a></span><span class="dt">Jun 2021 — Jul 2022</span></div>
+        <ul>
+          <li>Implemented new CAD features and enhanced core modules with computational-geometry methods in a massive production C++ codebase used by millions of engineers.</li>
+        </ul>
+        <p class="stack">C++ · API design · computational geometry · OOD · STL · MFC</p>
+      </div>
+    </div>
+    <div class="edu">
+      <div class="educard rv"><p class="deg">MSE, Mechatronics &amp; Robotics</p><p class="sch">University of Pennsylvania — GRASP Lab</p><p class="dt">Aug 2022 — May 2024</p></div>
+      <div class="educard rv"><p class="deg">B.Tech, Mechanical Engineering</p><p class="sch">Indian Institute of Technology, Jammu</p><p class="dt">Aug 2017 — Jun 2021</p></div>
+    </div>
+  </div>
+</section>
 
-            navLinks.forEach(link => {
-                link.classList.remove('text-blue-600');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('text-blue-600');
-                }
-            });
-        });
-    </script>
+<svg class="sigline" viewBox="0 0 1200 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0 36 Q60 36 80 23 T160 10 H420 Q480 10 500 23 T580 36 H840 Q900 36 920 23 T1000 10 H1200" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects" style="padding-top:64px">
+  <div class="wrap">
+    <div class="rv">
+      <span class="stag"><b>D</b> HANDS-ON PROJECTS</span>
+      <h2 class="stitle">Robots I've built with my own hands (and solders).</h2>
+    </div>
+    <div class="prgrid">
+      <article class="prcard rv">
+        <h3>Underactuated Robotics &amp; Optimization</h3>
+        <p>Advanced control for cart-pole and pendulum systems via dynamic programming, iLQR, and RL, plus an
+        operational-space controller for a high-DOF planar biped. The theory behind this page's live demo.</p>
+        <div class="tags"><span class="tag">DP · iLQR · RL</span><span class="tag">OSC</span><span class="tag">Drake</span><span class="tag">casadi</span><span class="tag">Gym</span></div>
+        <a class="gh" href="https://github.com/PranavG200" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.82.58A12 12 0 0 0 12 .3z"/></svg>Code on GitHub</a>
+      </article>
+      <article class="prcard rv">
+        <h3>Pick &amp; Place in Dynamic Environments — 7-DOF Panda</h3>
+        <p>Full FK/IK and trajectory generation for static and dynamic pick-and-place with obstacle avoidance;
+        perception and state estimation integrated with position/velocity control.</p>
+        <div class="tags"><span class="tag">A* · RRT* · APF</span><span class="tag">FK/IK</span><span class="tag">Bézier interpolation</span><span class="tag">ROS · Gazebo</span><span class="tag">system integration</span></div>
+        <a class="gh" href="https://github.com/PranavG200" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.82.58A12 12 0 0 0 12 .3z"/></svg>Code on GitHub</a>
+      </article>
+      <article class="prcard rv">
+        <h3>BUD — Navigation-Assist Mobile Robot · SICK LiDAR Challenge</h3>
+        <p>Mobile robot with an interactive force-control interface that assists people navigating indoor
+        spaces — built to a cost target after a real market study, not just a demo.</p>
+        <div class="tags"><span class="tag">LiDAR · IMU</span><span class="tag">hector SLAM · Move Base</span><span class="tag">ROS · Gazebo · Docker</span><span class="tag">force interface</span></div>
+        <a class="gh" href="https://github.com/PranavG200" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.82.58A12 12 0 0 0 12 .3z"/></svg>Code on GitHub</a>
+      </article>
+      <article class="prcard rv">
+        <h3>Grand Theft Autonomous — Mobile Battlebot</h3>
+        <p>Autonomous battle bot designed and manufactured end-to-end: filtering circuits, Vive/IR localization,
+        wireless comms, low-cost motor drivers and power regulation — cheap, robust, and safe by design.</p>
+        <div class="tags"><span class="tag">ESP32 · ItsyBitsy</span><span class="tag">SPI · I2C · UDP</span><span class="tag">PID</span><span class="tag">circuit design</span><span class="tag">localization</span></div>
+        <a class="gh" href="https://github.com/PranavG200" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.82.58A12 12 0 0 0 12 .3z"/></svg>Code on GitHub</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OUTLOOK ============ -->
+<section id="outlook">
+  <div class="wrap">
+    <div class="rv">
+      <span class="stag"><b>ŷ(t+N)</b> PREDICTION HORIZON — CONTROLS IN 2028</span>
+      <h2 class="stitle">AI is rewriting this job. Here's my read — and my receipts.</h2>
+      <p class="slede">A practitioner's forecast of what controls engineering looks like two years out, and the
+      evidence that I'm already working that way.</p>
+    </div>
+    <div class="thesis">
+      <article class="thcard rv">
+        <span class="num">01</span>
+        <div>
+          <h3>Learned policies on top, guarantees underneath</h3>
+          <p class="what">RL and vision-language-action policies will increasingly decide <i>what</i> robots do —
+          but they'll sit above optimization layers that decide what's <i>allowed</i>: MPC tracking controllers,
+          safety filters, constraint projection. The controls engineer's center of gravity moves to the boundary
+          between learned and guaranteed. Whole-body control stays an optimization problem.</p>
+          <p class="rec"><b>My receipts</b>Built robust / hybrid / explicit MPC around learned dynamics with
+          conformal-prediction safety bounds at GRASP; deployed learning-based control with uncertainty modeling
+          on Verdant's field robots.</p>
+        </div>
+      </article>
+      <article class="thcard rv">
+        <span class="num">02</span>
+        <div>
+          <h3>Models stop being handwritten</h3>
+          <p class="what">System ID becomes continuous and hybrid: physics structure plus data — PINNs, neural
+          ODEs, differentiable simulation — refreshed by telemetry from every deployed unit. The fleet becomes
+          the experiment, and sim-to-real becomes a pipeline rather than a paper problem.</p>
+          <p class="rec"><b>My receipts</b>PINN / DeepONet / FNO dynamics learning; NARX and neural-ODE models
+          on production robots; day-job experience with consumer fleets as a data source.</p>
+        </div>
+      </article>
+      <article class="thcard rv">
+        <span class="num">03</span>
+        <div>
+          <h3>Solvers and networks shrink to the edge</h3>
+          <p class="what">Embedded MPC (TinyMPC / OSQP-class) and quantized inference (TinyML) put optimization
+          and learned models on microcontrollers that cost less than a coffee. That's what unlocks advanced
+          control in mass-market robots, wearables, and appliances — products where the BOM is the boss.</p>
+          <p class="rec"><b>My receipts</b>Deploying optimization-based real-time inference on Cortex-M-class
+          silicon in production R&amp;D today; CMSIS / TinyML on the resume, not the wishlist.</p>
+        </div>
+      </article>
+      <article class="thcard rv">
+        <span class="num">04</span>
+        <div>
+          <h3>AI agents multiply the engineer</h3>
+          <p class="what">LLM agents already draft control code, reverse-engineer legacy firmware into specs,
+          generate HIL test suites, and triage fleet logs. The role shifts toward architect and reviewer: the
+          engineer who can specify the problem precisely — costs, constraints, interfaces, failure modes — and
+          verify what the machine writes. Taste for correctness becomes the bottleneck skill.</p>
+          <p class="rec"><b>My receipts</b>I run this workflow daily — agentic spec extraction from firmware,
+          AI-drafted state-machine documentation, generated test harnesses — reviewed like any junior engineer's
+          PR, with the physics as the referee.</p>
+        </div>
+      </article>
+      <article class="thcard rv">
+        <span class="num">05</span>
+        <div>
+          <h3>What doesn't change</h3>
+          <p class="what">Actuators saturate. Sensors lie. Heat flows where it wants. Safety cases must close
+          before ship dates. No model — learned or otherwise — beats an engineer with a scope probe and a
+          hypothesis when unit #2,000,001 misbehaves. Formulating the right problem and debugging real hardware
+          stay stubbornly human.</p>
+          <p class="rec"><b>My receipts</b>Two years of production escalations, HIL fault injection, CAN/latency
+          forensics, and factory realities across four shipping product lines.</p>
+        </div>
+      </article>
+    </div>
+    <div class="stays rv">
+      <h3>What this means if you're hiring</h3>
+      <p>You don't need ten controls engineers who each do one layer. You need a few who can formulate the
+      optimization, wrap the learned model safely, fit it on the target silicon, prove it on HIL, and use AI
+      tooling to move at 5× — then stand behind the safety case. That hybrid profile is what I've been building
+      deliberately, and it's what I'll bring to an Engineer II / Senior controls role.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="shell rv">
+      <span class="stag"><b>Σ</b> CLOSE THE LOOP</span>
+      <h2>Building robots, wearables, or an autonomy stack?<br>Let's talk.</h2>
+      <p class="roles">Open to <b>Engineer II / Senior</b> roles: Robotics Controls · Motion Planning &amp; Controls ·
+      Embedded Controls · GNC · Systems Engineering — humanoids, consumer robotics, wearables, drones, AVs.</p>
+      <p class="loc">Boston, MA · SharkNinja R&amp;D (current)</p>
+      <div class="cbtns">
+        <a class="btn pri" href="mailto:pranavg200@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          pranavg200@gmail.com</a>
+        <a class="btn sec" href="https://www.linkedin.com/in/pranav-gunreddy/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn sec" href="https://github.com/PranavG200" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn sec" href="PranavGunreddy_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+      </div>
+      <p class="alt-mail">academic: <a href="mailto:grpranav@seas.upenn.edu">grpranav@seas.upenn.edu</a></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="yr">2026</span> Pranav Gunreddy — hand-built, zero frameworks, controllers included.</span>
+    <span>r(t) → e(t) → u(t) → y(t) → <a href="#home">loop back to top ↑</a></span>
+  </div>
+</footer>
+
+<script>
+/*SIMCORE-START*/
+// ============================================================
+//  Pure simulation core — no DOM. LQR via Riccati iteration,
+//  nonlinear cart-pole, twin thermal plants, PID, and a
+//  projected-gradient MPC with a disturbance observer.
+// ============================================================
+const SIM = (() => {
+  // ---- tiny matrix helpers (dense, row-major arrays of arrays)
+  const zeros = (r, c) => Array.from({length: r}, () => Array(c).fill(0));
+  const eye = n => { const I = zeros(n, n); for (let i = 0; i < n; i++) I[i][i] = 1; return I; };
+  const mmul = (A, B) => {
+    const r = A.length, k = B.length, c = B[0].length, C = zeros(r, c);
+    for (let i = 0; i < r; i++) for (let j = 0; j < c; j++) {
+      let s = 0; for (let t = 0; t < k; t++) s += A[i][t] * B[t][j]; C[i][j] = s;
+    } return C;
+  };
+  const mT = A => A[0].map((_, j) => A.map(row => row[j]));
+  const madd = (A, B) => A.map((row, i) => row.map((v, j) => v + B[i][j]));
+  const msub = (A, B) => A.map((row, i) => row.map((v, j) => v - B[i][j]));
+
+  // ---- discrete-time LQR gain by Riccati fixed-point iteration
+  function dlqr(Ad, Bd, Q, R, iters = 600) {
+    let P = Q.map(r => r.slice());
+    for (let it = 0; it < iters; it++) {
+      const BtP = mmul(mT(Bd), P);            // 1 x n
+      const s = R + mmul(BtP, Bd)[0][0];      // scalar
+      const K = mmul(BtP, Ad).map(row => row.map(v => v / s)); // 1 x n
+      const AtP = mmul(mT(Ad), P);
+      const Pn = madd(Q, msub(mmul(AtP, Ad), mmul(mmul(AtP, Bd), K)));
+      // symmetrize for numerical hygiene
+      P = Pn.map((row, i) => row.map((v, j) => 0.5 * (v + Pn[j][i])));
+    }
+    const BtP = mmul(mT(Bd), P);
+    const s = R + mmul(BtP, Bd)[0][0];
+    return mmul(BtP, Ad)[0].map(v => v / s);  // K as flat [k1..k4]
+  }
+
+  // ---- cart-pole ----------------------------------------------------------
+  const CP = { M: 1.0, m: 0.2, l: 0.5, g: 9.81, umax: 20 };
+  function cartpoleDeriv(s, u) {
+    const [x, xd, th, thd] = s, {M, m, l, g} = CP;
+    const sn = Math.sin(th), cs = Math.cos(th);
+    const xdd = (u + m * l * thd * thd * sn - m * g * sn * cs) / (M + m * sn * sn);
+    const thdd = (g * sn - xdd * cs) / l;
+    return [xd, xdd, thd, thdd];
+  }
+  function cartpoleStep(s, u, dt) {
+    // RK2 (midpoint) — plenty for a demo, stable at dt=1/240
+    const k1 = cartpoleDeriv(s, u);
+    const mid = s.map((v, i) => v + 0.5 * dt * k1[i]);
+    const k2 = cartpoleDeriv(mid, u);
+    return s.map((v, i) => v + dt * k2[i]);
+  }
+  function cartpoleLQR() {
+    const {M, m, l, g} = CP, dt = 1 / 120;
+    const A = [[0,1,0,0],[0,0,-m*g/M,0],[0,0,0,1],[0,0,(M+m)*g/(M*l),0]];
+    const B = [[0],[1/M],[0],[-1/(M*l)]];
+    const Ad = madd(eye(4), A.map(r => r.map(v => v*dt)));
+    const Bd = B.map(r => [r[0]*dt]);
+    const Q = [[6,0,0,0],[0,2,0,0],[0,0,90,0],[0,0,0,4]];
+    return dlqr(Ad, Bd, Q, 0.2);
+  }
+  const clamp = (v, lo, hi) => v < lo ? lo : v > hi ? hi : v;
+
+  // ---- boiler (2-state thermal plant) -------------------------------------
+  const BL = { P: 90, kHW: 3.0, kHA: 0.02, kWA: 0.25, Ch: 15, Cw: 60, Tamb: 22, ref: 93 };
+  function boilerDeriv(s, u, d) {
+    const [Th, Tw] = s, {P, kHW, kHA, kWA, Ch, Cw, Tamb} = BL;
+    return [
+      (P * u - kHW * (Th - Tw) - kHA * (Th - Tamb)) / Ch,
+      (kHW * (Th - Tw) - kWA * (Tw - Tamb) - d) / Cw
+    ];
+  }
+  function boilerStep(s, u, d, dt) {
+    const k1 = boilerDeriv(s, u, d);
+    const mid = [s[0] + 0.5 * dt * k1[0], s[1] + 0.5 * dt * k1[1]];
+    const k2 = boilerDeriv(mid, u, d);
+    return [s[0] + dt * k2[0], s[1] + dt * k2[1]];
+  }
+  const boilerInit = () => [98.9, 93.0];   // near-equilibrium at setpoint
+
+  // ---- PID with derivative-on-measurement + anti-windup --------------------
+  function makePID(kp, ki, kd) {
+    let I = 0, prevMeas = null, dFilt = 0;
+    return {
+      reset() { I = 0; prevMeas = null; dFilt = 0; },
+      step(ref, meas, dt) {
+        const e = ref - meas;
+        if (prevMeas === null) prevMeas = meas;
+        const dRaw = -(meas - prevMeas) / dt;
+        dFilt += 0.25 * (dRaw - dFilt);
+        prevMeas = meas;
+        let u = kp * e + I + kd * dFilt;
+        // integrate only when it won't wind up past the saturation we're stuck at
+        if ((u < 1 || e < 0) && (u > 0 || e > 0)) I += ki * e * dt;
+        return clamp(kp * e + I + kd * dFilt, 0, 1);
+      }
+    };
+  }
+
+  // ---- MPC: projected gradient on the input sequence -----------------------
+  //  min  sum q*(Tw_k - ref)^2 + rdu*(u_k - u_{k-1})^2     s.t. 0 <= u <= 1
+  //  discrete Euler model at dtc, affine terms carry ambient losses + d̂
+  function makeMPC() {
+    const dtc = 0.5, N = 24, q = 1.0, rdu = 30, iters = 40, alpha = 0.004;
+    const {P, kHW, kHA, kWA, Ch, Cw, Tamb, ref} = BL;
+    const a11 = 1 - (kHW + kHA) * dtc / Ch, a12 = kHW * dtc / Ch;
+    const a21 = kHW * dtc / Cw,             a22 = 1 - (kHW + kWA) * dtc / Cw;
+    const b1 = P * dtc / Ch;
+    let U = Array(N).fill(0.21), uPrev = 0.21, dHat = 0;
+    const fwd = (x, u, w2) => [a11*x[0] + a12*x[1] + b1*u + kHA*Tamb*dtc/Ch, a21*x[0] + a22*x[1] + w2];
+    return {
+      dtc,
+      reset() { U.fill(0.21); uPrev = 0.21; dHat = 0; },
+      observe(xPrevState, uApplied, TwMeasured) {   // disturbance observer (offset-free MPC)
+        const w2 = (kWA * Tamb - dHat) * dtc / Cw;
+        const pred = fwd(xPrevState, uApplied, w2);
+        const err = TwMeasured - pred[1];
+        dHat = clamp(dHat - 0.5 * err * Cw / dtc, -20, 80);
+      },
+      solve(x0) {
+        const w2 = (kWA * Tamb - dHat) * dtc / Cw;
+        // warm start: shift
+        for (let i = 0; i < N - 1; i++) U[i] = U[i + 1];
+        for (let it = 0; it < iters; it++) {
+          // forward rollout
+          const xs = [x0];
+          for (let k = 0; k < N; k++) xs.push(fwd(xs[k], U[k], w2));
+          // backward adjoint
+          let l1 = 0, l2 = 2 * q * (xs[N][1] - ref);
+          const g = Array(N).fill(0);
+          for (let k = N - 1; k >= 0; k--) {
+            g[k] = b1 * l1
+                 + 2 * rdu * (U[k] - (k > 0 ? U[k - 1] : uPrev))
+                 - (k < N - 1 ? 2 * rdu * (U[k + 1] - U[k]) : 0);
+            const s1 = (k >= 1 ? 0 : 0) + a11 * l1 + a21 * l2;
+            const s2 = (k >= 1 ? 2 * q * (xs[k][1] - ref) : 0) + a12 * l1 + a22 * l2;
+            l1 = s1; l2 = s2;
+          }
+          for (let k = 0; k < N; k++) U[k] = clamp(U[k] - alpha * g[k], 0, 1);
+        }
+        uPrev = U[0];
+        return U[0];
+      }
+    };
+  }
+
+  return { CP, BL, clamp, cartpoleStep, cartpoleLQR, boilerStep, boilerInit, makePID, makeMPC };
+})();
+/*SIMCORE-END*/
+if (typeof module !== 'undefined' && module.exports) module.exports = SIM;
+</script>
+
+<script>
+// ============================================================
+//  UI layer — rendering, interaction, telemetry scopes
+// ============================================================
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const clamp = SIM.clamp;
+
+  // roundRect fallback for older canvas implementations
+  if (typeof CanvasRenderingContext2D !== 'undefined' && !CanvasRenderingContext2D.prototype.roundRect) {
+    CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+      r = Math.min(r, w / 2, h / 2);
+      this.moveTo(x + r, y);
+      this.arcTo(x + w, y, x + w, y + h, r);
+      this.arcTo(x + w, y + h, x, y + h, r);
+      this.arcTo(x, y + h, x, y, r);
+      this.arcTo(x, y, x + w, y, r);
+      this.closePath();
+      return this;
+    };
+  }
+
+  // ---------- generic helpers ----------
+  function fitCanvas(cv) {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const r = cv.getBoundingClientRect();
+    if (r.width === 0) return false;
+    const w = Math.round(r.width * dpr), h = Math.round(r.height * dpr);
+    if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
+    const ctx = cv.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return true;
+  }
+  const CSS = { ref: '#1d4ed8', ctrl: '#c2410c', out: '#0f766e', dist: '#dc2626', ink: '#12161b', mut: '#9ca3af', grid: 'rgba(18,22,27,.07)' };
+
+  function drawGrid(ctx, w, h, step = 28) {
+    ctx.strokeStyle = CSS.grid; ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (let x = 0.5; x < w; x += step) { ctx.moveTo(x, 0); ctx.lineTo(x, h); }
+    for (let y = 0.5; y < h; y += step) { ctx.moveTo(0, y); ctx.lineTo(w, y); }
+    ctx.stroke();
+  }
+
+  // rolling trace buffer
+  function makeTrace(cap) {
+    const buf = [];
+    return {
+      push(v) { buf.push(v); if (buf.length > cap) buf.shift(); },
+      get() { return buf; },
+      clear() { buf.length = 0; }
+    };
+  }
+  function plotSeries(ctx, buf, key, x0, y0, w, h, lo, hi, color, dash) {
+    const data = buf.get(); if (data.length < 2) return;
+    ctx.save();
+    ctx.beginPath(); ctx.rect(x0, y0, w, h); ctx.clip();
+    ctx.strokeStyle = color; ctx.lineWidth = 1.8;
+    ctx.setLineDash(dash || []);
+    ctx.beginPath();
+    const n = data.length, capN = buf.capN || n;
+    for (let i = 0; i < n; i++) {
+      const px = x0 + w * (i / Math.max(capN - 1, 1));
+      const v = clamp((data[i][key] - lo) / (hi - lo), -0.05, 1.05);
+      const py = y0 + h * (1 - v);
+      i ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
+    }
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.restore();
+  }
+  function scopeFrame(ctx, x0, y0, w, h, label) {
+    ctx.strokeStyle = 'rgba(18,22,27,.18)'; ctx.lineWidth = 1;
+    ctx.strokeRect(x0 + 0.5, y0 + 0.5, w - 1, h - 1);
+    ctx.fillStyle = '#8a93a0'; ctx.font = '10px JetBrains Mono, monospace';
+    ctx.fillText(label, x0 + 8, y0 + 14);
+  }
+
+  // ============================================================
+  // SCENE A — cart-pole + LQR
+  // ============================================================
+  const K = SIM.cartpoleLQR();          // solved live at page load
+  const A = {
+    s: [0, 0, 0.14, 0],                 // start with a lean so it visibly recovers
+    xref: 0, u: 0, falls: 0, recoveries: 0, disturbed: true,
+    trace: makeTrace(700)
+  };
+  A.trace.capN = 700;
+
+  function stepSceneA(realDt) {
+    const sub = 1 / 240, steps = Math.max(1, Math.round(realDt / sub));
+    for (let i = 0; i < steps; i++) {
+      const e = [A.s[0] - A.xref, A.s[1], A.s[2], A.s[3]];
+      A.u = clamp(-(K[0]*e[0] + K[1]*e[1] + K[2]*e[2] + K[3]*e[3]), -SIM.CP.umax, SIM.CP.umax);
+      A.s = SIM.cartpoleStep(A.s, A.u, sub);
+      if (Math.abs(A.s[2]) > 0.6 || Math.abs(A.s[0]) > 2.2) {   // fell / ran away
+        A.falls++; A.s = [A.xref, 0, 0.02, 0]; A.disturbed = false;
+      }
+    }
+    if (A.disturbed && Math.abs(A.s[2]) < 0.03 && Math.abs(A.s[3]) < 0.15) { A.recoveries++; A.disturbed = false; }
+    A.trace.push({ th: A.s[2] * 180 / Math.PI, x: A.s[0], xr: A.xref });
+  }
+
+  function drawSceneA() {
+    const cv = $('anim'); if (!fitCanvas(cv)) return;
+    const ctx = cv.getContext('2d');
+    const w = cv.getBoundingClientRect().width, h = cv.getBoundingClientRect().height;
+    ctx.clearRect(0, 0, w, h);
+    drawGrid(ctx, w, h);
+    const scale = w / 4.6, cx = w / 2, trackY = h * 0.72;
+    // track
+    ctx.strokeStyle = '#c9c5b9'; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(10, trackY + 20); ctx.lineTo(w - 10, trackY + 20); ctx.stroke();
+    // reference flag
+    const rx = cx + A.xref * scale;
+    ctx.strokeStyle = CSS.ref; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(rx, trackY - 68); ctx.lineTo(rx, trackY + 20); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = CSS.ref; ctx.font = '10px JetBrains Mono, monospace';
+    ctx.fillText('x_ref', rx + 5, trackY - 58);
+    // cart
+    const px = cx + A.s[0] * scale;
+    ctx.fillStyle = CSS.ink;
+    const cw = 66, ch = 30;
+    ctx.beginPath(); ctx.roundRect(px - cw/2, trackY - ch/2, cw, ch, 7); ctx.fill();
+    ctx.fillStyle = '#faf9f6';
+    ctx.beginPath(); ctx.arc(px - 18, trackY + 17, 7, 0, 7); ctx.fill();
+    ctx.beginPath(); ctx.arc(px + 18, trackY + 17, 7, 0, 7); ctx.fill();
+    ctx.strokeStyle = CSS.ink; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(px - 18, trackY + 17, 7, 0, 7); ctx.stroke();
+    ctx.beginPath(); ctx.arc(px + 18, trackY + 17, 7, 0, 7); ctx.stroke();
+    // pole
+    const L = Math.min(h * 0.42, 130);
+    const tipX = px + L * Math.sin(A.s[2]), tipY = trackY - ch/2 - L * Math.cos(A.s[2]);
+    ctx.strokeStyle = CSS.out; ctx.lineWidth = 6; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(px, trackY - ch/2); ctx.lineTo(tipX, tipY); ctx.stroke();
+    ctx.fillStyle = CSS.out;
+    ctx.beginPath(); ctx.arc(tipX, tipY, 9, 0, 7); ctx.fill();
+    // force arrow u(t)
+    if (Math.abs(A.u) > 0.4) {
+      const ax = px + Math.sign(A.u) * (cw/2 + 6), len = clamp(Math.abs(A.u) * 3.2, 8, 70) * Math.sign(A.u);
+      ctx.strokeStyle = CSS.ctrl; ctx.lineWidth = 3.5;
+      ctx.beginPath(); ctx.moveTo(ax, trackY); ctx.lineTo(ax + len, trackY); ctx.stroke();
+      ctx.fillStyle = CSS.ctrl;
+      ctx.beginPath();
+      ctx.moveTo(ax + len + Math.sign(A.u) * 8, trackY);
+      ctx.lineTo(ax + len, trackY - 5); ctx.lineTo(ax + len, trackY + 5); ctx.fill();
+    }
+    // saturation indicator
+    if (Math.abs(A.u) > SIM.CP.umax - 0.01) {
+      ctx.fillStyle = CSS.dist; ctx.font = '600 10px JetBrains Mono, monospace';
+      ctx.fillText('u SATURATED', px - 34, trackY - 44);
+    }
+  }
+
+  function drawScopeA() {
+    const cv = $('scope'); if (!fitCanvas(cv)) return;
+    const ctx = cv.getContext('2d');
+    const w = cv.getBoundingClientRect().width, h = cv.getBoundingClientRect().height;
+    ctx.clearRect(0, 0, w, h);
+    const hh = (h - 12) / 2;
+    scopeFrame(ctx, 0, 0, w, hh, 'CH1 · pole angle θ (±30°)');
+    scopeFrame(ctx, 0, hh + 12, w, hh, 'CH2 · cart x vs x_ref (±1.8 m)');
+    // zero lines
+    ctx.strokeStyle = 'rgba(18,22,27,.12)';
+    ctx.beginPath(); ctx.moveTo(0, hh/2); ctx.lineTo(w, hh/2); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, hh + 12 + hh/2); ctx.lineTo(w, hh + 12 + hh/2); ctx.stroke();
+    plotSeries(ctx, A.trace, 'th', 0, 0, w, hh, -30, 30, CSS.out);
+    plotSeries(ctx, A.trace, 'xr', 0, hh + 12, w, hh, -1.8, 1.8, CSS.ref, [5, 4]);
+    plotSeries(ctx, A.trace, 'x',  0, hh + 12, w, hh, -1.8, 1.8, CSS.ink);
+  }
+
+  // ============================================================
+  // SCENE B — twin boilers: PID vs MPC
+  // ============================================================
+  const pid = SIM.makePID(0.035, 0.004, 0.5);
+  const mpc = SIM.makeMPC();
+  const B = {
+    sP: SIM.boilerInit(), sM: SIM.boilerInit(),
+    uP: 0.21, uM: 0.21, d: 0, dTimer: 0,
+    mpcClock: 0, xMPrev: SIM.boilerInit(), uMPrev: 0.21,
+    iaeP: 0, iaeM: 0, t: 0,
+    trace: makeTrace(700)
+  };
+  B.trace.capN = 700;
+
+  function resetB() {
+    B.sP = SIM.boilerInit(); B.sM = SIM.boilerInit();
+    B.uP = 0.21; B.uM = 0.21; B.d = 0; B.dTimer = 0; B.mpcClock = 0;
+    B.xMPrev = SIM.boilerInit(); B.uMPrev = 0.21;
+    B.iaeP = 0; B.iaeM = 0; B.t = 0;
+    pid.reset(); mpc.reset(); B.trace.clear();
+  }
+
+  function stepSceneB(realDt) {
+    const simDt = realDt * 6;                    // 6x time compression
+    const sub = 0.05, steps = Math.max(1, Math.round(simDt / sub));
+    const ref = SIM.BL.ref;
+    for (let i = 0; i < steps; i++) {
+      if (B.dTimer > 0) { B.dTimer -= sub; if (B.dTimer <= 0) B.d = 0; }
+      // PID plant — controller runs every substep
+      B.uP = pid.step(ref, B.sP[1], sub);
+      B.sP = SIM.boilerStep(B.sP, B.uP, B.d, sub);
+      // MPC plant — solve every dtc, ZOH in between
+      B.mpcClock += sub;
+      if (B.mpcClock >= mpc.dtc - 1e-9) {
+        B.mpcClock = 0;
+        mpc.observe(B.xMPrev, B.uMPrev, B.sM[1]);
+        B.xMPrev = B.sM.slice();
+        B.uM = mpc.solve(B.sM);
+        B.uMPrev = B.uM;
+      }
+      B.sM = SIM.boilerStep(B.sM, B.uM, B.d, sub);
+      B.iaeP += Math.abs(ref - B.sP[1]) * sub;
+      B.iaeM += Math.abs(ref - B.sM[1]) * sub;
+      B.t += sub;
+    }
+    B.trace.push({ tp: B.sP[1], tm: B.sM[1], ref, up: B.uP, um: B.uM });
+  }
+
+  function drawVessel(ctx, x, y, w, h, temp, u, label, color) {
+    // vessel body
+    ctx.strokeStyle = CSS.ink; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.roundRect(x, y, w, h, 10); ctx.stroke();
+    // water fill, tinted by temperature (88 → blue, 98 → red)
+    const k = clamp((temp - 86) / 14, 0, 1);
+    const rC = Math.round(37 + k * 180), gC = Math.round(99 - k * 40), bC = Math.round(235 - k * 190);
+    ctx.fillStyle = `rgba(${rC},${gC},${bC},.25)`;
+    ctx.beginPath(); ctx.roundRect(x + 4, y + h * 0.28, w - 8, h * 0.72 - 4, 8); ctx.fill();
+    // heater bar
+    ctx.fillStyle = `rgba(194,65,12,${0.15 + 0.85 * u})`;
+    ctx.beginPath(); ctx.roundRect(x + 8, y + h - 12, (w - 16), 6, 3); ctx.fill();
+    // temp text
+    ctx.fillStyle = CSS.ink; ctx.font = '600 15px JetBrains Mono, monospace';
+    ctx.fillText(temp.toFixed(1) + '°C', x + w/2 - 32, y + h * 0.56);
+    ctx.fillStyle = color; ctx.font = '600 11px JetBrains Mono, monospace';
+    ctx.fillText(label, x + w/2 - ctx.measureText(label).width/2, y - 8);
+    // duty
+    ctx.fillStyle = '#8a93a0'; ctx.font = '10px JetBrains Mono, monospace';
+    ctx.fillText('u=' + (u*100).toFixed(0) + '%', x + w/2 - 18, y + h + 16);
+  }
+
+  function drawSceneB() {
+    const cv = $('anim2'); if (!fitCanvas(cv)) return;
+    const ctx = cv.getContext('2d');
+    const w = cv.getBoundingClientRect().width, h = cv.getBoundingClientRect().height;
+    ctx.clearRect(0, 0, w, h);
+    drawGrid(ctx, w, h);
+    const vw = Math.min(150, w * 0.3), vh = h * 0.52, gap = Math.min(120, w * 0.18);
+    const x1 = w/2 - gap/2 - vw, x2 = w/2 + gap/2, y = h * 0.24;
+    drawVessel(ctx, x1, y, vw, vh, B.sP[1], B.uP, 'PID', CSS.mut);
+    drawVessel(ctx, x2, y, vw, vh, B.sM[1], B.uM, 'MPC', CSS.out);
+    // setpoint line
+    ctx.fillStyle = CSS.ref; ctx.font = '11px JetBrains Mono, monospace';
+    ctx.fillText('setpoint 93.0°C', w/2 - 46, 16);
+    // disturbance indicator
+    if (B.d > 0) {
+      ctx.fillStyle = CSS.dist; ctx.font = '600 12px JetBrains Mono, monospace';
+      const txt = '☕ d(t) ACTIVE — heat draw';
+      ctx.fillText(txt, w/2 - ctx.measureText(txt).width/2, h - 10);
+    }
+  }
+
+  function drawScopeB() {
+    const cv = $('scope2'); if (!fitCanvas(cv)) return;
+    const ctx = cv.getContext('2d');
+    const w = cv.getBoundingClientRect().width, h = cv.getBoundingClientRect().height;
+    ctx.clearRect(0, 0, w, h);
+    const h1 = (h - 12) * 0.62, h2 = (h - 12) * 0.38;
+    scopeFrame(ctx, 0, 0, w, h1, 'CH1 · water temp (86–100°C)');
+    scopeFrame(ctx, 0, h1 + 12, w, h2, 'CH2 · heater duty u (0–100%) — ceiling = saturation');
+    plotSeries(ctx, B.trace, 'ref', 0, 0, w, h1, 86, 100, CSS.ref, [5, 4]);
+    plotSeries(ctx, B.trace, 'tp',  0, 0, w, h1, 86, 100, CSS.mut);
+    plotSeries(ctx, B.trace, 'tm',  0, 0, w, h1, 86, 100, CSS.out);
+    plotSeries(ctx, B.trace, 'up',  0, h1 + 12, w, h2, 0, 1, CSS.mut);
+    plotSeries(ctx, B.trace, 'um',  0, h1 + 12, w, h2, 0, 1, CSS.ctrl);
+  }
+
+  // ============================================================
+  // main loop, tabs, controls, reveal, nav
+  // ============================================================
+  let scene = 'A', running = true, last = performance.now();
+
+  function frame(now) {
+    const realDt = Math.min((now - last) / 1000, 0.05);
+    last = now;
+    if (running && !document.hidden) {
+      if (scene === 'A') { stepSceneA(realDt); drawSceneA(); drawScopeA();
+        $('mA1').innerHTML = (A.s[2]*180/Math.PI).toFixed(1) + '<small>°</small>';
+        $('mA2').innerHTML = Math.abs(A.u).toFixed(1) + '<small>N</small>';
+        $('mA3').textContent = A.recoveries + (A.falls ? ' (' + A.falls + ' falls)' : '');
+      } else { stepSceneB(realDt); drawSceneB(); drawScopeB();
+        $('mB1').innerHTML = B.iaeP.toFixed(0) + '<small>°·s</small>';
+        $('mB2').innerHTML = B.iaeM.toFixed(0) + '<small>°·s</small>';
+        $('mB3').textContent = B.iaeP > 2 ? Math.round((1 - B.iaeM / B.iaeP) * 100) + '%' : '—';
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // pause simulation when demo is off-screen
+  const demoSec = $('demo');
+  new IntersectionObserver(es => { running = es[0].isIntersecting; }, { threshold: 0 }).observe(demoSec);
+
+  // tabs
+  function setScene(s) {
+    scene = s;
+    $('sceneA').hidden = s !== 'A'; $('sceneB').hidden = s !== 'B';
+    $('tabA').classList.toggle('on', s === 'A'); $('tabB').classList.toggle('on', s === 'B');
+    $('tabA').setAttribute('aria-selected', s === 'A'); $('tabB').setAttribute('aria-selected', s === 'B');
+    $('livetxt').textContent = s === 'A' ? 'simulating @ 60 fps' : 'sim time 6× · MPC solves 2 Hz';
+  }
+  $('tabA').addEventListener('click', () => setScene('A'));
+  $('tabB').addEventListener('click', () => setScene('B'));
+
+  // scene A controls
+  $('pokeL').addEventListener('click', () => { A.s[3] -= 1.4; A.disturbed = true; });
+  $('pokeR').addEventListener('click', () => { A.s[3] += 1.4; A.disturbed = true; });
+  $('resetA').addEventListener('click', () => { A.s = [0,0,0.14,0]; A.xref = 0; $('xref').value = 0; $('xrefv').textContent = '0.00 m'; A.falls = 0; A.recoveries = 0; A.disturbed = true; A.trace.clear(); });
+  $('xref').addEventListener('input', e => { A.xref = parseFloat(e.target.value); $('xrefv').textContent = A.xref.toFixed(2) + ' m'; });
+
+  // scene B controls
+  $('shot').addEventListener('click', () => { B.d = 45; B.dTimer = 6; });
+  $('refill').addEventListener('click', () => { B.sP[1] -= 8; B.sM[1] -= 8; });
+  $('resetB').addEventListener('click', resetB);
+
+  // nav / hamburger
+  const hamb = $('hamb'), mob = $('mobmenu');
+  hamb.addEventListener('click', () => {
+    const open = mob.classList.toggle('open');
+    hamb.setAttribute('aria-expanded', open);
+    hamb.textContent = open ? 'close' : 'menu';
+  });
+  mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mob.classList.remove('open'); hamb.textContent = 'menu'; }));
+
+  // reveal on scroll
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.1 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  // year
+  $('yr').textContent = new Date().getFullYear();
+
+  // resize
+  window.addEventListener('resize', () => { drawSceneA(); drawScopeA(); if (scene === 'B') { drawSceneB(); drawScopeB(); } });
+
+  requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>
